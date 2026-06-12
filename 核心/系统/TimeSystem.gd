@@ -47,6 +47,33 @@ enum FlowMode {
 const TURNS_PER_DAY: int = 5
 const MINUTES_PER_DAY: int = 24 * 60
 const SLOT_NAMES: Array[String] = ["清晨", "中午", "黄昏", "晚上", "深夜"]
+const WEEKDAY_NAMES: Array[String] = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"]
+const HEAVENLY_STEMS: Array[String] = ["甲", "乙", "丙", "丁", "戊", "己", "庚", "辛", "壬", "癸"]
+const EARTHLY_BRANCHES: Array[String] = ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"]
+const LUNAR_MONTH_NAMES: Array[String] = ["正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "冬", "腊"]
+const LUNAR_INFO: Array[int] = [
+	0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260, 0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
+	0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255, 0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,
+	0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40, 0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970,
+	0x06566, 0x0d4a0, 0x0ea50, 0x06e95, 0x05ad0, 0x02b60, 0x186e3, 0x092e0, 0x1c8d7, 0x0c950,
+	0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4, 0x025d0, 0x092d0, 0x0d2b2, 0x0a950, 0x0b557,
+	0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5d0, 0x14573, 0x052d0, 0x0a9a8, 0x0e950, 0x06aa0,
+	0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0,
+	0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6,
+	0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570,
+	0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x05ac0, 0x0ab60, 0x096d5, 0x092e0,
+	0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5,
+	0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930,
+	0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530,
+	0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45,
+	0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0,
+	0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0,
+	0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4,
+	0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0,
+	0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160,
+	0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f252,
+	0x0d520
+]
 const SLOT_START_MINUTES: Array[int] = [
 	8 * 60,
 	12 * 60,
@@ -257,6 +284,18 @@ func 获取时间文本() -> String:
 		获取当前钟表分钟()
 	]
 
+func 获取手机日期文本() -> String:
+	var lunar_data: Dictionary = _get_lunar_date(_current_year, _current_month, _current_day)
+	return "%d月%d日%s·%s年%s%s月%s" % [
+		_current_month,
+		_current_day,
+		_get_weekday_name(_current_year, _current_month, _current_day),
+		_get_ganzhi_year_name(_current_year),
+		"闰" if bool(lunar_data.get("is_leap", false)) else "",
+		_get_lunar_month_name(int(lunar_data.get("month", 1))),
+		_get_lunar_day_name(int(lunar_data.get("day", 1)))
+	]
+
 func 获取当前日期数据() -> Dictionary:
 	return {
 		"year": _current_year,
@@ -432,6 +471,121 @@ func _is_leap_year(year: int) -> bool:
 	if year % 100 == 0:
 		return false
 	return year % 4 == 0
+
+func _get_weekday_name(year: int, month: int, day: int) -> String:
+	var days: int = _days_from_civil(year, month, day)
+	var index: int = posmod(days + 4, 7)
+	return WEEKDAY_NAMES[index]
+
+func _get_ganzhi_year_name(year: int) -> String:
+	var stem_index: int = posmod(year - 4, HEAVENLY_STEMS.size())
+	var branch_index: int = posmod(year - 4, EARTHLY_BRANCHES.size())
+	return HEAVENLY_STEMS[stem_index] + EARTHLY_BRANCHES[branch_index]
+
+func _get_lunar_date(year: int, month: int, day: int) -> Dictionary:
+	if year < 1900 or year > 2100:
+		return {
+			"month": month,
+			"day": day,
+			"is_leap": false
+		}
+
+	var offset: int = _days_from_civil(year, month, day) - _days_from_civil(1900, 1, 31)
+	var lunar_year: int = 1900
+	while lunar_year <= 2100:
+		var year_days: int = _get_lunar_year_days(lunar_year)
+		if offset < year_days:
+			break
+		offset -= year_days
+		lunar_year += 1
+
+	var leap_month: int = _get_lunar_leap_month(lunar_year)
+	for lunar_month in range(1, 13):
+		var month_days: int = _get_lunar_month_days(lunar_year, lunar_month)
+		if offset < month_days:
+			return {
+				"year": lunar_year,
+				"month": lunar_month,
+				"day": offset + 1,
+				"is_leap": false
+			}
+		offset -= month_days
+
+		if leap_month == lunar_month:
+			var leap_days: int = _get_lunar_leap_days(lunar_year)
+			if offset < leap_days:
+				return {
+					"year": lunar_year,
+					"month": lunar_month,
+					"day": offset + 1,
+					"is_leap": true
+				}
+			offset -= leap_days
+
+	return {
+		"year": lunar_year,
+		"month": 12,
+		"day": 30,
+		"is_leap": false
+	}
+
+func _get_lunar_year_days(year: int) -> int:
+	var sum: int = 348
+	var info: int = _get_lunar_info(year)
+	var mask: int = 0x8000
+	while mask > 0x8:
+		if (info & mask) != 0:
+			sum += 1
+		mask = mask >> 1
+	return sum + _get_lunar_leap_days(year)
+
+func _get_lunar_month_days(year: int, month: int) -> int:
+	var info: int = _get_lunar_info(year)
+	return 30 if (info & (0x10000 >> month)) != 0 else 29
+
+func _get_lunar_leap_days(year: int) -> int:
+	var leap_month: int = _get_lunar_leap_month(year)
+	if leap_month == 0:
+		return 0
+	var info: int = _get_lunar_info(year)
+	return 30 if (info & 0x10000) != 0 else 29
+
+func _get_lunar_leap_month(year: int) -> int:
+	return _get_lunar_info(year) & 0xf
+
+func _get_lunar_info(year: int) -> int:
+	var index: int = clampi(year - 1900, 0, LUNAR_INFO.size() - 1)
+	return LUNAR_INFO[index]
+
+func _get_lunar_month_name(month: int) -> String:
+	month = clampi(month, 1, 12)
+	return LUNAR_MONTH_NAMES[month - 1]
+
+func _get_lunar_day_name(day: int) -> String:
+	day = clampi(day, 1, 30)
+	if day <= 10:
+		return "初十" if day == 10 else "初" + _get_chinese_digit(day)
+	if day < 20:
+		return "十" + _get_chinese_digit(day - 10)
+	if day == 20:
+		return "二十"
+	if day < 30:
+		return "廿" + _get_chinese_digit(day - 20)
+	return "三十"
+
+func _get_chinese_digit(value: int) -> String:
+	var digits: Array[String] = ["", "一", "二", "三", "四", "五", "六", "七", "八", "九"]
+	value = clampi(value, 0, 9)
+	return digits[value]
+
+func _days_from_civil(year: int, month: int, day: int) -> int:
+	var adjusted_year: int = year - (1 if month <= 2 else 0)
+	var era: int = floori(float(adjusted_year) / 400.0)
+	var year_of_era: int = adjusted_year - era * 400
+	var adjusted_month: int = month - 3 if month > 2 else month + 9
+	var day_of_year: int = int((153 * adjusted_month + 2) / 5) + day - 1
+	var day_of_era: int = year_of_era * 365 + int(year_of_era / 4) - int(year_of_era / 100) + day_of_year
+	return era * 146097 + day_of_era - 719468
 
 ## ===== 私有方法：信号与日志 =====
 

@@ -139,11 +139,7 @@ func _update_clock(hour: int, minute: int) -> void:
 func _update_date() -> void:
 	if _date_label == null or GameDataManager.时间 == null:
 		return
-	_date_label.text = "%d月%d日 · %s" % [
-		GameDataManager.时间.获取当前月份(),
-		GameDataManager.时间.获取当前日期(),
-		GameDataManager.时间.获取时段名称()
-	]
+	_date_label.text = GameDataManager.时间.获取手机日期文本()
 
 func _update_battery(value: int, is_low: bool) -> void:
 	if _battery_bar != null:

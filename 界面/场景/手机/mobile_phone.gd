@@ -22,10 +22,6 @@ extends Control
 ## 检测范围额外扩张像素，方便玩家不必精准悬停在手机贴图上
 @export var 悬停检测扩张: float = 18.0
 
-@export_group("息屏显示")
-## 息屏时状态栏透明度，避免 CanvasLayer 状态栏独立发亮
-@export_range(0.0, 1.0, 0.01) var 息屏状态栏透明度: float = 0.18
-
 ## ===== 节点引用 =====
 
 @onready var _screen_off: Sprite2D = $手机息屏状态
@@ -113,9 +109,9 @@ func _set_awake(value: bool) -> void:
 func _update_screen_off_status_visibility() -> void:
 	# CanvasLayer 有可能独立于父节点显示，这里显式处理，避免息屏后电量仍然亮着。
 	if _status_layer != null:
-		_status_layer.visible = true
+		_status_layer.visible = _is_awake
 	if _battery_bar != null:
-		_battery_bar.modulate = Color.WHITE if _is_awake else Color(1.0, 1.0, 1.0, 息屏状态栏透明度)
+		_battery_bar.modulate = Color.WHITE
 
 func _is_mouse_over_phone() -> bool:
 	var target: Sprite2D = _screen_on if _is_awake else _screen_off
