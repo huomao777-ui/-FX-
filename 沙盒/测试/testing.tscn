@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://b2o3u2oq3e1eq"]
+
+[ext_resource type="Script" uid="uid://bai27qp6uqxx7" path="res://沙盒/测试/testing.gd" id="1_qrja6"]
+
+[node name="Testing" type="Control" unique_id=32552487]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 21.0
+offset_top = -3.0
+offset_right = 21.0
+offset_bottom = -3.0
+script = ExtResource("1_qrja6")
+
+[node name="加体力" type="Button" parent="." unique_id=1223513706]
+layout_mode = 0
+offset_left = 564.0
+offset_top = 121.0
+offset_right = 679.0
+offset_bottom = 158.0
+text = "加体力"
+
+[node name="扣体力" type="Button" parent="." unique_id=2122011132]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 160.0
+offset_right = 680.0
+offset_bottom = 195.0
+text = "扣体力"
+
+[node name="加压力" type="Button" parent="." unique_id=1446630260]
+layout_mode = 0
+offset_left = 570.0
+offset_top = 197.0
+offset_right = 679.0
+offset_bottom = 234.0
+text = "加压力"
+
+[node name="扣压力" type="Button" parent="." unique_id=396371241]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 238.0
+offset_right = 680.0
+offset_bottom = 279.0
+text = "扣压力"
+
+[node name="加现金" type="Button" parent="." unique_id=1023841091]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 119.0
+offset_right = 795.0
+offset_bottom = 160.0
+text = "加现金"
+
+[node name="扣现金" type="Button" parent="." unique_id=497807566]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 161.0
+offset_right = 794.0
+offset_bottom = 202.0
+text = "扣现金"
+
+[node name="加资产" type="Button" parent="." unique_id=10804585]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 203.0
+offset_right = 794.0
+offset_bottom = 244.0
+text = "加资产"
+
+[node name="扣资产" type="Button" parent="." unique_id=1787264780]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 246.0
+offset_right = 794.0
+offset_bottom = 287.0
+text = "扣资产"
+
+[node name="加健康" type="Button" parent="." unique_id=1202319912]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 123.0
+offset_right = 912.0
+offset_bottom = 164.0
+text = "加健康"
+
+[node name="扣健康" type="Button" parent="." unique_id=1853445177]
+layout_mode = 0
+offset_left = 806.0
+offset_top = 169.0
+offset_right = 913.0
+offset_bottom = 210.0
+text = "扣健康"
+
+[node name="加精神" type="Button" parent="." unique_id=899066380]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 214.0
+offset_right = 912.0
+offset_bottom = 255.0
+text = "加精神"
+
+[node name="扣精神" type="Button" parent="." unique_id=27460069]
+layout_mode = 0
+offset_left = 805.0
+offset_top = 259.0
+offset_right = 912.0
+offset_bottom = 300.0
+text = "扣精神"
+
+[node name="前进时间" type="Button" parent="." unique_id=455024969]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 117.0
+offset_right = 1027.0
+offset_bottom = 158.0
+text = "前进时间"
+
+[node name="后退时间" type="Button" parent="." unique_id=1185158483]
+layout_mode = 0
+offset_left = 919.0
+offset_top = 161.0
+offset_right = 1026.0
+offset_bottom = 202.0
+text = "后退时间"

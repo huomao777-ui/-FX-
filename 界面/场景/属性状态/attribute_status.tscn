@@ -1,0 +1,246 @@
+[gd_scene format=3 uid="uid://bm31oihtos5kc"]
+
+[ext_resource type="Texture2D" uid="uid://dytxxl6dq0n1n" path="res://界面/场景/属性状态/美术资源/接近可用图.png" id="1_4jcol"]
+[ext_resource type="Script" uid="uid://bgmcwcavm7b7t" path="res://界面/场景/属性状态/attribute_status.gd" id="1_366kb"]
+[ext_resource type="Texture2D" uid="uid://3t2j0cv8sqha" path="res://界面/场景/属性状态/美术资源/可用图.png" id="2_lv8hy"]
+[ext_resource type="Script" uid="uid://64k2vlggftx" path="res://界面/组件/StaminaBar.gd" id="3_gnfe6"]
+[ext_resource type="PackedScene" uid="uid://b2o3u2oq3e1eq" path="res://沙盒/测试/testing.tscn" id="5_366kb"]
+[ext_resource type="Script" uid="uid://cw6awx22m6fks" path="res://界面/组件/StressGauge.gd" id="5_bq15l"]
+[ext_resource type="Script" uid="uid://cw7qbavfpa67h" path="res://界面/组件/HealthIcon.gd" id="7_3lyei"]
+[ext_resource type="Script" uid="uid://dj8i5l2miytnw" path="res://界面/组件/CashDisplay.gd" id="7_bq15l"]
+[ext_resource type="Texture2D" uid="uid://bw280k2p7vfpn" path="res://界面/场景/属性状态/美术资源/健康值.png" id="8_3lyei"]
+[ext_resource type="Script" uid="uid://50upijs3p02a" path="res://界面/组件/MentalIcon.gd" id="8_68jod"]
+[ext_resource type="Texture2D" uid="uid://6kgwy2eon52t" path="res://界面/场景/属性状态/美术资源/角色头像/圆形选区.png" id="8_vq20d"]
+[ext_resource type="Texture2D" uid="uid://c5qoxrdq4ohq" path="res://界面/场景/属性状态/美术资源/角色头像/窘迫图.png" id="9_4leeu"]
+[ext_resource type="Texture2D" uid="uid://cb88u0bkwk7w0" path="res://界面/场景/属性状态/美术资源/角色头像/飘飘然1.png" id="9_vw23n"]
+[ext_resource type="Texture2D" uid="uid://cskskok23pk7e" path="res://界面/场景/属性状态/美术资源/角色头像/圆形选区1.png" id="11_af6jr"]
+[ext_resource type="Texture2D" uid="uid://dbbf0hflnd4ib" path="res://界面/场景/属性状态/美术资源/角色头像/忘乎所以图2.png" id="12_68jod"]
+[ext_resource type="Texture2D" uid="uid://56l8loibngky" path="res://界面/场景/属性状态/美术资源/角色头像/崩溃慌乱图.png" id="13_u0j7v"]
+[ext_resource type="Texture2D" uid="uid://x512p78pngns" path="res://界面/场景/属性状态/美术资源/角色头像/心如死灰图.png" id="14_gijjh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv8hy"]
+resource_local_to_scene = true
+atlas = ExtResource("1_4jcol")
+region = Rect2(8, -16, 648, 680)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01apm"]
+atlas = ExtResource("1_4jcol")
+region = Rect2(72, 656, 648, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_366kb"]
+atlas = ExtResource("2_lv8hy")
+region = Rect2(112, 24, 456, 800)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jcol"]
+atlas = ExtResource("1_4jcol")
+region = Rect2(1024, 16, 632, 224)
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lyei"]
+font_size = 30
+font_color = Color(1, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j0jdm"]
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47fb6"]
+atlas = ExtResource("1_4jcol")
+region = Rect2(0, 398.97968, 656, 249.02032)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0jdm"]
+atlas = ExtResource("8_3lyei")
+region = Rect2(1272, 208, 384, 504)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq20d"]
+atlas = ExtResource("8_3lyei")
+region = Rect2(976, 176, 288, 528)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw23n"]
+atlas = ExtResource("8_3lyei")
+region = Rect2(720, 216, 248, 496)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4leeu"]
+atlas = ExtResource("8_3lyei")
+region = Rect2(416, 264, 296, 448)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j0bq"]
+atlas = ExtResource("8_3lyei")
+region = Rect2(8, 448, 440, 272)
+
+[node name="Attribute Status" type="Control" unique_id=135197089]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 9.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_366kb")
+
+[node name="头像框" type="Sprite2D" parent="." unique_id=1331808083]
+position = Vector2(181, 178)
+scale = Vector2(0.56106216, 0.5697689)
+texture = SubResource("AtlasTexture_lv8hy")
+
+[node name="体力条" type="Sprite2D" parent="." unique_id=99025479]
+position = Vector2(207, 418.99997)
+scale = Vector2(0.80547243, 0.65139806)
+texture = SubResource("AtlasTexture_01apm")
+script = ExtResource("3_gnfe6")
+
+[node name="体力条填充" type="Polygon2D" parent="体力条" unique_id=673244340]
+position = Vector2(-258.23355, -644.767)
+scale = Vector2(1.2415074, 1.5351596)
+color = Color(1, 0.015686275, 0, 0.92156863)
+polygon = PackedVector2Array(58, 413, 59, 438, 352, 434, 366, 382)
+
+[node name="压力计" type="Sprite2D" parent="." unique_id=1104271386]
+position = Vector2(456.00003, 184)
+scale = Vector2(0.40625075, 0.4772407)
+texture = SubResource("AtlasTexture_366kb")
+script = ExtResource("5_bq15l")
+"压力变化角度" = 15.0
+
+[node name="压力条填充" type="Polygon2D" parent="压力计" unique_id=540821474]
+position = Vector2(839.38293, -220.01477)
+rotation = 0.099483766
+scale = Vector2(2.8046622, 2.122087)
+color = Color(1, 0.015686275, 0, 0.92156863)
+polygon = PackedVector2Array(-298.23557, 243.76083, -288.55487, 243.47607, -287.28174, 15.0744095, -296.96243, 15.35915)
+
+[node name="ProgressBar" type="ProgressBar" parent="压力计" unique_id=1418519529]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.5973988
+offset_top = -1069.668
+offset_right = 34.37084
+offset_bottom = -586.7189
+grow_vertical = 0
+rotation = 0.10471976
+theme_override_colors/font_color = Color(0.4517411, 0.6954726, 0.16041929, 1)
+theme_override_colors/font_outline_color = Color(0, 0.93333334, 0, 1)
+value = 100.0
+
+[node name="现金与账户" type="Sprite2D" parent="." unique_id=1791829721]
+position = Vector2(1618, 120.00001)
+scale = Vector2(0.8552677, 0.77659184)
+texture = SubResource("AtlasTexture_4jcol")
+script = ExtResource("7_bq15l")
+
+[node name="现金数字" type="Label" parent="现金与账户" unique_id=417319664]
+offset_left = -5.8461914
+offset_top = -64.383896
+offset_right = 194.15381
+offset_bottom = -24.383896
+text = "5000"
+label_settings = SubResource("LabelSettings_3lyei")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="总资产数字" type="Label" parent="现金与账户" unique_id=1314297723]
+offset_left = 24.55371
+offset_top = 25.75354
+offset_right = 210.55371
+offset_bottom = 57.75354
+text = "5000"
+label_settings = SubResource("LabelSettings_j0jdm")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Testing" parent="." unique_id=32552487 instance=ExtResource("5_366kb")]
+layout_mode = 0
+
+[node name="头像差分" type="Node2D" parent="." unique_id=553427723]
+script = ExtResource("8_68jod")
+
+[node name="窘迫" type="Sprite2D" parent="头像差分" unique_id=1615882286]
+visible = false
+clip_children = 1
+position = Vector2(186, 165)
+scale = Vector2(0.68058074, 0.68602544)
+texture = ExtResource("8_vq20d")
+
+[node name="内置图" type="Sprite2D" parent="头像差分/窘迫" unique_id=1099493698]
+position = Vector2(7.3466663, 195.32806)
+texture = ExtResource("9_4leeu")
+
+[node name="飘飘然" type="Sprite2D" parent="头像差分" unique_id=1433441902]
+visible = false
+clip_children = 1
+position = Vector2(186, 165)
+scale = Vector2(0.68058074, 0.68602544)
+texture = ExtResource("8_vq20d")
+
+[node name="内置图" type="Sprite2D" parent="头像差分/飘飘然" unique_id=315682908]
+position = Vector2(-5.8773336, 195.59453)
+texture = ExtResource("9_vw23n")
+
+[node name="忘乎所以" type="Sprite2D" parent="头像差分" unique_id=617008317]
+clip_children = 1
+position = Vector2(182.00002, 165.00003)
+scale = Vector2(0.80217797, 0.83484584)
+texture = ExtResource("11_af6jr")
+
+[node name="内置图" type="Sprite2D" parent="头像差分/忘乎所以" unique_id=1368598711]
+position = Vector2(44.877808, 249.84361)
+scale = Vector2(0.98113316, 0.9887886)
+texture = ExtResource("12_68jod")
+
+[node name="崩溃慌乱" type="Sprite2D" parent="头像差分" unique_id=1475197974]
+clip_children = 1
+position = Vector2(186, 165)
+scale = Vector2(0.68058074, 0.68602544)
+texture = ExtResource("8_vq20d")
+
+[node name="内置图" type="Sprite2D" parent="头像差分/崩溃慌乱" unique_id=933396438]
+position = Vector2(-9.432632, 278.41528)
+scale = Vector2(0.94652563, 0.99290353)
+texture = ExtResource("13_u0j7v")
+
+[node name="心如死灰" type="Sprite2D" parent="头像差分" unique_id=1327720849]
+clip_children = 1
+position = Vector2(186, 165)
+scale = Vector2(0.68058074, 0.68602544)
+texture = ExtResource("8_vq20d")
+
+[node name="内置图" type="Sprite2D" parent="头像差分/心如死灰" unique_id=795576565]
+position = Vector2(-24.97866, 201.15872)
+scale = Vector2(1.043283, 1.0111116)
+texture = ExtResource("14_gijjh")
+
+[node name="头像框2" type="Sprite2D" parent="." unique_id=339568047]
+position = Vector2(179.00002, 291)
+scale = Vector2(0.56106216, 0.5697689)
+texture = SubResource("AtlasTexture_47fb6")
+
+[node name="健康值" type="Node2D" parent="." unique_id=478272769]
+position = Vector2(99, 288.00003)
+scale = Vector2(0.2852481, 0.3463924)
+script = ExtResource("7_3lyei")
+
+[node name="强健的" type="Sprite2D" parent="健康值" unique_id=1106004289]
+position = Vector2(-59.59725, 25.98204)
+scale = Vector2(0.65520114, 0.56300783)
+texture = SubResource("AtlasTexture_j0jdm")
+
+[node name="健康的" type="Sprite2D" parent="健康值" unique_id=672016912]
+position = Vector2(-73.620125, 17.321327)
+scale = Vector2(0.74299186, 0.5467613)
+texture = SubResource("AtlasTexture_vq20d")
+
+[node name="还行的" type="Sprite2D" parent="健康值" unique_id=485172159]
+position = Vector2(-59.296894, 25.982006)
+scale = Vector2(0.7657644, 0.5594823)
+texture = SubResource("AtlasTexture_vw23n")
+
+[node name="疲惫的" type="Sprite2D" parent="健康值" unique_id=415689772]
+position = Vector2(-73.62012, 28.86887)
+scale = Vector2(0.7724039, 0.6121773)
+texture = SubResource("AtlasTexture_4leeu")
+
+[node name="燃尽的" type="Sprite2D" parent="健康值" unique_id=801545797]
+position = Vector2(-33.796326, 18.784544)
+scale = Vector2(0.8184209, 0.6475748)
+texture = SubResource("AtlasTexture_7j0bq")

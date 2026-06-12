@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://hbo4e3puh4e"]
+
+[ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="1_epypp"]
+[ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="2_0hol4"]
+[ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="3_q6r6c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y32ns"]
+bg_color = Color(1, 1, 0.9882353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_0e48y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epypp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kdubu"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="UItset" type="Control" unique_id=683065922]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2095473876]
+layout_mode = 0
+offset_right = 52.0
+offset_bottom = 45.0
+
+[node name="Panel" type="Panel" parent="." unique_id=1711092331]
+layout_mode = 0
+offset_left = 12.0
+offset_right = 52.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=491827069]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 47.0
+offset_bottom = 37.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=994921381]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=926034575]
+offset_left = 15.0
+offset_top = 68.0
+offset_right = 66.0
+offset_bottom = 91.0
+theme_override_styles/background = SubResource("StyleBoxFlat_y32ns")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wtcfe")
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/ProgressBar" unique_id=1951494516]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 46.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="Panel" parent="CanvasLayer/ProgressBar" unique_id=1452229591]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 10.0
+offset_right = 53.0
+offset_bottom = 15.0
+theme = SubResource("Theme_0e48y")
+theme_override_styles/panel = SubResource("StyleBoxFlat_epypp")
+
+[node name="WiFi" type="Sprite2D" parent="." unique_id=570552570]
+position = Vector2(186, 272)
+scale = Vector2(0.44, 0.45714292)
+texture = ExtResource("1_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="WiFi" unique_id=662155935]
+texture = ExtResource("2_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="WiFi/Sprite2D" unique_id=117317526]
+texture = ExtResource("3_q6r6c")
+
+[node name="Panel2" type="Panel" parent="." unique_id=2134652476]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 89.0
+offset_right = 207.0
+offset_bottom = 131.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kdubu")
+
+[node name="Panel2" type="Panel" parent="Panel2" unique_id=592059369]
+layout_mode = 0
+offset_left = 37.0
+offset_top = -32.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kdubu")
+
+[node name="Panel2" type="Panel" parent="Panel2/Panel2" unique_id=1853448968]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -30.0
+offset_right = 70.0
+offset_bottom = 75.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kdubu")
+
+[node name="Panel2" type="Panel" parent="Panel2/Panel2/Panel2" unique_id=2070688808]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -30.0
+offset_right = 70.0
+offset_bottom = 105.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kdubu")

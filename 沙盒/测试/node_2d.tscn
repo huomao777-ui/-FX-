@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://0vx72tsxksas"]
+
+[ext_resource type="Texture2D" uid="uid://fq8ytinanhpd" path="res://界面/场景/手机/美术资源/壁纸1.png" id="1_5kdwm"]
+
+[node name="Node2D" type="Node2D" unique_id=63378799]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=929058651]
+clip_children = 1
+position = Vector2(264, 299)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=336962312]
+position = Vector2(690, 366)
+texture = ExtResource("1_5kdwm")

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dg6j6v2aw1tji"]
+
+[ext_resource type="Script" uid="uid://cklrdxh5yuot2" path="res://核心/自动加载/GameDataManager.gd" id="1"]
+[ext_resource type="Script" uid="uid://jx1tkxarsq5f" path="res://核心/系统/StaminaSystem.gd" id="2"]
+[ext_resource type="Script" uid="uid://djni6ukyjyvap" path="res://核心/系统/StressSystem.gd" id="3"]
+[ext_resource type="Script" uid="uid://carq1ut3087et" path="res://核心/系统/AssetSystem.gd" id="4"]
+[ext_resource type="Script" uid="uid://cqhebxhfkhlus" path="res://核心/系统/HealthSystem.gd" id="5"]
+[ext_resource type="Script" uid="uid://woi7qm8kgbme" path="res://核心/系统/MentalSystem.gd" id="6_3dlrv"]
+[ext_resource type="Script" path="res://核心/系统/TimeSystem.gd" id="7_times"]
+[ext_resource type="Script" path="res://核心/系统/PhoneSystem.gd" id="8_phone"]
+
+[node name="GameDataManager" type="Node" unique_id=1109652677]
+script = ExtResource("1")
+
+[node name="StaminaSystem" type="Node" parent="." unique_id=1457384254]
+script = ExtResource("2")
+
+[node name="StressSystem" type="Node" parent="." unique_id=737227493]
+script = ExtResource("3")
+
+[node name="AssetSystem" type="Node" parent="." unique_id=1413153368]
+script = ExtResource("4")
+
+[node name="HealthSystem" type="Node" parent="." unique_id=1211955806]
+script = ExtResource("5")
+
+[node name="MentalSystem" type="Node" parent="." unique_id=2097956655]
+script = ExtResource("6_3dlrv")
+
+[node name="TimeSystem" type="Node" parent="."]
+script = ExtResource("7_times")
+
+[node name="PhoneSystem" type="Node" parent="."]
+script = ExtResource("8_phone")

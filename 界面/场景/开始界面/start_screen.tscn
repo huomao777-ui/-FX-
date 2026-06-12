@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bgwyjme0d8y1l"]
+
+[ext_resource type="Texture2D" uid="uid://dsp65rcebbov" path="res://界面/场景/开始界面/美术资源/藤本树风格.png" id="1_tqa02"]
+[ext_resource type="Script" uid="uid://xsjgawpcud1h" path="res://界面/场景/开始界面/start_screen.gd" id="2_60una"]
+[ext_resource type="PackedScene" uid="uid://qipfxt1tbqwl" path="res://玩法/地图/站前广场/maps_0.tscn" id="2_dui5x"]
+
+[node name="StartScreen" type="Control" unique_id=1665241308]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_60una")
+"新游戏场景" = ExtResource("2_dui5x")
+
+[node name="背景" type="TextureRect" parent="." unique_id=1744810188]
+layout_mode = 0
+offset_right = 1928.0
+offset_bottom = 1107.0
+mouse_filter = 2
+texture = ExtResource("1_tqa02")
+
+[node name="新的开始按钮" type="Area2D" parent="." unique_id=1547799303]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="新的开始按钮" unique_id=2036690011]
+position = Vector2(383, 205)
+polygon = PackedVector2Array(62, 16, 62, 233, 1, 223, 0, 0)
+
+[node name="按钮浮层" type="Polygon2D" parent="新的开始按钮" unique_id=346152102]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(446, 438, 384, 428, 383, 205, 444, 220)
+
+[node name="继续游戏按钮" type="Area2D" parent="." unique_id=1427969586]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="继续游戏按钮" unique_id=1958580840]
+position = Vector2(743, 264)
+polygon = PackedVector2Array(1, 2, 59, 14, 59, 217, 2, 210)
+
+[node name="按钮浮层" type="Polygon2D" parent="继续游戏按钮" unique_id=1632818223]
+position = Vector2(361, 51)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(440, 429, 383, 423, 383, 214, 441, 226)
+
+[node name="修改设置按钮" type="Area2D" parent="." unique_id=1686667897]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="修改设置按钮" unique_id=1062518690]
+position = Vector2(1239, 297)
+polygon = PackedVector2Array(-1, -3, 52, -14, 52, 174, -1, 182)
+
+[node name="按钮浮层" type="Polygon2D" parent="修改设置按钮" unique_id=987951229]
+position = Vector2(853, 54)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(385, 241, 438, 230, 439, 417, 384, 426)
+
+[node name="退出按钮" type="Area2D" parent="." unique_id=1623378373]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="退出按钮" unique_id=1257669974]
+position = Vector2(1416, 276)
+polygon = PackedVector2Array(8, 57, 64, 72, 64, 187, 8, 177)
+
+[node name="按钮浮层" type="Polygon2D" parent="退出按钮" unique_id=2076527189]
+position = Vector2(1040, 75)
+scale = Vector2(1, 1.0306122)
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(382, 250.33664, 441, 265.8614, 441, 377.44556, 383, 367.74258)
