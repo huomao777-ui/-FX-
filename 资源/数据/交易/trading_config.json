@@ -1,6 +1,6 @@
 {
   "contract": {
-    "lot_value_rmb": 100000.0,
+    "lot_value_xmy": 100000.0,
     "min_lot": 0.01
   },
   "platforms": {

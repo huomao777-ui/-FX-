@@ -1,0 +1,379 @@
+[gd_scene format=3 uid="uid://b36swu1k2iggb"]
+
+[ext_resource type="Texture2D" uid="uid://bv82fx1hv0n0y" path="res://界面/场景/外汇应用/美术资源/货币.png" id="1_h0o11"]
+[ext_resource type="FontFile" uid="uid://drlvf673qmet" path="res://资源/字体/思源黑体.otf" id="1_hgvf3"]
+[ext_resource type="FontFile" uid="uid://cl4ybqnma4krr" path="res://资源/字体/思源黑体 Bold.otf" id="3_6uru8"]
+[ext_resource type="Texture2D" uid="uid://b2xl1srtug6pp" path="res://界面/场景/外汇应用/美术资源/按钮.png" id="4_geuni"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hgvf3"]
+bg_color = Color(0.23701906, 0.44383755, 0.682641, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6uru8"]
+bg_color = Color(0.0627451, 0.15686275, 0.36862746, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geuni"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(366.63733, 688.25397, 280.69775, 287.00256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kskka"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(365, 46, 283, 295)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccggd"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(66, 46, 288, 294)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gdgv"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(660, 46, 292, 294)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l33u"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(69, 377, 286, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpxka"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(367, 376, 279, 283)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hhsk"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(658, 375, 286, 284)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxgl0"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(366.63733, 688.25397, 280.69775, 287.00256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppg77"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(66, 46, 288, 294)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvrc0"]
+atlas = ExtResource("1_h0o11")
+region = Rect2(660, 46, 292, 294)
+
+[node name="Control" type="Control" unique_id=436995035]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="货币种类" type="Control" parent="." unique_id=540802124]
+visible = false
+anchors_preset = 0
+offset_left = 3.2820506
+offset_top = 26.657852
+offset_right = 43.28205
+offset_bottom = 66.65785
+
+[node name="上方遮挡" type="Panel" parent="货币种类" unique_id=2086380313]
+layout_mode = 0
+offset_left = -250.52985
+offset_top = 182.79675
+offset_right = 248.34186
+offset_bottom = 229.76526
+theme_override_styles/panel = SubResource("StyleBoxFlat_hgvf3")
+
+[node name="货币种类" type="Label" parent="货币种类/上方遮挡" unique_id=2051835540]
+layout_mode = 0
+offset_left = 12.034186
+offset_top = 3.8081875
+offset_right = 122.03419
+offset_bottom = 44.42959
+theme_override_fonts/font = ExtResource("1_hgvf3")
+theme_override_font_sizes/font_size = 16
+text = "货币种类："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="实时汇率" type="Label" parent="货币种类/上方遮挡" unique_id=134563772]
+layout_mode = 0
+offset_left = 342.4273
+offset_top = 3.8081875
+offset_right = 452.4273
+offset_bottom = 44.42959
+theme_override_fonts/font = ExtResource("1_hgvf3")
+theme_override_font_sizes/font_size = 16
+text = "实时汇率："
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="滑动容器" type="ScrollContainer" parent="货币种类" unique_id=2050631764]
+layout_mode = 0
+offset_left = -242.28204
+offset_top = 234.34215
+offset_right = 244.71796
+offset_bottom = 465.34216
+
+[node name="排列容器" type="VBoxContainer" parent="货币种类/滑动容器" unique_id=1800696222]
+custom_minimum_size = Vector2(474, 1000)
+layout_mode = 2
+
+[node name="货币种类框1" type="Panel" parent="货币种类/滑动容器/排列容器" unique_id=1546624862]
+custom_minimum_size = Vector2(470, 91)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6uru8")
+
+[node name="实时汇率" type="Label" parent="货币种类/滑动容器/排列容器/货币种类框1" unique_id=461646966]
+layout_mode = 0
+offset_left = 341.33325
+offset_top = 22.849586
+offset_right = 440.8888
+offset_bottom = 69.818146
+theme_override_fonts/font = ExtResource("3_6uru8")
+theme_override_font_sizes/font_size = 30
+text = "0.1563"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="货币对" type="Control" parent="货币种类/滑动容器/排列容器/货币种类框1" unique_id=1138384701]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="左侧货币图" type="Control" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对" unique_id=1032957265]
+anchors_preset = 0
+offset_left = 60.1709
+offset_top = 31.735535
+offset_right = 100.1709
+offset_bottom = 71.735535
+
+[node name="XMY" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=2142387996]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_geuni")
+
+[node name="USD" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=738201878]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_kskka")
+
+[node name="YHB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=1389904507]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_ccggd")
+
+[node name="EUR" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=1210805404]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_0gdgv")
+
+[node name="GBP" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=1466497431]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_1l33u")
+
+[node name="DSB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=2071545236]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_hpxka")
+
+[node name="FYB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/左侧货币图" unique_id=1754296791]
+position = Vector2(-17.504272, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_3hhsk")
+
+[node name="右侧货币图" type="Control" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对" unique_id=1795777324]
+anchors_preset = 0
+offset_left = 60.1709
+offset_top = 31.735535
+offset_right = 100.1709
+offset_bottom = 71.735535
+
+[node name="XMY2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=179261193]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_pxgl0")
+
+[node name="USD2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=279150298]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_kskka")
+
+[node name="YHB2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=287920441]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_ppg77")
+
+[node name="EUR2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=677237692]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_yvrc0")
+
+[node name="GBP2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=1894081661]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_1l33u")
+
+[node name="DSB2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=2105245296]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_hpxka")
+
+[node name="FYB2" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对/右侧货币图" unique_id=2125218484]
+position = Vector2(89.70935, 10.1553955)
+scale = Vector2(0.11992786, 0.13191417)
+texture = SubResource("AtlasTexture_3hhsk")
+
+[node name="货币对文字" type="Label" parent="货币种类/滑动容器/排列容器/货币种类框1/货币对" unique_id=493059512]
+layout_mode = 0
+offset_left = 61.264915
+offset_top = 31.735535
+offset_right = 133.26492
+offset_bottom = 55.735535
+theme_override_fonts/font = ExtResource("1_hgvf3")
+text = "XMY/USD"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="货币种类框2" type="Panel" parent="货币种类/滑动容器/排列容器" unique_id=2090885100]
+custom_minimum_size = Vector2(470, 91)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6uru8")
+
+[node name="实时汇率" type="Label" parent="货币种类/滑动容器/排列容器/货币种类框2" unique_id=68738752]
+layout_mode = 0
+offset_left = 341.33325
+offset_top = 22.849586
+offset_right = 440.8888
+offset_bottom = 69.818146
+theme_override_fonts/font = ExtResource("3_6uru8")
+theme_override_font_sizes/font_size = 30
+text = "0.1563"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="货币对" type="Control" parent="货币种类/滑动容器/排列容器/货币种类框2" unique_id=1253624699]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="左侧货币选择按钮" type="TextureButton" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对" unique_id=1416841105]
+layout_mode = 0
+offset_left = 19.692413
+offset_top = 15.233582
+offset_right = 1043.6924
+offset_bottom = 1051.0815
+scale = Vector2(0.042, 0.051)
+texture_normal = ExtResource("4_geuni")
+
+[node name="XMY" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=1663874833]
+visible = false
+position = Vector2(494.91272, 472.9217)
+scale = Vector2(3.051768, 2.8483274)
+texture = SubResource("AtlasTexture_geuni")
+
+[node name="USD" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=999559865]
+visible = false
+position = Vector2(494.9131, 472.92166)
+scale = Vector2(2.9827037, 2.7364397)
+texture = SubResource("AtlasTexture_kskka")
+
+[node name="YHB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=2057288564]
+visible = false
+position = Vector2(494.91214, 467.5631)
+scale = Vector2(2.968657, 2.7456272)
+texture = SubResource("AtlasTexture_ccggd")
+
+[node name="EUR" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=615763107]
+visible = false
+position = Vector2(520.9608, 448.03116)
+scale = Vector2(3.1072214, 2.8667424)
+texture = SubResource("AtlasTexture_0gdgv")
+
+[node name="GBP" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=29532775]
+visible = false
+position = Vector2(502.6069, 449.07715)
+scale = Vector2(3.2249644, 2.9830015)
+texture = SubResource("AtlasTexture_1l33u")
+
+[node name="DSB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=1508290617]
+visible = false
+position = Vector2(496.19952, 449.07693)
+scale = Vector2(3.351804, 2.983)
+texture = SubResource("AtlasTexture_hpxka")
+
+[node name="FYB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/左侧货币选择按钮" unique_id=1078989755]
+visible = false
+position = Vector2(494.91232, 448.03174)
+scale = Vector2(3.3160322, 2.972608)
+texture = SubResource("AtlasTexture_3hhsk")
+
+[node name="右侧货币选择按钮" type="TextureButton" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对" unique_id=1688101426]
+layout_mode = 0
+offset_left = 126.905975
+offset_top = 13.963623
+offset_right = 1150.906
+offset_bottom = 1049.8116
+scale = Vector2(0.042, 0.051)
+texture_normal = ExtResource("4_geuni")
+
+[node name="XMY" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=910917364]
+visible = false
+position = Vector2(494.91272, 472.9217)
+scale = Vector2(3.051768, 2.8483274)
+texture = SubResource("AtlasTexture_geuni")
+
+[node name="USD" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=1479121814]
+visible = false
+position = Vector2(494.9131, 472.92166)
+scale = Vector2(2.9827037, 2.7364397)
+texture = SubResource("AtlasTexture_kskka")
+
+[node name="YHB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=385308335]
+visible = false
+position = Vector2(494.91214, 467.5631)
+scale = Vector2(2.968657, 2.7456272)
+texture = SubResource("AtlasTexture_ccggd")
+
+[node name="EUR" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=1889462766]
+visible = false
+position = Vector2(520.9608, 448.03116)
+scale = Vector2(3.1072214, 2.8667424)
+texture = SubResource("AtlasTexture_0gdgv")
+
+[node name="GBP" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=1052286209]
+visible = false
+position = Vector2(502.6069, 449.07715)
+scale = Vector2(3.2249644, 2.9830015)
+texture = SubResource("AtlasTexture_1l33u")
+
+[node name="DSB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=1736504110]
+visible = false
+position = Vector2(496.19952, 449.07693)
+scale = Vector2(3.351804, 2.983)
+texture = SubResource("AtlasTexture_hpxka")
+
+[node name="FYB" type="Sprite2D" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对/右侧货币选择按钮" unique_id=1349279413]
+visible = false
+position = Vector2(494.91232, 448.03174)
+scale = Vector2(3.3160322, 2.972608)
+texture = SubResource("AtlasTexture_3hhsk")
+
+[node name="货币对" type="Label" parent="货币种类/滑动容器/排列容器/货币种类框2/货币对" unique_id=1826577312]
+layout_mode = 0
+offset_left = 60.17093
+offset_top = 31.735535
+offset_right = 132.17093
+offset_bottom = 55.735535
+theme_override_fonts/font = ExtResource("1_hgvf3")
+text = "XXX/XXX"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="." unique_id=1787265617]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 112.0
+offset_right = 169.0
+offset_bottom = 149.0
+
+[node name="HSlider" type="HSlider" parent="." unique_id=1615583006]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 77.0
+offset_right = 265.0
+offset_bottom = 93.0

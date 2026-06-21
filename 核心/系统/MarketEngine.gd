@@ -1,13 +1,15 @@
-## 描述: 汇率市场引擎，负责加载货币配置并按回合推进 RMB 基准汇率
-## 依赖: CurrencyState、MarketMath，可作为 GameDataManager 子节点运行
+## 描述: 汇率市场引擎，负责加载货币配置、推进回合级市场，并生成分钟级实时报价
+## 依赖: CurrencyState、MarketMath、MarketLiveQuoteEngine，可作为 GameDataManager 子节点运行
 ## 状态: 第一阶段
-## 最后更新: 2026-06-12
+## 最后更新: 2026-06-21
 class_name MarketEngine
 extends Node
 
+const MarketLiveQuoteEngineScript = preload("res://核心/系统/MarketLiveQuoteEngine.gd")
+
 ## ===== 信号 =====
 
-## 单个货币汇率变化后发射，rate 表示 1 RMB 可兑换多少该外币
+## 单个货币汇率变化后发射，rate 表示 1 XMY 可兑换多少该外币
 signal 汇率变动(货币代码: String, 汇率快照: Dictionary)
 ## 每轮市场推进完成后发射
 signal 市场回合完成(总回合: int, 时段索引: int, 汇率列表: Dictionary)
@@ -19,27 +21,24 @@ signal 市场配置加载完成(货币数量: int)
 ## ===== 导出配置变量 =====
 
 @export_group("配置")
-## 货币配置 JSON 路径
 @export var 货币配置路径: String = "res://资源/数据/市场/currency_config.json"
-## 是否在 _ready 时自动加载配置
 @export var 自动加载配置: bool = true
-## 是否自动连接同级 TimeSystem 的回合推进信号
 @export var 自动连接时间系统: bool = true
-## 随机种子；0 表示使用随机种子
 @export var 随机种子: int = 20260612
 
 @export_group("调试")
-## 是否输出关键市场日志
 @export var 启用市场日志: bool = true
 
 ## ===== 内部变量 =====
 
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
-var _rmb_interest_rate: float = 0.015
+var _xmy_interest_rate: float = 0.015
 var _currency_states: Dictionary = {}
 var _currency_order: Array[String] = []
 var _total_market_turns: int = 0
 var _total_market_days: int = 0
+var _time_system: Node = null
+var _live_quote_engine: MarketLiveQuoteEngine = MarketLiveQuoteEngineScript.new()
 
 ## ===== 生命周期 =====
 
@@ -64,8 +63,8 @@ func 加载市场配置(config_path: String = "") -> bool:
 		push_error("MarketEngine: 货币配置 JSON 格式错误 " + target_path)
 		return false
 
-	var parsed_data: Dictionary = parsed as Dictionary
-	_load_from_config(parsed_data)
+	var config: Dictionary = parsed as Dictionary
+	_load_from_config(config)
 	市场配置加载完成.emit(_currency_order.size())
 	_log_market_state("加载市场配置")
 	return true
@@ -88,6 +87,9 @@ func 推进市场回合(总回合: int = -1, 时段索引: int = -1, 时段名�
 		var delta_data: Dictionary = MarketMath.calculate_turn_rate_delta(state, _rng.randfn(0.0, 1.0))
 		state.current_rate = max(state.current_rate + float(delta_data.get("total_delta", 0.0)), 0.000001)
 		MarketMath.apply_circuit_breaker(state)
+
+	_live_quote_engine.sync_rates_to_states(_currency_states, _currency_order)
+	for code in _currency_order:
 		汇率变动.emit(code, 获取汇率快照(code))
 
 	市场回合完成.emit(总回合 if 总回合 >= 0 else _total_market_turns, 时段索引, 获取全部汇率快照())
@@ -107,7 +109,7 @@ func 获取汇率(货币代码: String) -> float:
 	var state: CurrencyState = _currency_states.get(货币代码, null) as CurrencyState
 	if state == null:
 		return 0.0
-	return state.current_rate
+	return _live_quote_engine.get_rate(货币代码, state.current_rate)
 
 func 获取汇率快照(货币代码: String) -> Dictionary:
 	var state: CurrencyState = _currency_states.get(货币代码, null) as CurrencyState
@@ -117,7 +119,8 @@ func 获取汇率快照(货币代码: String) -> Dictionary:
 		"code": state.code,
 		"display_name": state.display_name,
 		"reference_currency": state.reference_currency,
-		"rate": state.current_rate,
+		"rate": 获取汇率(货币代码),
+		"turn_rate": state.current_rate,
 		"fair_value": state.fair_value,
 		"equilibrium_rate": state.equilibrium_rate,
 		"emotion": state.emotion,
@@ -139,8 +142,8 @@ func 获取全部汇率快照() -> Dictionary:
 func 获取货币代码列表() -> Array[String]:
 	return _currency_order.duplicate()
 
-func 获取人民币利率() -> float:
-	return _rmb_interest_rate
+func 获取XMY利率() -> float:
+	return _xmy_interest_rate
 
 ## ===== 存档接口 =====
 
@@ -152,8 +155,9 @@ func 收集存档数据() -> Dictionary:
 	return {
 		"total_market_turns": _total_market_turns,
 		"total_market_days": _total_market_days,
-		"rmb_interest_rate": _rmb_interest_rate,
-		"states": states
+		"xmy_interest_rate": _xmy_interest_rate,
+		"states": states,
+		"live_quote": _live_quote_engine.collect_save_data()
 	}
 
 func 恢复存档数据(data: Dictionary) -> void:
@@ -161,12 +165,13 @@ func 恢复存档数据(data: Dictionary) -> void:
 		return
 	_total_market_turns = max(int(data.get("total_market_turns", _total_market_turns)), 0)
 	_total_market_days = max(int(data.get("total_market_days", _total_market_days)), 0)
-	_rmb_interest_rate = float(data.get("rmb_interest_rate", _rmb_interest_rate))
+	_xmy_interest_rate = float(data.get("xmy_interest_rate", data.get("rmb_interest_rate", _xmy_interest_rate)))
 	var states: Dictionary = data.get("states", {})
 	for code in states.keys():
 		var state: CurrencyState = _currency_states.get(str(code), null) as CurrencyState
 		if state != null:
 			state.restore_save_data(states[code])
+	_live_quote_engine.restore_save_data(data.get("live_quote", {}))
 
 ## ===== 私有方法 =====
 
@@ -181,28 +186,41 @@ func _load_from_config(config: Dictionary) -> void:
 	_currency_order.clear()
 
 	var base_currency: Dictionary = config.get("base_currency", {})
-	_rmb_interest_rate = float(base_currency.get("interest_rate", _rmb_interest_rate))
+	_xmy_interest_rate = float(base_currency.get("interest_rate", _xmy_interest_rate))
 
 	var currency_configs: Array = config.get("currencies", []) as Array
 	for item in currency_configs:
 		if not (item is Dictionary):
 			continue
 		var item_data: Dictionary = item as Dictionary
-		var state: CurrencyState = CurrencyState.from_config(item_data, _rmb_interest_rate)
+		var state: CurrencyState = CurrencyState.from_config(item_data, _xmy_interest_rate)
 		if state.code.is_empty():
 			continue
 		_currency_states[state.code] = state
 		_currency_order.append(state.code)
 
+	_live_quote_engine.configure(config.get("live_quote", {}) as Dictionary)
+	_live_quote_engine.reset_from_states(_currency_states, _currency_order)
+
 func _try_connect_time_system() -> void:
-	var time_system: Node = get_node_or_null("../TimeSystem")
-	if time_system == null:
+	_time_system = get_node_or_null("../TimeSystem")
+	if _time_system == null:
 		return
-	if time_system.has_signal("回合推进") and not time_system.回合推进.is_connected(_on_time_system_turn_advanced):
-		time_system.回合推进.connect(_on_time_system_turn_advanced)
+	if _time_system.has_signal("回合推进") and not _time_system.回合推进.is_connected(_on_time_system_turn_advanced):
+		_time_system.回合推进.connect(_on_time_system_turn_advanced)
+	if _time_system.has_signal("钟表时间变化") and not _time_system.钟表时间变化.is_connected(_on_time_system_clock_changed):
+		_time_system.钟表时间变化.connect(_on_time_system_clock_changed)
 
 func _on_time_system_turn_advanced(总回合: int, 时段索引: int, 时段名称: String) -> void:
 	推进市场回合(总回合, 时段索引, 时段名称)
+
+func _on_time_system_clock_changed(小时: int, 分钟: int, _时段内分钟: float, _时段总分钟: int) -> void:
+	if _currency_states.is_empty():
+		return
+	var clock_total_minutes: int = 小时 * 60 + 分钟
+	var changed_codes: Array[String] = _live_quote_engine.apply_minute_tick(_currency_states, _currency_order, _rng, clock_total_minutes)
+	for code in changed_codes:
+		汇率变动.emit(code, 获取汇率快照(code))
 
 func _update_daily_fair_values() -> void:
 	for code in _currency_order:
@@ -216,4 +234,4 @@ func _update_daily_fair_values() -> void:
 func _log_market_state(reason: String) -> void:
 	if not 启用市场日志:
 		return
-	print("MarketEngine: ", reason, " | 货币数量=", _currency_order.size(), " | RMB利率=", _rmb_interest_rate)
+	print("MarketEngine: ", reason, " | 货币数量=", _currency_order.size(), " | XMY利率=", _xmy_interest_rate)

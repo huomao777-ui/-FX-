@@ -1,4 +1,4 @@
-## 描述: 单个外币相对 RMB 的市场状态数据
+## 描述: 单个外币相对 XMY 的市场状态数据
 ## 依赖: MarketEngine 加载配置后创建
 ## 状态: 第一阶段
 ## 最后更新: 2026-06-12
@@ -37,7 +37,7 @@ var suspended_today: bool = false
 var smooth_tsb_sum_60_days: float = 0.0
 var smooth_tsb_sample_days: int = 0
 
-static func from_config(config: Dictionary, rmb_interest_rate: float) -> CurrencyState:
+static func from_config(config: Dictionary, xmy_interest_rate: float) -> CurrencyState:
 	var state: CurrencyState = CurrencyState.new()
 	state.code = str(config.get("code", ""))
 	state.display_name = str(config.get("display_name", state.code))
@@ -51,7 +51,7 @@ static func from_config(config: Dictionary, rmb_interest_rate: float) -> Currenc
 	state.structural_trade_bias_effective = state.structural_trade_bias_base
 	state.structural_trade_bias_smooth = state.structural_trade_bias_base
 	state.foreign_interest_rate = float(config.get("foreign_interest_rate", 0.0))
-	state.interest_rate_diff = rmb_interest_rate - state.foreign_interest_rate
+	state.interest_rate_diff = xmy_interest_rate - state.foreign_interest_rate
 	state.volatility_profile = str(config.get("volatility_profile", "标准"))
 	state.intervention_tendency = str(config.get("intervention_tendency", "中等干预"))
 	state.effective_volatility = state.get_base_volatility()

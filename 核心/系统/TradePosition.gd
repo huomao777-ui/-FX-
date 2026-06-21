@@ -6,7 +6,7 @@ class_name TradePosition
 extends RefCounted
 
 enum Direction {
-	LONG_RMB = 1,
+	LONG_XMY = 1,
 	LONG_FOREIGN = -1
 }
 
@@ -16,7 +16,7 @@ var direction: int = Direction.LONG_FOREIGN
 var platform: String = "国内"
 var leverage: int = 1
 var lots: float = 0.01
-var notional_rmb: float = 1000.0
+var notional_xmy: float = 1000.0
 var margin_used: float = 1000.0
 var entry_rate: float = 1.0
 var open_cost: float = 0.0
@@ -29,7 +29,7 @@ static func create(
 	new_platform: String,
 	new_leverage: int,
 	new_lots: float,
-	lot_value_rmb: float,
+	lot_value_xmy: float,
 	current_rate: float,
 	current_turn: int,
 	cost: float
@@ -41,8 +41,8 @@ static func create(
 	position.platform = new_platform
 	position.leverage = max(new_leverage, 1)
 	position.lots = max(new_lots, 0.0)
-	position.notional_rmb = position.lots * lot_value_rmb
-	position.margin_used = position.notional_rmb / float(position.leverage)
+	position.notional_xmy = position.lots * lot_value_xmy
+	position.margin_used = position.notional_xmy / float(position.leverage)
 	position.entry_rate = max(current_rate, 0.000001)
 	position.opened_turn = current_turn
 	position.open_cost = max(cost, 0.0)
@@ -51,7 +51,7 @@ static func create(
 func calculate_floating_pnl(current_rate: float) -> float:
 	var safe_entry_rate: float = max(entry_rate, 0.000001)
 	var rate_change: float = (current_rate - safe_entry_rate) / safe_entry_rate
-	return notional_rmb * rate_change * float(direction)
+	return notional_xmy * rate_change * float(direction)
 
 func collect_save_data() -> Dictionary:
 	return {
@@ -61,7 +61,7 @@ func collect_save_data() -> Dictionary:
 		"platform": platform,
 		"leverage": leverage,
 		"lots": lots,
-		"notional_rmb": notional_rmb,
+		"notional_xmy": notional_xmy,
 		"margin_used": margin_used,
 		"entry_rate": entry_rate,
 		"open_cost": open_cost,
@@ -75,7 +75,7 @@ func restore_save_data(data: Dictionary) -> void:
 	platform = str(data.get("platform", platform))
 	leverage = max(int(data.get("leverage", leverage)), 1)
 	lots = max(float(data.get("lots", lots)), 0.0)
-	notional_rmb = max(float(data.get("notional_rmb", notional_rmb)), 0.0)
+	notional_xmy = max(float(data.get("notional_xmy", data.get("notional_rmb", notional_xmy))), 0.0)
 	margin_used = max(float(data.get("margin_used", margin_used)), 0.0)
 	entry_rate = max(float(data.get("entry_rate", entry_rate)), 0.000001)
 	open_cost = max(float(data.get("open_cost", open_cost)), 0.0)

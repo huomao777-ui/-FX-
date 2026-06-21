@@ -1,8 +1,15 @@
 {
   "base_currency": {
-    "code": "RMB",
-    "display_name": "人民币",
+    "code": "XMY",
+    "display_name": "熊猫元",
     "interest_rate": 0.015
+  },
+  "live_quote": {
+    "enabled": true,
+    "minutes_per_tick": 1,
+    "noise_scale": 0.35,
+    "reversion_strength": 0.22,
+    "max_deviation_ratio": 0.012
   },
   "currencies": [
     {
@@ -53,6 +60,16 @@
       "TSB0": -0.05,
       "foreign_interest_rate": 0.0385,
       "volatility_profile": "跳跃型",
+      "intervention_tendency": "中等干预"
+    },
+    {
+      "code": "FYB",
+      "display_name": "枫叶币",
+      "reference_currency": "CAD",
+      "initial_rate": 0.1900,
+      "TSB0": 0.01,
+      "foreign_interest_rate": 0.0325,
+      "volatility_profile": "标准",
       "intervention_tendency": "中等干预"
     }
   ]

@@ -1,0 +1,60 @@
+{
+  "base_currency_code": "XMY",
+  "default_chart_currency_code": "USD",
+  "currencies": [
+    {
+      "code": "XMY",
+      "display_name": "熊猫元",
+      "sort": 0
+    },
+    {
+      "code": "USD",
+      "display_name": "刀乐",
+      "sort": 1
+    },
+    {
+      "code": "YHB",
+      "display_name": "樱花币",
+      "sort": 2
+    },
+    {
+      "code": "EUR",
+      "display_name": "鸥元",
+      "sort": 3
+    },
+    {
+      "code": "GBP",
+      "display_name": "英蚌",
+      "sort": 4
+    },
+    {
+      "code": "DSB",
+      "display_name": "袋鼠币",
+      "sort": 5
+    },
+    {
+      "code": "FYB",
+      "display_name": "枫叶币",
+      "sort": 6
+    }
+  ],
+  "pair_slots": [
+    {
+      "panel_name": "货币种类框1",
+      "left_code": "XMY",
+      "right_code": "USD",
+      "configured": true,
+      "display_open_position": true,
+      "mock_lots": 10.0,
+      "mock_leverage": 400,
+      "mock_entry_rate": 0.1475,
+      "mock_overnight_interest_text": "3.84元"
+    },
+    {
+      "panel_name": "货币种类框2",
+      "left_code": "",
+      "right_code": "",
+      "configured": false
+    }
+  ]
+}
