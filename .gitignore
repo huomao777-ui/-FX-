@@ -4,3 +4,7 @@
 .import/
 export/
 *.tmp
+
+# 环境变量 / 密钥文件（不上传到 Git）
+.env*
+
