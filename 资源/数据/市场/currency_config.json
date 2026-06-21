@@ -1,0 +1,59 @@
+{
+  "base_currency": {
+    "code": "RMB",
+    "display_name": "人民币",
+    "interest_rate": 0.015
+  },
+  "currencies": [
+    {
+      "code": "YHB",
+      "display_name": "樱花币",
+      "reference_currency": "JPY",
+      "initial_rate": 20.0000,
+      "TSB0": 0.08,
+      "foreign_interest_rate": 0.001,
+      "volatility_profile": "跳跃型",
+      "intervention_tendency": "强干预"
+    },
+    {
+      "code": "USD",
+      "display_name": "刀乐",
+      "reference_currency": "USD",
+      "initial_rate": 0.1400,
+      "TSB0": 0.04,
+      "foreign_interest_rate": 0.045,
+      "volatility_profile": "标准",
+      "intervention_tendency": "中等干预"
+    },
+    {
+      "code": "EUR",
+      "display_name": "瓯元",
+      "reference_currency": "EUR",
+      "initial_rate": 0.1300,
+      "TSB0": 0.02,
+      "foreign_interest_rate": 0.035,
+      "volatility_profile": "标准",
+      "intervention_tendency": "中等干预"
+    },
+    {
+      "code": "GBP",
+      "display_name": "英蚌",
+      "reference_currency": "GBP",
+      "initial_rate": 0.1100,
+      "TSB0": -0.02,
+      "foreign_interest_rate": 0.0425,
+      "volatility_profile": "趋势型",
+      "intervention_tendency": "中等干预"
+    },
+    {
+      "code": "DSB",
+      "display_name": "袋鼠币",
+      "reference_currency": "AUD",
+      "initial_rate": 0.2100,
+      "TSB0": -0.05,
+      "foreign_interest_rate": 0.0385,
+      "volatility_profile": "跳跃型",
+      "intervention_tendency": "中等干预"
+    }
+  ]
+}

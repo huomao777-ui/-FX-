@@ -1,4 +1,4 @@
-## 描述: 角落手机入口控制器，负责息屏/唤醒状态切换、悬停唤醒和双击锁屏
+## 描述: 角落手机入口控制器，负责息屏/唤醒状态切换、悬停唤醒和打开全屏手机
 ## 依赖: 子节点 手机息屏状态、手机唤醒状态
 ## 状态: 初版
 ## 最后更新：2026-06-12
@@ -15,8 +15,12 @@ extends Control
 @export var 初始是否息屏: bool = true
 ## 是否启用悬停唤醒
 @export var 启用悬停唤醒: bool = true
-## 是否启用双击亮屏/息屏
-@export var 启用双击切换: bool = true
+## 是否启用单击亮屏
+@export var 启用单击亮屏: bool = true
+## 是否启用双击打开全屏手机
+@export var 启用双击打开全屏手机: bool = true
+## 双击手机时打开的全屏手机场景
+@export var 全屏手机场景: PackedScene = preload("res://界面/场景/手机/full_mobile.tscn")
 
 @export_group("检测范围")
 ## 检测范围额外扩张像素，方便玩家不必精准悬停在手机贴图上
@@ -34,6 +38,7 @@ extends Control
 var _is_awake: bool = false
 var _hover_timer: float = 0.0
 var _leave_timer: float = 0.0
+var _full_mobile_instance: Node = null
 
 ## ===== 生命周期 =====
 
@@ -41,12 +46,16 @@ func _ready() -> void:
 	_set_awake(not 初始是否息屏)
 
 func _process(delta: float) -> void:
+	if not visible:
+		return
 	if not 启用悬停唤醒:
 		return
 	_update_hover_wake(delta)
 
 func _input(event: InputEvent) -> void:
-	if not 启用双击切换:
+	if not visible:
+		return
+	if not 启用单击亮屏 and not 启用双击打开全屏手机:
 		return
 	if not event is InputEventMouseButton:
 		return
@@ -54,13 +63,17 @@ func _input(event: InputEvent) -> void:
 	var mouse_event: InputEventMouseButton = event as InputEventMouseButton
 	if not mouse_event.pressed or mouse_event.button_index != MOUSE_BUTTON_LEFT:
 		return
-	if not mouse_event.double_click:
+
+	var is_over_phone: bool = _is_mouse_over_phone()
+	if mouse_event.double_click:
+		if is_over_phone and 启用双击打开全屏手机:
+			_open_full_mobile()
+		elif not is_over_phone:
+			_set_awake(false)
 		return
 
-	if _is_mouse_over_phone():
+	if is_over_phone and 启用单击亮屏:
 		_set_awake(true)
-	else:
-		_set_awake(false)
 
 ## ===== 公共接口 =====
 
@@ -72,6 +85,9 @@ func 息屏手机() -> void:
 
 func 是否唤醒() -> bool:
 	return _is_awake
+
+func 打开全屏手机() -> void:
+	_open_full_mobile()
 
 ## ===== 私有方法 =====
 
@@ -105,6 +121,25 @@ func _set_awake(value: bool) -> void:
 			GameDataManager.手机.进入普通手机使用状态()
 		else:
 			GameDataManager.手机.进入待机使用状态()
+
+func _open_full_mobile() -> void:
+	if 全屏手机场景 == null:
+		push_warning("MobilePhone: 全屏手机场景未设置")
+		return
+	_set_awake(true)
+	if is_instance_valid(_full_mobile_instance):
+		return
+	var full_mobile: Node = 全屏手机场景.instantiate()
+	get_tree().root.add_child(full_mobile)
+	_full_mobile_instance = full_mobile
+	visible = false
+	if not full_mobile.tree_exited.is_connected(_on_full_mobile_tree_exited):
+		full_mobile.tree_exited.connect(_on_full_mobile_tree_exited)
+
+func _on_full_mobile_tree_exited() -> void:
+	_full_mobile_instance = null
+	visible = true
+	_set_awake(false)
 
 func _update_screen_off_status_visibility() -> void:
 	# CanvasLayer 有可能独立于父节点显示，这里显式处理，避免息屏后电量仍然亮着。

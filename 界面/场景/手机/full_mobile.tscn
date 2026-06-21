@@ -13,15 +13,16 @@
 [ext_resource type="FontFile" uid="uid://chnrus28lurjl" path="res://资源/字体/DouyinSansBold.ttf" id="11_8q1me"]
 [ext_resource type="Texture2D" uid="uid://dn54kfvkn01el" path="res://界面/场景/手机/美术资源/原生基础软件.png" id="12_5u7ib"]
 [ext_resource type="Texture2D" uid="uid://dr5r1ytsm8mll" path="res://界面/场景/手机/美术资源/其他软件1.png" id="13_kmgp1"]
-[ext_resource type="Script" path="res://界面/组件/PhoneStatusBinder.gd" id="14_status"]
-[ext_resource type="Script" path="res://界面/组件/PhoneUsageBinder.gd" id="15_usage"]
+[ext_resource type="Script" uid="uid://ggp3hvi0eao1" path="res://界面/组件/PhoneStatusBinder.gd" id="14_status"]
+[ext_resource type="Script" uid="uid://bwm7wuduego1i" path="res://界面/组件/PhoneUsageBinder.gd" id="15_usage"]
+[ext_resource type="Script" uid="uid://b3em312p1mg8b" path="res://界面/场景/手机/full_mobile.gd" id="16_full"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmgp1"]
 bg_color = Color(1, 1, 0.9882353, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8miq"]
 bg_color = Color(1, 1, 1, 1)
@@ -30,18 +31,11 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duv6j"]
 bg_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7unkk"]
 bg_color = Color(0.15686275, 0.16862746, 0.43529412, 0.8117647)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mot1c"]
-bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 15
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
@@ -53,6 +47,13 @@ corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
 corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mot1c"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kmgp1"]
 atlas = ExtResource("12_5u7ib")
@@ -79,14 +80,6 @@ corner_radius_bottom_left = 15
 atlas = ExtResource("12_5u7ib")
 region = Rect2(452, 541, 294, 287)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r11x8"]
-atlas = ExtResource("12_5u7ib")
-region = Rect2(799.6001, 541.60004, 273.40002, 283.39996)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_duv6j"]
-atlas = ExtResource("12_5u7ib")
-region = Rect2(1129.0002, 537.00006, 284, 293.00006)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7unkk"]
 atlas = ExtResource("12_5u7ib")
 region = Rect2(131.00012, 976, 286.00012, 288.00012)
@@ -103,10 +96,6 @@ region = Rect2(773.4563, 963.00006, 321.844, 307.43622)
 atlas = ExtResource("12_5u7ib")
 region = Rect2(800.2197, 114.08429, 267.34473, 281.8394)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j23ek"]
-atlas = ExtResource("12_5u7ib")
-region = Rect2(1127.4581, 108.09474, 279.6432, 288.4278)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_5xljl"]
 atlas = ExtResource("12_5u7ib")
 region = Rect2(461.04016, 117.81003, 281.9301, 277.09012)
@@ -119,6 +108,18 @@ region = Rect2(140.21027, 287.7876, 827.8553, 877.2228)
 atlas = ExtResource("13_kmgp1")
 region = Rect2(977.26184, 310.4005, 816.46277, 816.46277)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_duv6j"]
+atlas = ExtResource("12_5u7ib")
+region = Rect2(1129.0002, 537.00006, 284, 293.00006)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j23ek"]
+atlas = ExtResource("12_5u7ib")
+region = Rect2(1127.4581, 108.09474, 279.6432, 288.4278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r11x8"]
+atlas = ExtResource("12_5u7ib")
+region = Rect2(799.6001, 541.60004, 273.40002, 283.39996)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bs1e"]
 atlas = ExtResource("13_kmgp1")
 region = Rect2(1789.9271, 302.8055, 850.64, 824.05774)
@@ -126,11 +127,14 @@ region = Rect2(1789.9271, 302.8055, 850.64, 824.05774)
 [node name="FullMobile" type="Control" unique_id=1248338117]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("16_full")
+"拖拽切页停留时间" = 0.55
+"拖拽切页冷却" = 0.65
 
-[node name="PhoneStatusBinder" type="Node" parent="."]
+[node name="PhoneStatusBinder" type="Node" parent="." unique_id=369202297]
 script = ExtResource("14_status")
 
-[node name="PhoneUsageBinder" type="Node" parent="."]
+[node name="PhoneUsageBinder" type="Node" parent="." unique_id=422411329]
 script = ExtResource("15_usage")
 
 [node name="手机进入状态" type="Sprite2D" parent="." unique_id=281842127]
@@ -149,7 +153,7 @@ scroll_scale = Vector2(0, 0)
 
 [node name="壁纸1" type="Sprite2D" parent="手机进入状态/白底/壁纸1" unique_id=658828395]
 texture_filter = 3
-position = Vector2(-2.0729847, -41.78128)
+position = Vector2(-7.810112, -13.642761)
 scale = Vector2(0.4618539, 0.46700954)
 texture = ExtResource("3_dvdy4")
 
@@ -227,7 +231,7 @@ theme = SubResource("Theme_r11x8")
 theme_override_styles/panel = SubResource("StyleBoxFlat_duv6j")
 
 [node name="wifi" type="Node2D" parent="手机进入状态" unique_id=1960169967]
-position = Vector2(-4463.589, -2237.9905)
+position = Vector2(-4495.3154, -2237.9902)
 scale = Vector2(2.5915837, 2.7775764)
 
 [node name="1格信号" type="Sprite2D" parent="手机进入状态/wifi" unique_id=747132761]
@@ -242,7 +246,6 @@ texture = ExtResource("9_8q1me")
 texture = ExtResource("10_5u7ib")
 
 [node name="流量" type="Node2D" parent="手机进入状态" unique_id=1285308520]
-visible = false
 position = Vector2(-332.58112, -894.94214)
 scale = Vector2(2.5915837, 2.7775764)
 
@@ -277,62 +280,28 @@ offset_right = 5.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
 
-[node name="天气" type="Panel" parent="手机进入状态" unique_id=730109981]
-offset_left = -206.76918
-offset_top = -511.5769
-offset_right = -14.222244
-offset_bottom = -278.00333
-theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
-
-[node name="Label" type="Label" parent="手机进入状态/天气" unique_id=102273974]
+[node name="灰色控件" type="Panel" parent="." unique_id=984981645]
 layout_mode = 0
-offset_left = 70.01708
-offset_top = 233.57358
-offset_right = 118.76922
-offset_bottom = 256.57358
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_8q1me")
-text = "天气"
-horizontal_alignment = 1
-
-[node name="日历" type="Panel" parent="手机进入状态" unique_id=308747056]
-offset_left = 12.034195
-offset_top = -511.5769
-offset_right = 204.58113
-offset_bottom = -278.00333
-theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
-
-[node name="Label" type="Label" parent="手机进入状态/日历" unique_id=1841686750]
-layout_mode = 0
-offset_left = 70.01708
-offset_top = 233.57358
-offset_right = 122.5299
-offset_bottom = 256.57358
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "日历"
-horizontal_alignment = 1
+offset_left = 680.0
+offset_top = 888.0
+offset_right = 1096.0
+offset_bottom = 1008.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bfj7q")
 
 [node name="软件" type="Control" parent="." unique_id=1327029639]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = -16.0
+offset_right = 376.0
+offset_bottom = 576.0
 
-[node name="Panel" type="Panel" parent="软件" unique_id=1170424443]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 880.0
-offset_right = 1072.0
-offset_bottom = 992.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bfj7q")
-
-[node name="始终" type="Control" parent="软件" unique_id=1706618622]
+[node name="时钟" type="Control" parent="软件" unique_id=1706618622]
 anchors_preset = 0
 offset_left = 16.0
-offset_top = -8.0
+offset_top = 8.0
 offset_right = 56.0
-offset_bottom = 32.0
+offset_bottom = 48.0
 
-[node name="软件" type="Panel" parent="软件/始终" unique_id=159895909]
+[node name="软件" type="Panel" parent="软件/时钟" unique_id=159895909]
 clip_children = 2
 layout_mode = 0
 offset_left = 696.0
@@ -341,12 +310,12 @@ offset_right = 760.0
 offset_bottom = 456.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
 
-[node name="插图" type="Sprite2D" parent="软件/始终/软件" unique_id=1189678338]
+[node name="插图" type="Sprite2D" parent="软件/时钟/软件" unique_id=1189678338]
 position = Vector2(32.00002, 32.37499)
 scale = Vector2(0.2635657, 0.2629152)
 texture = SubResource("AtlasTexture_kmgp1")
 
-[node name="软件名" type="Label" parent="软件/始终" unique_id=1421356703]
+[node name="软件名" type="Label" parent="软件/时钟" unique_id=1421356703]
 layout_mode = 0
 offset_left = 704.75214
 offset_top = 465.24298
@@ -356,7 +325,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "时钟"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="软件/始终" unique_id=687844716]
+[node name="Button" type="Button" parent="软件/时钟" unique_id=687844716]
 layout_mode = 0
 offset_left = 696.0
 offset_top = 392.0
@@ -371,10 +340,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
 [node name="短信" type="Control" parent="软件" unique_id=169978302]
 anchors_preset = 0
-offset_left = 112.0
-offset_top = -8.0
-offset_right = 152.0
-offset_bottom = 32.0
+offset_left = 16.0
+offset_top = 296.0
+offset_right = 56.0
+offset_bottom = 336.0
 
 [node name="软件" type="Panel" parent="软件/短信" unique_id=35465560]
 clip_children = 2
@@ -413,100 +382,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
-[node name="音乐" type="Control" parent="软件" unique_id=392173057]
-anchors_preset = 0
-offset_left = 280.0
-offset_top = 504.0
-offset_right = 320.0
-offset_bottom = 544.0
-
-[node name="软件" type="Panel" parent="软件/音乐" unique_id=535085006]
-clip_children = 2
-layout_mode = 0
-offset_left = 696.0
-offset_top = 392.0
-offset_right = 760.0
-offset_bottom = 456.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
-
-[node name="插图" type="Sprite2D" parent="软件/音乐/软件" unique_id=242880779]
-position = Vector2(32.00002, 31.999989)
-scale = Vector2(0.2635657, 0.2629152)
-texture = SubResource("AtlasTexture_r11x8")
-
-[node name="软件名" type="Label" parent="软件/音乐" unique_id=1599575848]
-layout_mode = 0
-offset_left = 704.75214
-offset_top = 465.24298
-offset_right = 757.26495
-offset_bottom = 488.24298
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "音乐"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="软件/音乐" unique_id=328268654]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 392.0
-offset_right = 760.0
-offset_bottom = 456.0
-theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
-
-[node name="相机" type="Control" parent="软件" unique_id=216445145]
-anchors_preset = 0
-offset_left = 208.0
-offset_top = 504.0
-offset_right = 248.0
-offset_bottom = 544.0
-
-[node name="软件" type="Panel" parent="软件/相机" unique_id=2127718971]
-clip_children = 2
-layout_mode = 0
-offset_left = 688.0
-offset_top = 392.0
-offset_right = 752.0
-offset_bottom = 456.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
-
-[node name="插图" type="Sprite2D" parent="软件/相机/软件" unique_id=516999289]
-position = Vector2(32.00002, 31.999989)
-scale = Vector2(0.2635657, 0.2629152)
-texture = SubResource("AtlasTexture_duv6j")
-
-[node name="软件名" type="Label" parent="软件/相机" unique_id=1896502784]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 464.0
-offset_right = 748.5128
-offset_bottom = 487.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "相机"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="软件/相机" unique_id=924025064]
-layout_mode = 0
-offset_left = 688.0
-offset_top = 392.0
-offset_right = 752.0
-offset_bottom = 456.0
-theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
-
 [node name="相册" type="Control" parent="软件" unique_id=519670125]
 anchors_preset = 0
-offset_left = 208.0
-offset_top = -8.0
-offset_right = 248.0
-offset_bottom = 32.0
+offset_left = 16.0
+offset_top = 200.0
+offset_right = 56.0
+offset_bottom = 240.0
 
 [node name="软件" type="Panel" parent="软件/相册" unique_id=963657071]
 clip_children = 2
@@ -547,10 +428,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
 [node name="健康" type="Control" parent="软件" unique_id=1857949301]
 anchors_preset = 0
-offset_left = 304.0
-offset_top = -8.0
-offset_right = 344.0
-offset_bottom = 32.0
+offset_left = 112.0
+offset_top = 8.0
+offset_right = 152.0
+offset_bottom = 48.0
 
 [node name="软件" type="Panel" parent="软件/健康" unique_id=881347609]
 clip_children = 2
@@ -591,10 +472,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
 [node name="地图" type="Control" parent="软件" unique_id=1425931149]
 anchors_preset = 0
-offset_left = 112.0
-offset_top = 96.0
-offset_right = 152.0
-offset_bottom = 136.0
+offset_left = 208.0
+offset_top = 392.0
+offset_right = 248.0
+offset_bottom = 432.0
 
 [node name="软件" type="Panel" parent="软件/地图" unique_id=1513556076]
 clip_children = 2
@@ -636,9 +517,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 [node name="联系人" type="Control" parent="软件" unique_id=1333522874]
 anchors_preset = 0
 offset_left = 16.0
-offset_top = 96.0
+offset_top = 104.0
 offset_right = 56.0
-offset_bottom = 136.0
+offset_bottom = 144.0
 
 [node name="软件" type="Panel" parent="软件/联系人" unique_id=2146271118]
 clip_children = 2
@@ -677,56 +558,12 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
-[node name="电话" type="Control" parent="软件" unique_id=35637245]
-anchors_preset = 0
-offset_left = 128.0
-offset_top = 504.0
-offset_right = 168.0
-offset_bottom = 544.0
-
-[node name="软件" type="Panel" parent="软件/电话" unique_id=1193011209]
-clip_children = 2
-layout_mode = 0
-offset_left = 688.0
-offset_top = 392.0
-offset_right = 752.0
-offset_bottom = 456.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
-
-[node name="插图" type="Sprite2D" parent="软件/电话/软件" unique_id=1332065289]
-position = Vector2(30.32381, 32.000008)
-scale = Vector2(0.27472296, 0.2739726)
-texture = SubResource("AtlasTexture_j23ek")
-
-[node name="软件名" type="Label" parent="软件/电话" unique_id=1347861200]
-layout_mode = 0
-offset_left = 696.0
-offset_top = 464.0
-offset_right = 748.5128
-offset_bottom = 487.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "电话"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="软件/电话" unique_id=684431321]
-layout_mode = 0
-offset_left = 688.0
-offset_top = 392.0
-offset_right = 752.0
-offset_bottom = 456.0
-theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
-theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
-
 [node name="系统" type="Control" parent="软件" unique_id=1496487258]
 anchors_preset = 0
-offset_left = 208.0
-offset_top = 96.0
-offset_right = 248.0
-offset_bottom = 136.0
+offset_left = 112.0
+offset_top = 392.0
+offset_right = 152.0
+offset_bottom = 432.0
 
 [node name="软件" type="Panel" parent="软件/系统" unique_id=534210165]
 clip_children = 2
@@ -768,9 +605,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 [node name="国内炒汇" type="Control" parent="软件" unique_id=1119335126]
 anchors_preset = 0
 offset_left = 16.0
-offset_top = 200.0
+offset_top = 392.0
 offset_right = 56.0
-offset_bottom = 240.0
+offset_bottom = 432.0
 
 [node name="软件" type="Panel" parent="软件/国内炒汇" unique_id=1886358967]
 clip_children = 2
@@ -811,10 +648,10 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
 [node name="国外炒汇" type="Control" parent="软件" unique_id=2097850253]
 anchors_preset = 0
-offset_left = 112.0
-offset_top = 200.0
-offset_right = 152.0
-offset_bottom = 240.0
+offset_left = 304.0
+offset_top = 392.0
+offset_right = 344.0
+offset_bottom = 432.0
 
 [node name="软件" type="Panel" parent="软件/国外炒汇" unique_id=1481066587]
 clip_children = 2
@@ -853,12 +690,144 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
+[node name="相机" type="Control" parent="软件" unique_id=216445145]
+anchors_preset = 0
+offset_left = 216.0
+offset_top = 536.0
+offset_right = 256.0
+offset_bottom = 576.0
+
+[node name="软件" type="Panel" parent="软件/相机" unique_id=2127718971]
+clip_children = 2
+layout_mode = 0
+offset_left = 688.0
+offset_top = 392.0
+offset_right = 752.0
+offset_bottom = 456.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
+
+[node name="插图" type="Sprite2D" parent="软件/相机/软件" unique_id=516999289]
+position = Vector2(32.00002, 31.999989)
+scale = Vector2(0.2635657, 0.2629152)
+texture = SubResource("AtlasTexture_duv6j")
+
+[node name="软件名" type="Label" parent="软件/相机" unique_id=1896502784]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 464.0
+offset_right = 748.5128
+offset_bottom = 487.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "相机"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="软件/相机" unique_id=924025064]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 392.0
+offset_right = 752.0
+offset_bottom = 456.0
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
+
+[node name="电话" type="Control" parent="软件" unique_id=35637245]
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 536.0
+offset_right = 160.0
+offset_bottom = 576.0
+
+[node name="软件" type="Panel" parent="软件/电话" unique_id=1193011209]
+clip_children = 2
+layout_mode = 0
+offset_left = 688.0
+offset_top = 392.0
+offset_right = 752.0
+offset_bottom = 456.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
+
+[node name="插图" type="Sprite2D" parent="软件/电话/软件" unique_id=1332065289]
+position = Vector2(30.32381, 32.000008)
+scale = Vector2(0.27472296, 0.2739726)
+texture = SubResource("AtlasTexture_j23ek")
+
+[node name="软件名" type="Label" parent="软件/电话" unique_id=1347861200]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 464.0
+offset_right = 748.5128
+offset_bottom = 487.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "电话"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="软件/电话" unique_id=684431321]
+layout_mode = 0
+offset_left = 688.0
+offset_top = 392.0
+offset_right = 752.0
+offset_bottom = 456.0
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
+
+[node name="音乐" type="Control" parent="软件" unique_id=392173057]
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 536.0
+offset_right = 344.0
+offset_bottom = 576.0
+
+[node name="软件" type="Panel" parent="软件/音乐" unique_id=535085006]
+clip_children = 2
+layout_mode = 0
+offset_left = 696.0
+offset_top = 392.0
+offset_right = 760.0
+offset_bottom = 456.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
+
+[node name="插图" type="Sprite2D" parent="软件/音乐/软件" unique_id=242880779]
+position = Vector2(32.00002, 31.999989)
+scale = Vector2(0.2635657, 0.2629152)
+texture = SubResource("AtlasTexture_r11x8")
+
+[node name="软件名" type="Label" parent="软件/音乐" unique_id=1599575848]
+layout_mode = 0
+offset_left = 704.75214
+offset_top = 465.24298
+offset_right = 757.26495
+offset_bottom = 488.24298
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "音乐"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="软件/音乐" unique_id=328268654]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 392.0
+offset_right = 760.0
+offset_bottom = 456.0
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
+
 [node name="飞信" type="Control" parent="软件" unique_id=33309225]
 anchors_preset = 0
-offset_left = 32.0
-offset_top = 504.0
-offset_right = 72.0
-offset_bottom = 544.0
+offset_left = 8.0
+offset_top = 536.0
+offset_right = 48.0
+offset_bottom = 576.0
 
 [node name="软件" type="Panel" parent="软件/飞信" unique_id=451952441]
 clip_children = 2
@@ -896,3 +865,40 @@ theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
+
+[node name="日历" type="Panel" parent="软件" unique_id=308747056]
+layout_mode = 0
+offset_left = 920.0
+offset_top = 192.0
+offset_right = 1080.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
+
+[node name="Label" type="Label" parent="软件/日历" unique_id=1841686750]
+layout_mode = 0
+offset_left = 63.999992
+offset_top = 184.0
+offset_right = 116.51281
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "日历"
+horizontal_alignment = 1
+
+[node name="天气" type="Panel" parent="软件" unique_id=730109981]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 192.0
+offset_right = 872.0
+offset_bottom = 360.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
+
+[node name="Label" type="Label" parent="软件/天气" unique_id=102273974]
+layout_mode = 0
+offset_left = 63.999992
+offset_top = 184.0
+offset_right = 112.75213
+offset_bottom = 207.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_8q1me")
+text = "天气"
+horizontal_alignment = 1

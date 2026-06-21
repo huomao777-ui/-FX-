@@ -9,6 +9,10 @@
 [ext_resource type="Script" path="res://核心/系统/TimeSystem.gd" id="7_times"]
 [ext_resource type="Script" path="res://核心/系统/PhoneSystem.gd" id="8_phone"]
 
+[ext_resource type="Script" path="res://核心/系统/MarketEngine.gd" id="9_market"]
+
+[ext_resource type="Script" path="res://核心/系统/TradingSystem.gd" id="10_trading"]
+
 [node name="GameDataManager" type="Node" unique_id=1109652677]
 script = ExtResource("1")
 
@@ -29,6 +33,12 @@ script = ExtResource("6_3dlrv")
 
 [node name="TimeSystem" type="Node" parent="."]
 script = ExtResource("7_times")
+
+[node name="MarketEngine" type="Node" parent="."]
+script = ExtResource("9_market")
+
+[node name="TradingSystem" type="Node" parent="."]
+script = ExtResource("10_trading")
 
 [node name="PhoneSystem" type="Node" parent="."]
 script = ExtResource("8_phone")

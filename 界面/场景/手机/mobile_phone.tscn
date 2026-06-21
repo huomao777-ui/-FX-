@@ -11,8 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="9_5bsqm"]
 [ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="10_7ejhs"]
 [ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="11_6k8ky"]
-[ext_resource type="Script" path="res://界面/场景/手机/mobile_phone.gd" id="12_mobile"]
-[ext_resource type="Script" path="res://界面/组件/PhoneStatusBinder.gd" id="13_status"]
+[ext_resource type="Script" uid="uid://blck7uirhrwxl" path="res://界面/场景/手机/mobile_phone.gd" id="12_mobile"]
+[ext_resource type="Script" uid="uid://ggp3hvi0eao1" path="res://界面/组件/PhoneStatusBinder.gd" id="13_status"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tfb4"]
 bg_color = Color(1, 1, 0.9882353, 1)
@@ -38,8 +38,10 @@ bg_color = Color(1, 1, 1, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("12_mobile")
+"悬停唤醒时间" = 1.65
+"离开后息屏延迟" = 1.65
 
-[node name="PhoneStatusBinder" type="Node" parent="."]
+[node name="PhoneStatusBinder" type="Node" parent="." unique_id=1796250485]
 script = ExtResource("13_status")
 
 [node name="手机息屏状态" type="Sprite2D" parent="." unique_id=505107424]
