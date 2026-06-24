@@ -30,7 +30,9 @@ var _chart_canvas: Control = null
 var _chart_pair_label: Label = null
 var _position_panel: Panel = null
 var _adjust_position_panel: Panel = null
+var _one_click_open_panel: Panel = null
 var _confirm_open_panel: Panel = null
+var _open_account_panel: Panel = null
 var _currency_picker_panel: Panel = null
 var _currency_root: Control = null
 var _currency_background_panel: Panel = null
@@ -45,6 +47,7 @@ var _selected_slot_index: int = 0
 var _pending_currency_slot_index: int = -1
 var _pending_currency_side: String = ""
 var _dynamic_slot_counter: int = 2
+var _pending_open_slot_index: int = -1
 
 var _base_currency_code: String = "XMY"
 var _currency_catalog: Dictionary = {}
@@ -75,6 +78,7 @@ func _ready() -> void:
 	_connect_market_signals()
 	_connect_slot_panels()
 	_connect_currency_picker_buttons()
+	_connect_action_buttons()
 	_connect_header_drag()
 	_apply_header_layout(_header_rest_top)
 	_ensure_trailing_placeholder_slot()
@@ -160,7 +164,9 @@ func _cache_nodes() -> void:
 	_chart_pair_label = _find_descendant_by_name(_chart_canvas, "货币种类") as Label
 	_position_panel = get_node_or_null("手机进入状态/当前持仓订单") as Panel
 	_adjust_position_panel = get_node_or_null("手机进入状态/减仓补仓") as Panel
+	_one_click_open_panel = get_node_or_null("手机进入状态/一键开仓") as Panel
 	_confirm_open_panel = get_node_or_null("手机进入状态/确认开仓") as Panel
+	_open_account_panel = get_node_or_null("手机进入状态/开户面板") as Panel
 	_currency_picker_panel = get_node_or_null("手机进入状态/货币选择") as Panel
 	_currency_root = get_node_or_null("手机进入状态/货币种类") as Control
 	_currency_background_panel = get_node_or_null("手机进入状态/货币种类/货币背景") as Panel
@@ -181,8 +187,15 @@ func _cache_nodes() -> void:
 		_currency_picker_panel.z_index = 200
 	if _adjust_position_panel != null:
 		_adjust_position_panel.z_index = ACTION_PANEL_Z_INDEX
+	if _one_click_open_panel != null:
+		_one_click_open_panel.visible = false
+		_one_click_open_panel.z_index = ACTION_PANEL_Z_INDEX
 	if _confirm_open_panel != null:
+		_confirm_open_panel.visible = false
 		_confirm_open_panel.z_index = ACTION_PANEL_Z_INDEX
+	if _open_account_panel != null:
+		_open_account_panel.visible = false
+		_open_account_panel.z_index = ACTION_PANEL_Z_INDEX + 1
 	_cache_header_layout_metrics()
 
 func _setup_kline_chart() -> void:
@@ -241,6 +254,16 @@ func _connect_currency_picker_buttons() -> void:
 	var confirm_button: BaseButton = _find_descendant_by_name(_currency_picker_panel, "确认选择") as BaseButton
 	if confirm_button != null and not confirm_button.pressed.is_connected(_close_currency_picker):
 		confirm_button.pressed.connect(_close_currency_picker)
+
+func _connect_action_buttons() -> void:
+	if _one_click_open_panel != null:
+		var open_button: BaseButton = _find_first_button(_one_click_open_panel)
+		if open_button != null and not open_button.pressed.is_connected(_on_one_click_open_pressed):
+			open_button.pressed.connect(_on_one_click_open_pressed)
+	if _confirm_open_panel != null:
+		var confirm_button: BaseButton = _find_first_button(_confirm_open_panel)
+		if confirm_button != null and not confirm_button.pressed.is_connected(_on_confirm_open_pressed):
+			confirm_button.pressed.connect(_on_confirm_open_pressed)
 
 func _connect_header_drag() -> void:
 	if _slot_header_panel == null:
@@ -322,7 +345,7 @@ func _get_slot_list_bottom_limit() -> float:
 		return _list_bottom_rest
 	var default_bottom_limit: float = _slot_scroll_container.position.y + _slot_scroll_container.size.y
 	var bottom_limit: float = INF
-	for panel in [_adjust_position_panel, _confirm_open_panel]:
+	for panel in [_adjust_position_panel, _one_click_open_panel, _confirm_open_panel]:
 		if panel == null:
 			continue
 		var panel_top_local: float = (_currency_root.get_global_transform().affine_inverse() * panel.global_position).y
@@ -429,9 +452,30 @@ func _on_currency_option_pressed(currency_code: String) -> void:
 	_close_currency_picker()
 	_after_slot_configuration_changed(target_slot_index)
 
+func _on_one_click_open_pressed() -> void:
+	if _selected_slot_index < 0 or _selected_slot_index >= _pair_slots.size():
+		return
+	var slot: Dictionary = _pair_slots[_selected_slot_index]
+	if not bool(slot.get("configured", false)):
+		return
+	if _slot_has_open_position_display(slot):
+		return
+	_pending_open_slot_index = _selected_slot_index
+	_refresh_action_panels(true, false)
+
+func _on_confirm_open_pressed() -> void:
+	_pending_open_slot_index = -1
+	if _open_account_panel != null:
+		_open_account_panel.visible = false
+	_refresh_position_panel()
+
 func _select_slot(slot_index: int) -> void:
 	if slot_index < 0 or slot_index >= _pair_slots.size():
 		return
+	if _pending_open_slot_index != slot_index:
+		_pending_open_slot_index = -1
+		if _open_account_panel != null:
+			_open_account_panel.visible = false
 	_selected_slot_index = slot_index
 	_refresh_chart_for_selected_slot()
 	_refresh_slot_views()
@@ -462,6 +506,10 @@ func _refresh_chart_for_selected_slot() -> void:
 
 func _after_slot_configuration_changed(slot_index: int) -> void:
 	_ensure_trailing_placeholder_slot()
+	if _pending_open_slot_index != slot_index:
+		_pending_open_slot_index = -1
+		if _open_account_panel != null:
+			_open_account_panel.visible = false
 	_selected_slot_index = clampi(slot_index, 0, max(_pair_slots.size() - 1, 0))
 	_refresh_chart_for_selected_slot()
 	_refresh_slot_views()
@@ -629,8 +677,14 @@ func _position_matches_slot(position: Dictionary, slot: Dictionary) -> bool:
 func _refresh_action_panels(is_configured: bool, has_position: bool) -> void:
 	if _adjust_position_panel != null:
 		_adjust_position_panel.visible = has_position
+	var show_confirm_open: bool = is_configured and not has_position and _pending_open_slot_index == _selected_slot_index
+	var show_one_click_open: bool = is_configured and not has_position and not show_confirm_open
+	if _one_click_open_panel != null:
+		_one_click_open_panel.visible = show_one_click_open
 	if _confirm_open_panel != null:
-		_confirm_open_panel.visible = is_configured and not has_position
+		_confirm_open_panel.visible = show_confirm_open
+	if _open_account_panel != null:
+		_open_account_panel.visible = show_confirm_open
 
 func _get_slot_rate(slot: Dictionary) -> float:
 	var left_code: String = str(slot.get("left_code", ""))
@@ -1084,6 +1138,17 @@ func _find_descendant_by_name(root: Node, target_name: String) -> Node:
 		return root
 	for child in root.get_children():
 		var result: Node = _find_descendant_by_name(child, target_name)
+		if result != null:
+			return result
+	return null
+
+func _find_first_button(root: Node) -> BaseButton:
+	if root == null:
+		return null
+	if root is BaseButton:
+		return root as BaseButton
+	for child in root.get_children():
+		var result: BaseButton = _find_first_button(child)
 		if result != null:
 			return result
 	return null

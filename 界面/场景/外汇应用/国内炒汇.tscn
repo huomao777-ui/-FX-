@@ -238,6 +238,32 @@ region = Rect2(367, 376, 279, 283)
 atlas = ExtResource("10_tdoio")
 region = Rect2(658, 375, 286, 284)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twl0d"]
+bg_color = Color(0.0627451, 0.121569, 0.207843, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.180392, 0.352941, 0.564706, 0.9)
+corner_radius_top_left = 28
+corner_radius_top_right = 28
+corner_radius_bottom_right = 28
+corner_radius_bottom_left = 28
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmy_open"]
+bg_color = Color(0.3019608, 0.6509804, 0.81960785, 0.95)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usd_open"]
+bg_color = Color(0.16078432, 0.59607846, 0.54509807, 0.95)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+
 [node name="国内炒汇" type="Control" unique_id=1248338117]
 layout_mode = 3
 anchors_preset = 0
@@ -1189,39 +1215,14 @@ text = "补仓"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="确认开仓" type="Panel" parent="手机进入状态" unique_id=1941532407]
-visible = false
+[node name="一键开仓" type="Panel" parent="手机进入状态" unique_id=1941532407]
 offset_left = -259.28198
 offset_top = 432.8727
 offset_right = 257.09393
 offset_bottom = 585.2033
 theme_override_styles/panel = SubResource("StyleBoxFlat_gqv7q")
 
-[node name="减仓" type="Button" parent="手机进入状态/确认开仓" unique_id=437912720]
-visible = false
-layout_mode = 0
-offset_left = 33.914505
-offset_top = 30.466057
-offset_right = 131.282
-offset_bottom = 105.36195
-theme_override_styles/normal = SubResource("StyleBoxFlat_4y7fb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
-theme_override_styles/hover = SubResource("StyleBoxFlat_65srn")
-
-[node name="Label" type="Label" parent="手机进入状态/确认开仓/减仓" unique_id=198482265]
-layout_mode = 0
-offset_left = 9.846136
-offset_top = 10.155425
-offset_right = 86.42725
-offset_bottom = 60.932285
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_xv3ui")
-theme_override_font_sizes/font_size = 25
-text = "减仓"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="确认开仓" type="Button" parent="手机进入状态/确认开仓" unique_id=137299480]
+[node name="确认开仓" type="Button" parent="手机进入状态/一键开仓" unique_id=137299480]
 layout_mode = 0
 offset_left = 161.91452
 offset_top = 30.466057
@@ -1231,7 +1232,37 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_4y7fb")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
 theme_override_styles/hover = SubResource("StyleBoxFlat_65srn")
 
-[node name="Label" type="Label" parent="手机进入状态/确认开仓/确认开仓" unique_id=1547061169]
+[node name="Label" type="Label" parent="手机进入状态/一键开仓/确认开仓" unique_id=1547061169]
+layout_mode = 0
+offset_left = 48.136726
+offset_top = 10.155425
+offset_right = 148.13672
+offset_bottom = 60.932285
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 25
+text = "一键开仓"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="确认开仓" type="Panel" parent="手机进入状态" unique_id=1098946016]
+offset_left = -259.28198
+offset_top = 432.8727
+offset_right = 257.09393
+offset_bottom = 585.2033
+theme_override_styles/panel = SubResource("StyleBoxFlat_gqv7q")
+
+[node name="确认开仓" type="Button" parent="手机进入状态/确认开仓" unique_id=466214155]
+layout_mode = 0
+offset_left = 161.91452
+offset_top = 30.466057
+offset_right = 354.4615
+offset_bottom = 105.361946
+theme_override_styles/normal = SubResource("StyleBoxFlat_4y7fb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
+theme_override_styles/hover = SubResource("StyleBoxFlat_65srn")
+
+[node name="Label" type="Label" parent="手机进入状态/确认开仓/确认开仓" unique_id=1347205119]
 layout_mode = 0
 offset_left = 48.136726
 offset_top = 10.155425
@@ -1241,30 +1272,6 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_xv3ui")
 theme_override_font_sizes/font_size = 25
 text = "确认开仓"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="补仓" type="Button" parent="手机进入状态/确认开仓" unique_id=753472189]
-visible = false
-layout_mode = 0
-offset_left = 385.09393
-offset_top = 30.466133
-offset_right = 482.46143
-offset_bottom = 105.36203
-theme_override_styles/normal = SubResource("StyleBoxFlat_4y7fb")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
-theme_override_styles/hover = SubResource("StyleBoxFlat_65srn")
-
-[node name="Label" type="Label" parent="手机进入状态/确认开仓/补仓" unique_id=639945012]
-layout_mode = 0
-offset_left = 9.846136
-offset_top = 10.155425
-offset_right = 86.42725
-offset_bottom = 60.932285
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_xv3ui")
-theme_override_font_sizes/font_size = 25
-text = "补仓"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1443,178 +1450,404 @@ offset_bottom = 33.247986
 theme_override_font_sizes/font_size = 17
 text = "枫叶币/FYB"
 
-[node name="开户界面" type="Panel" parent="手机进入状态" unique_id=1601374131]
+[node name="开户面板" type="Panel" parent="手机进入状态" unique_id=1805242642]
 visible = false
-offset_left = -241.77771
-offset_top = -72.356995
-offset_right = 246.15387
-offset_bottom = 159.94714
-theme_override_styles/panel = SubResource("StyleBoxFlat_pnbde")
+offset_left = -259.28198
+offset_top = -359.2463
+offset_right = 257.09393
+offset_bottom = 371.94046
+theme_override_styles/panel = SubResource("StyleBoxFlat_twl0d")
 
-[node name="货币类型" type="Control" parent="手机进入状态/开户界面" unique_id=1181417278]
-anchors_preset = 0
-offset_left = 85.33332
-offset_top = 30.466118
-offset_right = 125.33332
-offset_bottom = 70.46612
-
-[node name="滑轮容器" type="ScrollContainer" parent="手机进入状态/开户界面/货币类型" unique_id=783375680]
-visible = false
+[node name="内容边距" type="MarginContainer" parent="手机进入状态/开户面板" unique_id=1892863628]
 layout_mode = 0
-offset_left = -65.64099
-offset_top = -15.233093
-offset_right = 386.359
-offset_bottom = 184.7669
+offset_left = 22.0
+offset_top = 24.0
+offset_right = 494.0
+offset_bottom = 710.876
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
 
-[node name="排列容器" type="FlowContainer" parent="手机进入状态/开户界面/货币类型/滑轮容器" unique_id=271267897]
-custom_minimum_size = Vector2(440, 300)
+[node name="垂直布局" type="Control" parent="手机进入状态/开户面板/内容边距" unique_id=1236934569]
 layout_mode = 2
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 10
 
-[node name="熊猫元" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=1905840116]
-custom_minimum_size = Vector2(138, 42)
+[node name="标题区" type="VBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局" unique_id=1890707243]
+layout_mode = 0
+offset_right = 410.0
+offset_bottom = 46.0
+theme_override_constants/separation = 3
+
+[node name="标题" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/标题区" unique_id=953682672]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 24
+text = "开户面板"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/熊猫元" unique_id=1457294176]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
+[node name="副标题" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/标题区" unique_id=346922816]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.76, 0.86, 0.96, 0.82)
+theme_override_fonts/font = ExtResource("2_xv3ui")
+theme_override_font_sizes/font_size = 14
+text = "下单信息预览"
+
+[node name="币对卡" type="Panel" parent="手机进入状态/开户面板/内容边距/垂直布局" unique_id=1777382742]
+custom_minimum_size = Vector2(0, 166)
+layout_mode = 0
+offset_top = 58.0
+offset_right = 455.36737
+offset_bottom = 246.19507
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2mhw")
+
+[node name="币对内容" type="VBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡" unique_id=1110125959]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 430.0
+offset_bottom = 142.0
+theme_override_constants/separation = 6
+
+[node name="币对标题" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容" unique_id=1725234125]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 16
+text = "当前币对"
+
+[node name="币对行" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容" unique_id=726513099]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="左侧货币" type="Panel" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行" unique_id=1255006073]
+custom_minimum_size = Vector2(150, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmy_open")
+
+[node name="图标" type="TextureRect" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/左侧货币" unique_id=1736080463]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 56.0
+offset_bottom = 56.0
 texture = SubResource("AtlasTexture_8g5wb")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/熊猫元" unique_id=1092925255]
+[node name="简称" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/左侧货币" unique_id=685115528]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 140.0
+offset_left = 64.0
+offset_top = 10.0
+offset_right = 132.0
 offset_bottom = 34.0
-theme_override_font_sizes/font_size = 17
-text = "熊猫元/XMY"
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 20
+text = "XMY"
 
-[node name="刀乐" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=2122077145]
-custom_minimum_size = Vector2(138, 42)
+[node name="名称" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/左侧货币" unique_id=1973300556]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 34.0
+offset_right = 138.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.89, 0.95, 1, 0.92)
+theme_override_font_sizes/font_size = 14
+text = "熊猫元"
+
+[node name="中间斜杠" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行" unique_id=1145874859]
+custom_minimum_size = Vector2(38, 66)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 30
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/刀乐" unique_id=485336688]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
+[node name="右侧货币" type="Panel" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行" unique_id=1046402662]
+custom_minimum_size = Vector2(150, 66)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_usd_open")
+
+[node name="图标" type="TextureRect" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/右侧货币" unique_id=194319572]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 56.0
+offset_bottom = 56.0
 texture = SubResource("AtlasTexture_roptp")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/刀乐" unique_id=1772940144]
+[node name="简称" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/右侧货币" unique_id=761506539]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 140.0
+offset_left = 64.0
+offset_top = 10.0
+offset_right = 132.0
 offset_bottom = 34.0
-theme_override_font_sizes/font_size = 17
-text = "刀乐/USD"
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 20
+text = "USD"
 
-[node name="樱花币" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=170845696]
-custom_minimum_size = Vector2(138, 42)
+[node name="名称" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对行/右侧货币" unique_id=580267717]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 34.0
+offset_right = 138.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0.89, 0.95, 1, 0.92)
+theme_override_font_sizes/font_size = 14
+text = "刀乐"
+
+[node name="利差摘要" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容" unique_id=1395927335]
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="左侧利息" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/利差摘要" unique_id=1478905189]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74, 0.86, 0.98, 0.9)
+theme_override_font_sizes/font_size = 14
+text = "XMY 年化利率: 1.85%"
+vertical_alignment = 1
+
+[node name="右侧利息" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/利差摘要" unique_id=954079586]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.74, 0.86, 0.98, 0.9)
+theme_override_font_sizes/font_size = 14
+text = "USD 年化利率: 5.25%"
+vertical_alignment = 1
+
+[node name="币对数据" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容" unique_id=549541083]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="隔夜利差" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/币对卡/币对内容/币对数据" unique_id=1355788941]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
+text = "隔夜利差合计(每夜): +18.60 熊猫元"
+
+[node name="手数卡" type="Panel" parent="手机进入状态/开户面板/内容边距/垂直布局" unique_id=417278435]
+custom_minimum_size = Vector2(0, 184)
+layout_mode = 0
+offset_left = 0.25640965
+offset_top = 266.50577
+offset_right = 455.36737
+offset_bottom = 500.07938
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2mhw")
+
+[node name="手数内容" type="VBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡" unique_id=170434811]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 430.0
+offset_bottom = 170.0
+theme_override_constants/separation = 8
+
+[node name="手数标题" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容" unique_id=1731848114]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 18
+text = "仓位与保证金"
+
+[node name="手数滑动行" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容" unique_id=259525032]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="减号按钮" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/手数滑动行" unique_id=1057672032]
+custom_minimum_size = Vector2(52, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_65srn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4y7fb")
+text = "-"
+
+[node name="手数滑块" type="HSlider" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/手数滑动行" unique_id=827351497]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.01
+max_value = 5.0
+step = 0.01
+value = 1.0
+
+[node name="加号按钮" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/手数滑动行" unique_id=210480977]
+custom_minimum_size = Vector2(52, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxFlat_65srn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4y7fb")
+text = "+"
+
+[node name="手数值" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容" unique_id=893099083]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("5_pnbde")
+theme_override_font_sizes/font_size = 20
+text = "当前手数: 1.00 手"
+horizontal_alignment = 1
+
+[node name="保证金信息行" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容" unique_id=1802350483]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="预付保证金" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/保证金信息行" unique_id=1123504803]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
+text = "预付保证金: 2,400 XMY"
+vertical_alignment = 1
+
+[node name="强平线" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/保证金信息行" unique_id=1370346896]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
+text = "强制平仓线: 6.8420"
+vertical_alignment = 1
+
+[node name="方向按钮行" type="HBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容" unique_id=97089702]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="做多" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/方向按钮行" unique_id=787414280]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_65srn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4y7fb")
+text = "做多"
+
+[node name="做空" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/手数卡/手数内容/方向按钮行" unique_id=811726989]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "做空"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/樱花币" unique_id=100126296]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
-texture = SubResource("AtlasTexture_m8g5f")
-
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/樱花币" unique_id=403321699]
+[node name="杠杆卡" type="Panel" parent="手机进入状态/开户面板/内容边距/垂直布局" unique_id=459083411]
+custom_minimum_size = Vector2(0, 118)
 layout_mode = 0
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 140.0
-offset_bottom = 34.0
-theme_override_font_sizes/font_size = 17
-text = "樱花币/YHB"
+offset_left = 0.25640965
+offset_top = 520.39014
+offset_right = 455.36737
+offset_bottom = 662.5653
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2mhw")
 
-[node name="鸥元" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=601140439]
-custom_minimum_size = Vector2(138, 42)
+[node name="杠杆内容" type="VBoxContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡" unique_id=910798634]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 430.0
+offset_bottom = 102.0
+theme_override_constants/separation = 8
+
+[node name="杠杆标题" type="Label" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容" unique_id=1407100927]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.98039216, 0.8627451, 0.627451, 0.95)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 16
+text = "杠杆倍率"
+
+[node name="杠杆按钮区" type="GridContainer" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容" unique_id=847666090]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="1倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=531275822]
+custom_minimum_size = Vector2(126, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_65srn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4y7fb")
+text = "1x"
+
+[node name="5倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=1238900568]
+custom_minimum_size = Vector2(126, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "5x"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/鸥元" unique_id=402108440]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
-texture = SubResource("AtlasTexture_6e5lm")
-
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/鸥元" unique_id=1057256896]
-layout_mode = 0
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 140.0
-offset_bottom = 34.0
-theme_override_font_sizes/font_size = 17
-text = "鸥元/EUR"
-
-[node name="英蚌" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=1680911471]
-custom_minimum_size = Vector2(138, 42)
+[node name="10倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=777653452]
+custom_minimum_size = Vector2(126, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "10x"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/英蚌" unique_id=1626142938]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
-texture = SubResource("AtlasTexture_mqc0a")
-
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/英蚌" unique_id=701322826]
-layout_mode = 0
-offset_left = 37.0
-offset_top = 11.0
-offset_right = 140.0
-offset_bottom = 34.0
-theme_override_font_sizes/font_size = 17
-text = "英蚌/GBP"
-
-[node name="袋鼠币" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=1355605021]
-custom_minimum_size = Vector2(138, 42)
+[node name="20倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=1520653528]
+custom_minimum_size = Vector2(126, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "20x"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/袋鼠币" unique_id=775165210]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
-texture = SubResource("AtlasTexture_ig7pt")
-
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/袋鼠币" unique_id=1152402036]
-layout_mode = 0
-offset_left = 38.05128
-offset_top = 11.471074
-offset_right = 141.05128
-offset_bottom = 34.471073
-theme_override_font_sizes/font_size = 17
-text = "袋鼠币/DSB"
-
-[node name="枫叶币" type="Button" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器" unique_id=11841648]
-custom_minimum_size = Vector2(138, 42)
+[node name="50倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=258550191]
+custom_minimum_size = Vector2(126, 30)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
 theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "50x"
 
-[node name="货币贴图" type="Sprite2D" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/枫叶币" unique_id=1103212915]
-position = Vector2(18, 21)
-scale = Vector2(0.11992786, 0.13191417)
-texture = SubResource("AtlasTexture_jvfv0")
-
-[node name="文字" type="Label" parent="手机进入状态/开户界面/货币类型/滑轮容器/排列容器/枫叶币" unique_id=1548332331]
-layout_mode = 0
-offset_left = 39.384613
-offset_top = 10.247985
-offset_right = 142.38461
-offset_bottom = 33.247986
-theme_override_font_sizes/font_size = 17
-text = "枫叶币/FYB"
+[node name="100倍" type="Button" parent="手机进入状态/开户面板/内容边距/垂直布局/杠杆卡/杠杆内容/杠杆按钮区" unique_id=537587329]
+custom_minimum_size = Vector2(126, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.98, 1, 1)
+theme_override_fonts/font = ExtResource("3_xv3ui")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_wnt5h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fr6nj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7wfub")
+text = "100x"
