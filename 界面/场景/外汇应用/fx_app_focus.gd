@@ -15,6 +15,10 @@ const DELETE_BUTTON_NAME := "减号按钮"
 const HEADER_SNAP_RATIO := 0.35
 const SLOT_LIST_BOTTOM_PADDING := 8.0
 const ACTION_PANEL_Z_INDEX := 20
+const DOMESTIC_PLATFORM := "国内"
+const YEAR_DAYS := 365.0
+const BUTTON_ACTIVE_FONT_COLOR := Color(0.08, 0.1, 0.14, 1.0)
+const BUTTON_IDLE_FONT_COLOR := Color(0.96, 0.98, 1.0, 1.0)
 
 @export var 默认显示货币代码: String = "USD"
 @export var 进入时启用汇率专注时间: bool = true
@@ -36,6 +40,28 @@ var _open_account_panel: Panel = null
 var _currency_picker_panel: Panel = null
 var _currency_root: Control = null
 var _currency_background_panel: Panel = null
+var _open_panel_title_label: Label = null
+var _open_panel_subtitle_label: Label = null
+var _open_left_currency_panel: Panel = null
+var _open_right_currency_panel: Panel = null
+var _open_left_icon_rect: TextureRect = null
+var _open_right_icon_rect: TextureRect = null
+var _open_left_code_label: Label = null
+var _open_left_name_label: Label = null
+var _open_right_code_label: Label = null
+var _open_right_name_label: Label = null
+var _open_left_rate_label: Label = null
+var _open_right_rate_label: Label = null
+var _open_diff_label: Label = null
+var _open_lots_slider: HSlider = null
+var _open_lots_value_label: Label = null
+var _open_margin_label: Label = null
+var _open_liquidation_label: Label = null
+var _open_long_button: Button = null
+var _open_short_button: Button = null
+var _open_lot_minus_button: Button = null
+var _open_lot_plus_button: Button = null
+var _open_leverage_buttons: Dictionary = {}
 var _slot_header_panel: Panel = null
 var _slot_scroll_container: ScrollContainer = null
 var _slot_list_container: Control = null
@@ -48,11 +74,18 @@ var _pending_currency_slot_index: int = -1
 var _pending_currency_side: String = ""
 var _dynamic_slot_counter: int = 2
 var _pending_open_slot_index: int = -1
+var _selected_open_direction: int = TradePosition.Direction.LONG_FOREIGN
+var _selected_open_leverage: int = 1
+var _selected_open_platform: String = DOMESTIC_PLATFORM
+var _selected_open_lots: float = 1.0
+var _available_open_leverages: Array[int] = []
 
 var _base_currency_code: String = "XMY"
+var _open_panel_config: Dictionary = {}
 var _currency_catalog: Dictionary = {}
 var _pair_slots: Array[Dictionary] = []
 var _panel_base_styles: Dictionary = {}
+var _button_base_styles: Dictionary = {}
 var _row_wrappers: Dictionary = {}
 var _delete_buttons: Dictionary = {}
 var _delete_button_layouts: Dictionary = {}
@@ -101,7 +134,7 @@ func _exit_tree() -> void:
 	if GameDataManager.手机 != null:
 		GameDataManager.手机.进入普通手机使用状态()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if _header_dragging:
 		if event is InputEventMouseMotion:
 			var drag_motion := event as InputEventMouseMotion
@@ -114,16 +147,42 @@ func _unhandled_input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 				return
 	if _currency_picker_panel == null or not _currency_picker_panel.visible:
-		return
+		pass
 	if not (event is InputEventMouseButton):
 		return
 	var mouse_event := event as InputEventMouseButton
 	if mouse_event.button_index != MOUSE_BUTTON_LEFT or not mouse_event.pressed:
 		return
-	var picker_rect := Rect2(_currency_picker_panel.global_position, _currency_picker_panel.size)
-	if picker_rect.has_point(mouse_event.global_position):
+	if _currency_picker_panel != null and _currency_picker_panel.visible:
+		var picker_rect := _get_control_global_rect(_currency_picker_panel)
+		if picker_rect.has_point(mouse_event.global_position):
+			return
+		_close_currency_picker()
 		return
-	_close_currency_picker()
+	if _open_account_panel != null and _open_account_panel.visible:
+		var open_panel_rect := _get_control_global_rect(_open_account_panel)
+		if open_panel_rect.has_point(mouse_event.global_position):
+			return
+		if _confirm_open_panel != null and _confirm_open_panel.visible:
+			var confirm_button: BaseButton = _find_first_button(_confirm_open_panel)
+			if confirm_button != null:
+				var confirm_button_rect := _get_control_global_rect(confirm_button)
+				if confirm_button_rect.has_point(mouse_event.global_position):
+					return
+		if _one_click_open_panel != null and _one_click_open_panel.visible:
+			var one_click_button: BaseButton = _find_first_button(_one_click_open_panel)
+			if one_click_button != null:
+				var one_click_button_rect := _get_control_global_rect(one_click_button)
+				if one_click_button_rect.has_point(mouse_event.global_position):
+					return
+		_close_open_account_panel()
+		get_viewport().set_input_as_handled()
+
+func _close_open_account_panel() -> void:
+	_pending_open_slot_index = -1
+	if _open_account_panel != null:
+		_open_account_panel.visible = false
+	_refresh_position_panel()
 
 func _load_ui_config() -> void:
 	_currency_catalog.clear()
@@ -138,6 +197,7 @@ func _load_ui_config() -> void:
 		return
 	var config: Dictionary = parsed as Dictionary
 	_base_currency_code = str(config.get("base_currency_code", "XMY"))
+	_open_panel_config = (config.get("open_panel", {}) as Dictionary).duplicate(true)
 	默认显示货币代码 = str(config.get("default_chart_currency_code", 默认显示货币代码))
 
 	for entry in config.get("currencies", []) as Array:
@@ -174,6 +234,32 @@ func _cache_nodes() -> void:
 	_slot_scroll_container = get_node_or_null("手机进入状态/货币种类/滑动容器") as ScrollContainer
 	_slot_list_container = get_node_or_null("手机进入状态/货币种类/滑动容器/排列容器") as Control
 	_slot_template_panel = get_node_or_null("手机进入状态/货币种类/滑动容器/排列容器/货币种类框2") as Panel
+	_open_panel_title_label = _find_descendant_by_name(_open_account_panel, "标题") as Label
+	_open_panel_subtitle_label = _find_descendant_by_name(_open_account_panel, "副标题") as Label
+	_open_left_currency_panel = _find_descendant_by_name(_open_account_panel, "左侧货币") as Panel
+	_open_right_currency_panel = _find_descendant_by_name(_open_account_panel, "右侧货币") as Panel
+	_open_left_icon_rect = _find_node_by_path_names(_open_account_panel, ["左侧货币", "图标"]) as TextureRect
+	_open_right_icon_rect = _find_node_by_path_names(_open_account_panel, ["右侧货币", "图标"]) as TextureRect
+	_open_left_code_label = _find_node_by_path_names(_open_account_panel, ["左侧货币", "简称"]) as Label
+	_open_left_name_label = _find_node_by_path_names(_open_account_panel, ["左侧货币", "名称"]) as Label
+	_open_right_code_label = _find_node_by_path_names(_open_account_panel, ["右侧货币", "简称"]) as Label
+	_open_right_name_label = _find_node_by_path_names(_open_account_panel, ["右侧货币", "名称"]) as Label
+	_open_left_rate_label = _find_descendant_by_name(_open_account_panel, "左侧利息") as Label
+	_open_right_rate_label = _find_descendant_by_name(_open_account_panel, "右侧利息") as Label
+	_open_diff_label = _find_descendant_by_name(_open_account_panel, "隔夜利差") as Label
+	_open_lots_slider = _find_descendant_by_name(_open_account_panel, "手数滑块") as HSlider
+	_open_lots_value_label = _find_descendant_by_name(_open_account_panel, "手数值") as Label
+	_open_margin_label = _find_descendant_by_name(_open_account_panel, "预付保证金") as Label
+	_open_liquidation_label = _find_descendant_by_name(_open_account_panel, "强平线") as Label
+	_open_long_button = _find_descendant_by_name(_open_account_panel, "做多") as Button
+	_open_short_button = _find_descendant_by_name(_open_account_panel, "做空") as Button
+	_open_lot_minus_button = _find_descendant_by_name(_open_account_panel, "减号按钮") as Button
+	_open_lot_plus_button = _find_descendant_by_name(_open_account_panel, "加号按钮") as Button
+	_open_leverage_buttons.clear()
+	for leverage_name in ["1倍", "2倍", "5倍", "10倍", "25倍", "50倍"]:
+		var leverage_button: Button = _find_descendant_by_name(_open_account_panel, leverage_name) as Button
+		if leverage_button != null:
+			_open_leverage_buttons[leverage_name] = leverage_button
 	if _slot_template_panel != null:
 		_slot_template_prototype = _slot_template_panel.duplicate(15) as Panel
 		var template_delete_button: BaseButton = _find_descendant_by_name(_slot_template_panel, DELETE_BUTTON_NAME) as BaseButton
@@ -196,6 +282,13 @@ func _cache_nodes() -> void:
 	if _open_account_panel != null:
 		_open_account_panel.visible = false
 		_open_account_panel.z_index = ACTION_PANEL_Z_INDEX + 1
+	_cache_button_base_style(_open_long_button)
+	_cache_button_base_style(_open_short_button)
+	_cache_button_base_style(_open_lot_minus_button)
+	_cache_button_base_style(_open_lot_plus_button)
+	for leverage_button in _open_leverage_buttons.values():
+		_cache_button_base_style(leverage_button as Button)
+	_initialize_open_panel_state()
 	_cache_header_layout_metrics()
 
 func _setup_kline_chart() -> void:
@@ -264,6 +357,24 @@ func _connect_action_buttons() -> void:
 		var confirm_button: BaseButton = _find_first_button(_confirm_open_panel)
 		if confirm_button != null and not confirm_button.pressed.is_connected(_on_confirm_open_pressed):
 			confirm_button.pressed.connect(_on_confirm_open_pressed)
+	if _open_lots_slider != null and not _open_lots_slider.value_changed.is_connected(_on_open_lots_slider_changed):
+		_open_lots_slider.value_changed.connect(_on_open_lots_slider_changed)
+	if _open_lot_minus_button != null and not _open_lot_minus_button.pressed.is_connected(_on_open_lot_minus_pressed):
+		_open_lot_minus_button.pressed.connect(_on_open_lot_minus_pressed)
+	if _open_lot_plus_button != null and not _open_lot_plus_button.pressed.is_connected(_on_open_lot_plus_pressed):
+		_open_lot_plus_button.pressed.connect(_on_open_lot_plus_pressed)
+	if _open_long_button != null and not _open_long_button.pressed.is_connected(_on_open_direction_long_pressed):
+		_open_long_button.pressed.connect(_on_open_direction_long_pressed)
+	if _open_short_button != null and not _open_short_button.pressed.is_connected(_on_open_direction_short_pressed):
+		_open_short_button.pressed.connect(_on_open_direction_short_pressed)
+	for leverage_name in _open_leverage_buttons.keys():
+		var leverage_button: Button = _open_leverage_buttons[leverage_name] as Button
+		if leverage_button == null:
+			continue
+		var leverage_value: int = _parse_leverage_name(str(leverage_name))
+		var callback: Callable = _on_open_leverage_pressed.bind(leverage_value)
+		if not leverage_button.pressed.is_connected(callback):
+			leverage_button.pressed.connect(callback)
 
 func _connect_header_drag() -> void:
 	if _slot_header_panel == null:
@@ -362,10 +473,15 @@ func _on_timeframe_button_pressed(button_name: String) -> void:
 func _on_market_rate_changed(_currency_code: String, _rate_snapshot: Dictionary) -> void:
 	_refresh_slot_views()
 	_refresh_position_panel()
+	if _open_account_panel != null and _open_account_panel.visible:
+		_refresh_open_panel_content()
 
 func _on_account_changed(_account_snapshot: Dictionary) -> void:
 	_refresh_slot_views()
 	_refresh_position_panel()
+	_refresh_open_lots_limits()
+	if _open_account_panel != null and _open_account_panel.visible:
+		_refresh_open_panel_content()
 
 func _on_slot_panel_gui_input(event: InputEvent, panel_name: String) -> void:
 	var slot_index: int = _find_slot_index_by_panel_name(panel_name)
@@ -461,13 +577,59 @@ func _on_one_click_open_pressed() -> void:
 	if _slot_has_open_position_display(slot):
 		return
 	_pending_open_slot_index = _selected_slot_index
+	_reset_open_panel_state_from_slot(slot)
 	_refresh_action_panels(true, false)
 
 func _on_confirm_open_pressed() -> void:
+	if _pending_open_slot_index < 0 or _pending_open_slot_index >= _pair_slots.size():
+		return
+	var slot: Dictionary = _pair_slots[_pending_open_slot_index]
+	if not bool(slot.get("configured", false)):
+		return
+	if _trading_system != null and _trading_system.has_method("开仓"):
+		var result: Dictionary = _trading_system.call(
+			"开仓",
+			_get_open_foreign_currency_code(slot),
+			_selected_open_direction,
+			_selected_open_lots,
+			_selected_open_leverage,
+			_selected_open_platform
+		)
+		if not bool(result.get("success", false)):
+			push_warning("fx_app_focus: 开仓失败 - " + str(result.get("error", "未知错误")))
+			_refresh_open_panel_content(slot)
+			return
 	_pending_open_slot_index = -1
 	if _open_account_panel != null:
 		_open_account_panel.visible = false
 	_refresh_position_panel()
+
+func _on_open_lots_slider_changed(value: float) -> void:
+	_selected_open_lots = clampf(_normalize_open_lots(value), _get_open_lot_step(), _get_open_max_lots())
+	if _open_lots_slider != null and not is_equal_approx(_open_lots_slider.value, _selected_open_lots):
+		_open_lots_slider.value = _selected_open_lots
+	_refresh_open_panel_content()
+
+func _on_open_lot_minus_pressed() -> void:
+	_set_open_lots(_selected_open_lots - _get_open_lot_step())
+
+func _on_open_lot_plus_pressed() -> void:
+	_set_open_lots(_selected_open_lots + _get_open_lot_step())
+
+func _on_open_direction_long_pressed() -> void:
+	_selected_open_direction = TradePosition.Direction.LONG_FOREIGN
+	_refresh_open_panel_content()
+
+func _on_open_direction_short_pressed() -> void:
+	_selected_open_direction = TradePosition.Direction.LONG_XMY
+	_refresh_open_panel_content()
+
+func _on_open_leverage_pressed(leverage: int) -> void:
+	if not _available_open_leverages.has(leverage):
+		return
+	_selected_open_leverage = leverage
+	_refresh_open_lots_limits()
+	_refresh_open_panel_content()
 
 func _select_slot(slot_index: int) -> void:
 	if slot_index < 0 or slot_index >= _pair_slots.size():
@@ -480,6 +642,77 @@ func _select_slot(slot_index: int) -> void:
 	_refresh_chart_for_selected_slot()
 	_refresh_slot_views()
 	_refresh_position_panel()
+
+func _initialize_open_panel_state() -> void:
+	_selected_open_platform = str(_open_panel_config.get("platform", DOMESTIC_PLATFORM))
+	_selected_open_direction = _get_default_open_direction()
+	_available_open_leverages = _get_platform_available_leverages(_selected_open_platform)
+	_selected_open_leverage = _get_default_open_leverage()
+	_selected_open_lots = _normalize_open_lots(float(_open_panel_config.get("default_lots", 1.0)))
+	_refresh_open_lots_limits()
+
+func _reset_open_panel_state_from_slot(slot: Dictionary) -> void:
+	_selected_open_platform = str(_open_panel_config.get("platform", DOMESTIC_PLATFORM))
+	_selected_open_direction = _get_default_open_direction()
+	_available_open_leverages = _get_platform_available_leverages(_selected_open_platform)
+	_selected_open_leverage = _get_default_open_leverage()
+	_selected_open_lots = _normalize_open_lots(float(_open_panel_config.get("default_lots", 1.0)))
+	_refresh_open_lots_limits()
+	_refresh_open_panel_content(slot)
+
+func _refresh_open_panel_content(slot: Dictionary = {}) -> void:
+	var active_slot: Dictionary = slot
+	if active_slot.is_empty():
+		if _selected_slot_index < 0 or _selected_slot_index >= _pair_slots.size():
+			return
+		active_slot = _pair_slots[_selected_slot_index]
+	if active_slot.is_empty():
+		return
+	var left_code: String = str(active_slot.get("left_code", ""))
+	var right_code: String = str(active_slot.get("right_code", ""))
+	var left_data: Dictionary = _currency_catalog.get(left_code, {}) as Dictionary
+	var right_data: Dictionary = _currency_catalog.get(right_code, {}) as Dictionary
+	_apply_open_currency_visuals(_open_left_currency_panel, _open_left_icon_rect, left_code)
+	_apply_open_currency_visuals(_open_right_currency_panel, _open_right_icon_rect, right_code)
+	if _open_panel_title_label != null:
+		_open_panel_title_label.text = _get_pair_label(active_slot)
+	if _open_panel_subtitle_label != null:
+		_open_panel_subtitle_label.text = "%s平台开户" % _selected_open_platform
+	if _open_left_code_label != null:
+		_open_left_code_label.text = left_code
+	if _open_left_name_label != null:
+		_open_left_name_label.text = str(left_data.get("display_name", left_code))
+	if _open_right_code_label != null:
+		_open_right_code_label.text = right_code
+	if _open_right_name_label != null:
+		_open_right_name_label.text = str(right_data.get("display_name", right_code))
+	if _open_left_rate_label != null:
+		_open_left_rate_label.text = "%s 年化利率: %.2f%%" % [left_code, _get_currency_annual_rate(left_code) * 100.0]
+	if _open_right_rate_label != null:
+		_open_right_rate_label.text = "%s 年化利率: %.2f%%" % [right_code, _get_currency_annual_rate(right_code) * 100.0]
+	if _open_diff_label != null:
+		_open_diff_label.text = "隔夜利差合计(每夜): %s 熊猫元" % _format_signed_xmy(_calculate_open_panel_overnight_xmy(active_slot))
+	if _open_lots_value_label != null:
+		_open_lots_value_label.text = "当前手数: %.2f 手" % _selected_open_lots
+	if _open_margin_label != null:
+		_open_margin_label.text = "预付保证金: %.2f XMY" % _calculate_open_panel_margin_xmy()
+	if _open_liquidation_label != null:
+		_open_liquidation_label.text = "预计强平线: %s" % _calculate_open_panel_liquidation_text(active_slot)
+	_refresh_open_panel_button_states()
+
+func _refresh_open_panel_button_states() -> void:
+	if _open_long_button != null:
+		_set_button_active_state(_open_long_button, _selected_open_direction == TradePosition.Direction.LONG_FOREIGN)
+	if _open_short_button != null:
+		_set_button_active_state(_open_short_button, _selected_open_direction == TradePosition.Direction.LONG_XMY)
+	for leverage_name in _open_leverage_buttons.keys():
+		var leverage_button: Button = _open_leverage_buttons[leverage_name] as Button
+		if leverage_button == null:
+			continue
+		var leverage_value: int = _parse_leverage_name(str(leverage_name))
+		var is_available: bool = _available_open_leverages.has(leverage_value)
+		leverage_button.disabled = not is_available
+		_set_button_active_state(leverage_button, is_available and leverage_value == _selected_open_leverage)
 
 func _sync_chart_to_slot(slot: Dictionary) -> void:
 	var pair_label: String = _get_pair_label(slot)
@@ -562,14 +795,15 @@ func _refresh_position_panel() -> void:
 
 	if positions.is_empty():
 		if has_position:
+			var mock_direction_text: String = str(slot.get("mock_direction_text", "做多"))
 			if position_label != null:
-				position_label.text = "当前持仓：%.2f手 已开仓" % float(slot.get("mock_lots", 1.0))
+				position_label.text = "当前持仓：%.2f手 %s" % [float(slot.get("mock_lots", 1.0)), mock_direction_text]
 			if entry_label != null:
 				entry_label.text = "买入汇率：" + _format_rate_or_placeholder(float(slot.get("mock_entry_rate", _get_slot_rate(slot))))
 			if current_label != null:
 				current_label.text = "当前汇率：" + _format_rate_or_placeholder(_get_slot_rate(slot))
 			if leverage_label != null:
-				leverage_label.text = "杠杆倍率：%d倍" % int(slot.get("mock_leverage", 1))
+				leverage_label.text = "%d倍杠杆" % int(slot.get("mock_leverage", 1))
 			if overnight_label != null:
 				overnight_label.text = "隔夜利息：" + str(slot.get("mock_overnight_interest_text", "待接入"))
 			return
@@ -580,7 +814,7 @@ func _refresh_position_panel() -> void:
 		if current_label != null:
 			current_label.text = "当前汇率：" + _format_rate_or_placeholder(_get_slot_rate(slot))
 		if leverage_label != null:
-			leverage_label.text = "杠杆倍率：--"
+			leverage_label.text = "--倍杠杆"
 		if overnight_label != null:
 			overnight_label.text = "隔夜利息：待接入"
 		return
@@ -606,7 +840,7 @@ func _refresh_position_panel() -> void:
 	if current_label != null:
 		current_label.text = "当前汇率：" + _format_rate_or_placeholder(current_rate)
 	if leverage_label != null:
-		leverage_label.text = "杠杆倍率：%d倍" % max(max_leverage, 1)
+		leverage_label.text = "%d倍杠杆" % max(max_leverage, 1)
 	if overnight_label != null:
 		overnight_label.text = "隔夜利息：待接入"
 
@@ -685,6 +919,227 @@ func _refresh_action_panels(is_configured: bool, has_position: bool) -> void:
 		_confirm_open_panel.visible = show_confirm_open
 	if _open_account_panel != null:
 		_open_account_panel.visible = show_confirm_open
+
+func _calculate_open_panel_margin_xmy() -> float:
+	var lot_value_xmy: float = _get_lot_value_xmy()
+	return _selected_open_lots * lot_value_xmy / float(max(_selected_open_leverage, 1))
+
+func _get_available_open_margin_xmy() -> float:
+	var account_snapshot: Dictionary = _get_account_snapshot()
+	var equity: float = float(account_snapshot.get("equity", 0.0))
+	var used_margin: float = float(account_snapshot.get("used_margin", 0.0))
+	return max(equity - used_margin, 0.0)
+
+func _get_open_max_lots() -> float:
+	var margin_per_lot: float = _get_lot_value_xmy() / float(max(_selected_open_leverage, 1))
+	if margin_per_lot <= 0.0:
+		return max(_get_open_lot_step(), 1.0)
+	var lot_step: float = _get_open_lot_step()
+	var raw_max_lots: float = _get_available_open_margin_xmy() / margin_per_lot
+	if raw_max_lots <= 0.0:
+		return lot_step
+	return max(floor(raw_max_lots / lot_step) * lot_step, lot_step)
+
+func _refresh_open_lots_limits() -> void:
+	var lot_step: float = _get_open_lot_step()
+	var max_lots: float = _get_open_max_lots()
+	if _open_lots_slider != null:
+		_open_lots_slider.min_value = lot_step
+		_open_lots_slider.step = lot_step
+		_open_lots_slider.max_value = max(max_lots, lot_step)
+	_selected_open_lots = clampf(_selected_open_lots, lot_step, max(max_lots, lot_step))
+	if _open_lots_slider != null and not is_equal_approx(_open_lots_slider.value, _selected_open_lots):
+		_open_lots_slider.value = _selected_open_lots
+
+func _calculate_open_panel_overnight_xmy(slot: Dictionary) -> float:
+	var left_rate: float = _get_currency_annual_rate(str(slot.get("left_code", "")))
+	var right_rate: float = _get_currency_annual_rate(str(slot.get("right_code", "")))
+	var differential: float = right_rate - left_rate
+	var notional_xmy: float = _selected_open_lots * _get_lot_value_xmy()
+	var overnight_xmy: float = notional_xmy * differential / YEAR_DAYS
+	return overnight_xmy if _selected_open_direction == TradePosition.Direction.LONG_FOREIGN else -overnight_xmy
+
+func _calculate_open_panel_liquidation_text(slot: Dictionary) -> String:
+	var foreign_code: String = _get_open_foreign_currency_code(slot)
+	var current_rate: float = _get_rate_against_base(foreign_code)
+	if current_rate <= 0.0:
+		return "--"
+	var account_snapshot: Dictionary = _get_account_snapshot()
+	var current_equity: float = float(account_snapshot.get("equity", 0.0))
+	var current_used_margin: float = float(account_snapshot.get("used_margin", 0.0))
+	var added_margin: float = _calculate_open_panel_margin_xmy()
+	var threshold_ratio: float = _get_period_liquidation_ratio()
+	var target_equity: float = threshold_ratio * (current_used_margin + added_margin)
+	var pnl_needed: float = target_equity - current_equity
+	var notional_xmy: float = _selected_open_lots * _get_lot_value_xmy()
+	if notional_xmy <= 0.0:
+		return "--"
+	var rate_shift_ratio: float = pnl_needed / notional_xmy
+	var liquidation_rate: float = current_rate
+	if _selected_open_direction == TradePosition.Direction.LONG_FOREIGN:
+		liquidation_rate = current_rate * (1.0 + rate_shift_ratio)
+	else:
+		liquidation_rate = current_rate * (1.0 - rate_shift_ratio)
+	if liquidation_rate <= 0.0:
+		return "--"
+	return _format_rate_or_placeholder(liquidation_rate)
+
+func _get_default_open_direction() -> int:
+	var direction_name: String = str(_open_panel_config.get("default_direction", "LONG_FOREIGN"))
+	return TradePosition.Direction.LONG_XMY if direction_name == "LONG_XMY" else TradePosition.Direction.LONG_FOREIGN
+
+func _get_default_open_leverage() -> int:
+	var configured_default: int = int(_open_panel_config.get("default_leverage", 1))
+	if _available_open_leverages.has(configured_default):
+		return configured_default
+	return _available_open_leverages[0] if not _available_open_leverages.is_empty() else 1
+
+func _get_open_lot_step() -> float:
+	var contract_rule: Dictionary = _get_trading_config_section("contract")
+	return max(float(contract_rule.get("min_lot", 0.01)), 0.01)
+
+func _normalize_open_lots(value: float) -> float:
+	var step: float = _get_open_lot_step()
+	var normalized: float = floor(max(value, step) / step) * step
+	return max(normalized, step)
+
+func _set_open_lots(value: float) -> void:
+	_selected_open_lots = clampf(_normalize_open_lots(value), _get_open_lot_step(), _get_open_max_lots())
+	if _open_lots_slider != null:
+		_open_lots_slider.value = _selected_open_lots
+	_refresh_open_panel_content()
+
+func _get_currency_annual_rate(currency_code: String) -> float:
+	var currency_data: Dictionary = _currency_catalog.get(currency_code, {}) as Dictionary
+	return float(currency_data.get("annual_rate", 0.0))
+
+func _get_open_foreign_currency_code(slot: Dictionary) -> String:
+	var left_code: String = str(slot.get("left_code", ""))
+	var right_code: String = str(slot.get("right_code", ""))
+	if left_code == _base_currency_code:
+		return right_code
+	return left_code
+
+func _get_platform_available_leverages(platform: String) -> Array[int]:
+	var result: Array[int] = []
+	var platforms: Dictionary = _get_trading_config_section("platforms")
+	var platform_rule: Dictionary = platforms.get(platform, {}) as Dictionary
+	for leverage in platform_rule.get("available_leverages", []) as Array:
+		result.append(int(leverage))
+	result.sort()
+	return result if not result.is_empty() else [1, 2, 5, 10, 25, 50]
+
+func _get_lot_value_xmy() -> float:
+	if _trading_system != null and _trading_system.has_method("_get_lot_value_xmy"):
+		return float(_trading_system.call("_get_lot_value_xmy"))
+	var contract_rule: Dictionary = _get_trading_config_section("contract")
+	return float(contract_rule.get("lot_value_xmy", contract_rule.get("lot_value_rmb", 100000.0)))
+
+func _get_period_liquidation_ratio() -> float:
+	if _trading_system != null and _trading_system.has_method("获取时段强平线"):
+		return float(_trading_system.call("获取时段强平线"))
+	return 0.50
+
+func _get_account_snapshot() -> Dictionary:
+	if _trading_system != null and _trading_system.has_method("获取账户快照"):
+		return _trading_system.call("获取账户快照")
+	return {}
+
+func _format_signed_xmy(value: float) -> String:
+	return ("%+.2f" % value)
+
+func _parse_leverage_name(leverage_name: String) -> int:
+	return int(leverage_name.trim_suffix("倍").trim_suffix("x"))
+
+func _set_button_active_state(button: Button, is_active: bool) -> void:
+	if button == null:
+		return
+	_cache_button_base_style(button)
+	var base_entry: Dictionary = _button_base_styles.get(button.get_path(), {}) as Dictionary
+	var base_normal: StyleBoxFlat = base_entry.get("normal", null) as StyleBoxFlat
+	var base_hover: StyleBoxFlat = base_entry.get("hover", null) as StyleBoxFlat
+	var base_pressed: StyleBoxFlat = base_entry.get("pressed", null) as StyleBoxFlat
+	if is_active and base_normal != null:
+		var active_normal := base_normal.duplicate() as StyleBoxFlat
+		var active_hover := (base_hover if base_hover != null else base_normal).duplicate() as StyleBoxFlat
+		var active_pressed := (base_pressed if base_pressed != null else base_normal).duplicate() as StyleBoxFlat
+		for style in [active_normal, active_hover, active_pressed]:
+			if style == null:
+				continue
+			style.bg_color = OPEN_TEXT_COLOR
+			style.corner_radius_top_left = 22
+			style.corner_radius_top_right = 22
+			style.corner_radius_bottom_right = 22
+			style.corner_radius_bottom_left = 22
+		button.add_theme_stylebox_override("normal", active_normal)
+		button.add_theme_stylebox_override("hover", active_hover)
+		button.add_theme_stylebox_override("pressed", active_pressed)
+	else:
+		if base_normal != null:
+			button.add_theme_stylebox_override("normal", base_normal.duplicate() as StyleBoxFlat)
+		if base_hover != null:
+			button.add_theme_stylebox_override("hover", base_hover.duplicate() as StyleBoxFlat)
+		if base_pressed != null:
+			button.add_theme_stylebox_override("pressed", base_pressed.duplicate() as StyleBoxFlat)
+	button.add_theme_color_override("font_color", BUTTON_ACTIVE_FONT_COLOR if is_active else BUTTON_IDLE_FONT_COLOR)
+
+func _cache_button_base_style(button: Button) -> void:
+	if button == null:
+		return
+	var key: NodePath = button.get_path()
+	if _button_base_styles.has(key):
+		return
+	var normal_style: StyleBoxFlat = button.get_theme_stylebox("normal") as StyleBoxFlat
+	var hover_style: StyleBoxFlat = button.get_theme_stylebox("hover") as StyleBoxFlat
+	var pressed_style: StyleBoxFlat = button.get_theme_stylebox("pressed") as StyleBoxFlat
+	_button_base_styles[key] = {
+		"normal": normal_style.duplicate() if normal_style != null else null,
+		"hover": hover_style.duplicate() if hover_style != null else null,
+		"pressed": pressed_style.duplicate() if pressed_style != null else null
+	}
+
+func _apply_open_currency_visuals(panel: Panel, icon_rect: TextureRect, currency_code: String) -> void:
+	if panel != null:
+		var base_style: StyleBoxFlat = panel.get_theme_stylebox("panel") as StyleBoxFlat
+		if base_style != null:
+			var style_copy := base_style.duplicate() as StyleBoxFlat
+			var color_data: Array = (_currency_catalog.get(currency_code, {}) as Dictionary).get("panel_color", []) as Array
+			if style_copy != null and color_data.size() >= 3:
+				style_copy.bg_color = Color(
+					float(color_data[0]),
+					float(color_data[1]),
+					float(color_data[2]),
+					float(color_data[3]) if color_data.size() >= 4 else 0.95
+				)
+				panel.add_theme_stylebox_override("panel", style_copy)
+	if icon_rect != null:
+		icon_rect.texture = _get_currency_icon_texture(currency_code)
+
+func _get_currency_icon_texture(currency_code: String) -> Texture2D:
+	if currency_code.is_empty():
+		return null
+	var candidates: Array[String] = [currency_code, currency_code + "2"]
+	for candidate_name in candidates:
+		var icon_node: Node = _find_descendant_by_name(self, candidate_name)
+		if icon_node is Sprite2D:
+			return (icon_node as Sprite2D).texture
+		if icon_node is TextureRect:
+			return (icon_node as TextureRect).texture
+	return null
+
+func _get_trading_config_section(section_name: String) -> Dictionary:
+	if _trading_system == null:
+		return {}
+	var config_path: String = str(_trading_system.get("交易配置路径"))
+	if config_path.is_empty():
+		return {}
+	var file: FileAccess = FileAccess.open(config_path, FileAccess.READ)
+	if file == null:
+		return {}
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if not (parsed is Dictionary):
+		return {}
+	return ((parsed as Dictionary).get(section_name, {}) as Dictionary).duplicate(true)
 
 func _get_slot_rate(slot: Dictionary) -> float:
 	var left_code: String = str(slot.get("left_code", ""))
@@ -1141,6 +1596,19 @@ func _find_descendant_by_name(root: Node, target_name: String) -> Node:
 		if result != null:
 			return result
 	return null
+
+func _find_node_by_path_names(root: Node, names: Array[String]) -> Node:
+	var current: Node = root
+	for node_name in names:
+		if current == null:
+			return null
+		current = _find_descendant_by_name(current, node_name)
+	return current
+
+func _get_control_global_rect(control: Control) -> Rect2:
+	if control == null:
+		return Rect2()
+	return control.get_global_rect()
 
 func _find_first_button(root: Node) -> BaseButton:
 	if root == null:

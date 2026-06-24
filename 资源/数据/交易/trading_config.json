@@ -8,7 +8,7 @@
       "display_name": "国内平台开户",
       "spread_rate": 0.0005,
       "base_slippage_rate": 0.00008,
-      "available_leverages": [1, 5, 10, 20]
+      "available_leverages": [1, 2, 5, 10, 25, 50]
     },
     "国外": {
       "display_name": "海外平台开户",

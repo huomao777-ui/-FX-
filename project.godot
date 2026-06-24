@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="新世纪FX战士"
-run/main_scene="uid://44ss7h81gd6w"
+run/main_scene="uid://dw881pkgdjkid"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
