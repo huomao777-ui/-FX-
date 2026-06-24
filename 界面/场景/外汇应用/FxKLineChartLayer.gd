@@ -40,6 +40,12 @@ extends Control
 @export var 上涨颜色: Color = Color(0.93, 0.24, 0.18, 0.95)
 ## 下跌颜色；按国内看盘习惯使用绿色
 @export var 下跌颜色: Color = Color(0.14, 0.76, 0.34, 0.95)
+## 强平线颜色
+@export var 强平线颜色: Color = Color(1.0, 0.58, 0.18, 0.95)
+
+const LIQUIDATION_AXIS_INCLUDE_SPAN_RATIO := 0.75
+const LIQUIDATION_EDGE_PADDING := 12.0
+const AXIS_BREAK_CUT_COLOR := Color(0.015, 0.035, 0.055, 1.0)
 
 var _market_engine: Node = null
 var _time_system: Node = null
@@ -48,6 +54,8 @@ var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var _left_currency_code: String = "XMY"
 var _right_currency_code: String = ""
 var _pair_label: String = ""
+var _liquidation_line_price: float = -1.0
+var _liquidation_line_label: String = ""
 var _series_by_timeframe: Dictionary = {}
 var _last_bucket_keys: Dictionary = {}
 
@@ -75,9 +83,10 @@ func _draw() -> void:
 	var axis_reference_candles: Array = _get_axis_reference_candles(visible_candles)
 	var price_axis: Dictionary = _get_price_axis_data(axis_reference_candles)
 	if has_active_pair and not visible_candles.is_empty():
-		_draw_candles(chart_rect)
+		_draw_candles(chart_rect, visible_candles, price_axis)
 		_draw_volume(volume_rect)
 	_draw_grid(chart_rect, volume_rect, price_axis)
+	_draw_liquidation_line(chart_rect, price_axis, has_active_pair)
 	_draw_axis_labels(chart_rect, volume_rect, axis_reference_candles, price_axis, has_active_pair)
 
 func 设置周期(period_name: String) -> void:
@@ -98,6 +107,11 @@ func 切换货币对(left_code: String, right_code: String, pair_label: String =
 		queue_redraw()
 		return
 	_initialize_timeframe_series()
+	queue_redraw()
+
+func 设置强平线(price: float, label_text: String = "") -> void:
+	_liquidation_line_price = price
+	_liquidation_line_label = label_text
 	queue_redraw()
 
 func _connect_market_engine() -> void:
@@ -288,7 +302,8 @@ func _with_price_axis_space(rect: Rect2) -> Rect2:
 	)
 
 func _draw_grid(chart_rect: Rect2, volume_rect: Rect2, price_axis: Dictionary) -> void:
-	var segment_count: int = max(int(price_axis.get("segment_count", 价格轴分段数量)), 1)
+	var labels: Array = price_axis.get("labels", []) as Array
+	var segment_count: int = max(labels.size() - 1, 1)
 	var horizontal_line_positions: Array = _get_price_axis_line_positions(chart_rect, segment_count)
 	for y in horizontal_line_positions:
 		_draw_dashed_line(Vector2(chart_rect.position.x, y), Vector2(chart_rect.end.x, y), 虚线颜色)
@@ -296,10 +311,8 @@ func _draw_grid(chart_rect: Rect2, volume_rect: Rect2, price_axis: Dictionary) -
 		var x: float = chart_rect.position.x + chart_rect.size.x * float(i) / 5.0
 		_draw_dashed_line(Vector2(x, chart_rect.position.y), Vector2(x, volume_rect.end.y), 虚线颜色)
 
-func _draw_candles(chart_rect: Rect2) -> void:
-	var visible_candles: Array = _get_visible_candles()
-	var price_axis: Dictionary = _get_price_axis_data(visible_candles)
-	var price_range: Vector2 = Vector2(float(price_axis.get("min", 0.0)), float(price_axis.get("max", 1.0)))
+func _draw_candles(chart_rect: Rect2, visible_candles: Array, price_axis: Dictionary) -> void:
+	# K线实体与右侧价格刻度共用同一动态轴，强平线/初始行情都会参与缩放。
 	var candle_gap: float = _get_candle_gap(chart_rect, visible_candles.size())
 	var body_width: float = clampf(candle_gap * 0.56, 3.0, 12.0)
 
@@ -311,10 +324,10 @@ func _draw_candles(chart_rect: Rect2) -> void:
 		var close_price: float = float(candle.get("close", 0.0))
 		var center_x: float = chart_rect.position.x + candle_gap * (float(i) + 0.5)
 		var color: Color = 上涨颜色 if close_price >= open_price else 下跌颜色
-		var high_y: float = _price_to_y(high_price, price_range, chart_rect)
-		var low_y: float = _price_to_y(low_price, price_range, chart_rect)
-		var open_y: float = _price_to_y(open_price, price_range, chart_rect)
-		var close_y: float = _price_to_y(close_price, price_range, chart_rect)
+		var high_y: float = _price_to_axis_y(high_price, price_axis, chart_rect)
+		var low_y: float = _price_to_axis_y(low_price, price_axis, chart_rect)
+		var open_y: float = _price_to_axis_y(open_price, price_axis, chart_rect)
+		var close_y: float = _price_to_axis_y(close_price, price_axis, chart_rect)
 		var body_top: float = min(open_y, close_y)
 		var body_bottom: float = max(open_y, close_y)
 		var body_height: float = max(absf(open_y - close_y), 2.0)
@@ -359,7 +372,44 @@ func _draw_axis_labels(chart_rect: Rect2, volume_rect: Rect2, visible_candles: A
 		var y: float = float(horizontal_line_positions[min(index, horizontal_line_positions.size() - 1)]) + 4.0
 		var price_text: String = _format_price(float(labels[index])) if has_active_pair else "--"
 		draw_string(font, Vector2(chart_rect.end.x + 8.0, y), price_text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, 坐标文字颜色)
+	_draw_axis_break_markers(chart_rect, price_axis, horizontal_line_positions)
 	_draw_time_axis_labels(font, font_size, visible_candles, volume_rect)
+
+func _draw_liquidation_line(chart_rect: Rect2, price_axis: Dictionary, has_active_pair: bool) -> void:
+	if not has_active_pair or _liquidation_line_price <= 0.0:
+		return
+	var y: float = _price_to_axis_y(_liquidation_line_price, price_axis, chart_rect)
+	draw_line(Vector2(chart_rect.position.x, y), Vector2(chart_rect.end.x, y), 强平线颜色, 1.8)
+	var font: Font = get_theme_default_font()
+	var font_size: int = 13
+	var label_text: String = _liquidation_line_label if not _liquidation_line_label.is_empty() else "强平 " + _format_price(_liquidation_line_price)
+	var label_y: float = clampf(y + 4.0, chart_rect.position.y + 12.0, chart_rect.end.y - 4.0)
+	draw_string(font, Vector2(chart_rect.end.x + 8.0, label_y), label_text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, 强平线颜色)
+
+func _draw_axis_break_markers(chart_rect: Rect2, price_axis: Dictionary, line_positions: Array) -> void:
+	var broken_side: String = str(price_axis.get("broken_side", ""))
+	if broken_side.is_empty() or line_positions.size() < 2:
+		return
+	var break_y: float = 0.0
+	if broken_side == "lower":
+		break_y = (float(line_positions[0]) + float(line_positions[1])) * 0.5
+	elif broken_side == "upper":
+		break_y = (float(line_positions[line_positions.size() - 1]) + float(line_positions[line_positions.size() - 2])) * 0.5
+	else:
+		return
+	_draw_axis_break_marker(chart_rect, break_y)
+
+func _draw_axis_break_marker(chart_rect: Rect2, y: float) -> void:
+	var axis_x: float = chart_rect.end.x - 1.0
+	var points: PackedVector2Array = PackedVector2Array([
+		Vector2(axis_x + 1.0, y - 8.0),
+		Vector2(axis_x + 8.0, y - 2.0),
+		Vector2(axis_x + 2.0, y + 1.0),
+		Vector2(axis_x + 8.0, y + 8.0)
+	])
+	# 断轴标记是“右侧刻度被闪电切开”的视觉，不跟随强平线橙色，也不使用坐标蓝色。
+	draw_polyline(points, AXIS_BREAK_CUT_COLOR, 5.0)
+	draw_polyline(points, Color(0.94, 0.98, 0.93, 0.92), 1.2)
 
 func _draw_time_axis_labels(font: Font, font_size: int, visible_candles: Array, volume_rect: Rect2) -> void:
 	if visible_candles.is_empty():
@@ -507,6 +557,10 @@ func _get_price_axis_line_positions(chart_rect: Rect2, segment_count: int) -> Ar
 		var raw_y: float = lerpf(raw_bottom_y, raw_top_y, ratio)
 		var snapped_y: float = clampf(roundf(raw_y) + 0.5, min_y, max_y)
 		positions.append(snapped_y)
+	# Godot 的半像素/整数混合在个别高度下可能让相邻虚线贴得太近；这里保证每个刻度都有独立可见的Y。
+	for index in range(1, positions.size()):
+		if absf(float(positions[index]) - float(positions[index - 1])) < 1.0:
+			positions[index] = float(positions[index - 1]) - 1.0
 	return positions
 
 func _get_visible_candles() -> Array:
@@ -558,8 +612,18 @@ func _get_price_range(candles: Array) -> Vector2:
 		var base_rate: float = _get_current_market_rate()
 		min_price = base_rate * 0.995
 		max_price = base_rate * 1.005
+	if _should_include_liquidation_in_axis(min_price, max_price):
+		min_price = min(min_price, _liquidation_line_price)
+		max_price = max(max_price, _liquidation_line_price)
 	var padding: float = max((max_price - min_price) * 0.08, max_price * 0.0002)
 	return Vector2(min_price - padding, max_price + padding)
+
+func _should_include_liquidation_in_axis(min_price: float, max_price: float) -> bool:
+	if _liquidation_line_price <= 0.0:
+		return false
+	var candle_span: float = max(max_price - min_price, max(max_price, 0.000001) * 0.001)
+	var allowed_gap: float = candle_span * LIQUIDATION_AXIS_INCLUDE_SPAN_RATIO
+	return _liquidation_line_price >= min_price - allowed_gap and _liquidation_line_price <= max_price + allowed_gap
 
 func _get_price_axis_data(candles: Array) -> Dictionary:
 	var raw_range: Vector2 = _get_price_range(candles)
@@ -575,13 +639,44 @@ func _get_price_axis_data(candles: Array) -> Dictionary:
 	for index in range(segment_count + 1):
 		var value: float = axis_min + step * float(index)
 		labels.append(value)
-	return {
+	var axis_data: Dictionary = {
 		"min": axis_min,
 		"max": axis_max,
 		"step": step,
 		"segment_count": segment_count,
 		"labels": labels
 	}
+	return _apply_liquidation_axis_break(axis_data)
+
+func _apply_liquidation_axis_break(axis_data: Dictionary) -> Dictionary:
+	if _liquidation_line_price <= 0.0:
+		return axis_data
+	var labels: Array = axis_data.get("labels", []) as Array
+	if labels.size() < 2:
+		return axis_data
+	var axis_min: float = float(axis_data.get("min", 0.0))
+	var axis_max: float = float(axis_data.get("max", 1.0))
+	if _liquidation_line_price >= axis_min and _liquidation_line_price <= axis_max:
+		return axis_data
+	var display_labels: Array[float] = []
+	for label in labels:
+		display_labels.append(float(label))
+	if _liquidation_line_price < axis_min:
+		display_labels.insert(0, _liquidation_line_price)
+		axis_data["broken_side"] = "lower"
+		axis_data["break_from"] = _liquidation_line_price
+		axis_data["break_to"] = float(labels[0])
+		axis_data["visual_min"] = _liquidation_line_price
+		axis_data["visual_max"] = axis_max
+	elif _liquidation_line_price > axis_max:
+		display_labels.append(_liquidation_line_price)
+		axis_data["broken_side"] = "upper"
+		axis_data["break_from"] = float(labels[labels.size() - 1])
+		axis_data["break_to"] = _liquidation_line_price
+		axis_data["visual_min"] = axis_min
+		axis_data["visual_max"] = _liquidation_line_price
+	axis_data["labels"] = display_labels
+	return axis_data
 
 func _get_nice_tick_step(raw_step: float) -> float:
 	var safe_step: float = max(raw_step, 0.000001)
@@ -599,6 +694,44 @@ func _get_nice_tick_step(raw_step: float) -> float:
 func _price_to_y(price: float, price_range: Vector2, chart_rect: Rect2) -> float:
 	var ratio: float = (price - price_range.x) / max(price_range.y - price_range.x, 0.000001)
 	return chart_rect.end.y - chart_rect.size.y * clampf(ratio, 0.0, 1.0)
+
+func _price_to_axis_y(price: float, price_axis: Dictionary, chart_rect: Rect2) -> float:
+	var broken_side: String = str(price_axis.get("broken_side", ""))
+	if broken_side.is_empty():
+		return _price_to_y(price, Vector2(float(price_axis.get("min", 0.0)), float(price_axis.get("max", 1.0))), chart_rect)
+	var labels: Array = price_axis.get("labels", []) as Array
+	if labels.size() < 2:
+		return _price_to_y(price, Vector2(float(price_axis.get("min", 0.0)), float(price_axis.get("max", 1.0))), chart_rect)
+	var line_positions: Array = _get_price_axis_line_positions(chart_rect, labels.size() - 1)
+	if broken_side == "lower":
+		var lower_label: float = float(labels[0])
+		var normal_start_label: float = float(labels[1])
+		if price <= normal_start_label:
+			return lerpf(float(line_positions[0]), float(line_positions[1]), clampf((price - lower_label) / max(normal_start_label - lower_label, 0.000001), 0.0, 1.0))
+		return _piecewise_price_to_y(price, labels, line_positions, 1, labels.size() - 1)
+	if broken_side == "upper":
+		var last_index: int = labels.size() - 1
+		var normal_end_label: float = float(labels[last_index - 1])
+		var upper_label: float = float(labels[last_index])
+		if price >= normal_end_label:
+			return lerpf(float(line_positions[last_index - 1]), float(line_positions[last_index]), clampf((price - normal_end_label) / max(upper_label - normal_end_label, 0.000001), 0.0, 1.0))
+		return _piecewise_price_to_y(price, labels, line_positions, 0, last_index - 1)
+	return _price_to_y(price, Vector2(float(price_axis.get("min", 0.0)), float(price_axis.get("max", 1.0))), chart_rect)
+
+func _piecewise_price_to_y(price: float, labels: Array, line_positions: Array, start_index: int, end_index: int) -> float:
+	var safe_start: int = clampi(start_index, 0, labels.size() - 1)
+	var safe_end: int = clampi(end_index, safe_start, labels.size() - 1)
+	if price <= float(labels[safe_start]):
+		return float(line_positions[safe_start])
+	if price >= float(labels[safe_end]):
+		return float(line_positions[safe_end])
+	for index in range(safe_start, safe_end):
+		var lower_price: float = float(labels[index])
+		var upper_price: float = float(labels[index + 1])
+		if price >= lower_price and price <= upper_price:
+			var ratio: float = (price - lower_price) / max(upper_price - lower_price, 0.000001)
+			return lerpf(float(line_positions[index]), float(line_positions[index + 1]), ratio)
+	return float(line_positions[safe_start])
 
 func _format_price(value: float) -> String:
 	if value >= 10.0:

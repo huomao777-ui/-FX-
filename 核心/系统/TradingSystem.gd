@@ -78,6 +78,7 @@ func 加载交易配置(config_path: String = "") -> bool:
 
 ## direction: TradePosition.Direction.LONG_FOREIGN 表示做多外币；LONG_XMY 表示做多熊猫元
 func 开仓(货币代码: String, 方向: int, 手数: float, 杠杆: int, 平台: String = "国内") -> Dictionary:
+	平台 = _normalize_platform_name(平台)
 	if _market_engine == null:
 		return _make_error_result("缺少 MarketEngine，无法开仓")
 	if not _is_platform_leverage_available(平台, 杠杆):
@@ -327,6 +328,7 @@ func _close_position(position: TradePosition, reason: String, extra_slippage_rat
 	return result
 
 func _calculate_trade_cost(platform: String, notional_xmy: float, extra_slippage_rate: float = 0.0) -> float:
+	platform = _normalize_platform_name(platform)
 	var platform_rule: Dictionary = _platform_rules.get(platform, {}) as Dictionary
 	var spread_rate: float = float(platform_rule.get("spread_rate", 0.0005))
 	var slippage_rate: float = float(platform_rule.get("base_slippage_rate", 0.00008))
@@ -342,9 +344,21 @@ func _get_lot_value_xmy() -> float:
 	return float(_contract_rules.get("lot_value_xmy", _contract_rules.get("lot_value_rmb", 100000.0)))
 
 func _is_platform_leverage_available(platform: String, leverage: int) -> bool:
+	platform = _normalize_platform_name(platform)
 	var platform_rule: Dictionary = _platform_rules.get(platform, {}) as Dictionary
 	var available_leverages: Array = platform_rule.get("available_leverages", []) as Array
-	return available_leverages.has(leverage)
+	for available_leverage in available_leverages:
+		if int(available_leverage) == leverage:
+			return true
+	return false
+
+func _normalize_platform_name(platform: String) -> String:
+	var trimmed: String = platform.strip_edges()
+	if trimmed == "国内" or trimmed == "鍥藉唴" or trimmed == "閸ヨ棄鍞?":
+		return "国内"
+	if trimmed == "国外" or trimmed == "海外" or trimmed == "鍥藉" or trimmed == "娴峰" or trimmed == "閸ヨ棄顦?":
+		return "国外"
+	return trimmed
 
 func _find_position(position_id: int) -> TradePosition:
 	for position in _positions:

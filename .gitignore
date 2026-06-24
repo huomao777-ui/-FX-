@@ -8,3 +8,10 @@ export/
 # 环境变量 / 密钥文件（不上传到 Git）
 .env*
 
+# AI 工具缓存目录
+.godot-codex-user/
+
+# 日志 & 临时文件
+*.log
+tmp_*
+

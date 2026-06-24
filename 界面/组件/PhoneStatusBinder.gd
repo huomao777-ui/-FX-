@@ -8,7 +8,7 @@ extends Node
 ## ===== 导出配置变量 =====
 
 @export_group("节点查找")
-## 手机状态根节点路径；为空时自动查找 手机唤醒状态 或 手机进入状态
+## 手机状态根节点路径；为空时自动查找 手机相关节点/手机顶部信息、手机唤醒状态 或 手机进入状态
 @export var 手机状态根节点: NodePath
 ## 是否在 _ready 时自动绑定 GameDataManager
 @export var 自动绑定全局系统: bool = true
@@ -70,6 +70,14 @@ func _get_status_root() -> Node:
 	var parent_node: Node = get_parent()
 	if parent_node == null:
 		return null
+
+	var grouped_phone_root: Node = parent_node.get_node_or_null("手机相关节点/手机顶部信息")
+	if grouped_phone_root != null:
+		return grouped_phone_root
+
+	var phone_info_root: Node = parent_node.get_node_or_null("手机顶部信息")
+	if phone_info_root != null:
+		return phone_info_root
 
 	var wake_root: Node = parent_node.get_node_or_null("手机唤醒状态")
 	if wake_root != null:
