@@ -21,6 +21,10 @@ extends Node
 ## 充电颜色
 @export var 充电颜色: Color = Color(0.1, 0.9, 0.25, 1.0)
 
+@export_group("时间显示")
+## 默认不强制写入粗体 BBCode，优先尊重编辑器里给时间节点配置的字体样式。
+@export var 时间使用粗体标签: bool = false
+
 ## ===== 内部变量 =====
 
 var _root_node: Node = null
@@ -139,10 +143,10 @@ func _update_clock(hour: int, minute: int) -> void:
 	if _time_label == null:
 		return
 	var time_text: String = "%02d:%02d" % [hour, minute]
-	if _time_label.bbcode_enabled:
+	if _time_label.bbcode_enabled and 时间使用粗体标签:
 		_time_label.text = "[b]" + time_text
 	else:
-		_time_label.text = time_text + "\n"
+		_time_label.text = time_text
 
 func _update_date() -> void:
 	if _date_label == null or GameDataManager.时间 == null:

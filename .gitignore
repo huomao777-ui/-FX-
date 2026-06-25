@@ -10,6 +10,7 @@ export/
 
 # AI 工具缓存目录
 .godot-codex-user/
+.workbuddy/
 
 # 日志 & 临时文件
 *.log
