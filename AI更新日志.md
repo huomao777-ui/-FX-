@@ -7,34 +7,33 @@
 - 记录目标是帮助快速回看“改了什么、为什么改、影响到哪里”，不代替 git 提交历史。
 - 每条更新建议同时写明一个可直接使用的 git 提交名，以及一个递增版本号，方便在不能即时提交 git 时先保留稳定命名。
 
-## v0.1.0 2026-06-25 外汇应用交互与规范整理
+## v0.2.0 2026-06-25 减仓/补仓/一键平仓弹窗实现
 
 ### 建议 Git 提交名
 
-- `fix: 外汇应用交互修复与规范更新`
+- `feat: 实现减仓弹窗、补仓弹窗、一键平仓弹窗控制器与按钮连接`
 
 ### 本轮更新范围
 
-- `界面/场景/外汇应用/国内炒汇.tscn`
-- `界面/场景/外汇应用/FxCurrencyPanelController.gd`
+- `界面/场景/外汇应用/FxReducePositionPanelController.gd` **(新增)**
+- `界面/场景/外汇应用/FxAddPositionPanelController.gd` **(新增)**
+- `界面/场景/外汇应用/FxCloseAllPanelController.gd` **(新增)**
 - `界面/场景/外汇应用/FxDomesticAppRootController.gd`
-- `界面/场景/外汇应用/FxKLineChartLayer.gd`
-- `界面/场景/外汇应用/FxKLinePanelController.gd`
-- `界面/场景/外汇应用/FxOpenAccountPanelController.gd`
-- `UI节点解耦规范.md`
+- `界面/场景/外汇应用/FxCurrencyPanelController.gd`
+- `界面/场景/外汇应用/国内炒汇.tscn`
 
 ### 主要修改
 
-- 将国内炒汇页面的逻辑继续拆分为轻量主控、货币列表、K线面板、开户面板等独立脚本，降低节点层级调整带来的联动损坏。
-- 恢复并修正货币框交互，包括选中高亮、空白框清空 K 线、左滑露出减号、动态生成空白货币框、已开户与未开户状态切换。
-- 修复开户面板的按钮选中态、货币背景与图标切换、弹窗层级、点击外部关闭、点差/保证金/强平线显示逻辑。
-- 重新接回部分交易配置与系统数据，开户面板读取 `trading_config.json` 与 `GameDataManager/TradingSystem` 中的合约、点差、保证金、强平参数。
-- 修正隔夜利差方向逻辑：做多视为买入左侧货币、卖出右侧货币；做空方向相反。
-- 修复 K 线图右侧价格轴、虚线、强平线、断裂显示之间的同步关系，并让空白币对保留坐标轴与时间轴。
-- 为开户按钮选中态和货币框上下换位手感增加中文 `@export` 参数，便于在 Godot 编辑器中直接调节。
-- 扩充 `UI节点解耦规范.md`，补充本次常见错误、预防方式、外汇 UI 代码规范和 git 提交流程建议。
+- 新增三个弹窗控制器脚本，遵循外汇应用编码风格规范（中文公开方法、snake_case私有方法、类型标注、字典安全访问、信号通信）。
+- **FxReducePositionPanelController**（减仓弹窗）：显示当前持仓信息/浮动盈亏/开仓价现价/杠杆，通过滑块选择减仓手数，实时计算预计回收保证金、剩余仓位、强平线变化。发射 `reduce_confirmed` 信号。
+- **FxAddPositionPanelController**（补仓弹窗）：类似布局，显示新增保证金、补仓后总仓位、点差率/点差成本、强平线变化。发射 `add_confirmed` 信号。
+- **FxCloseAllPanelController**（一键平仓弹窗）：显示仓位概览、预估盈亏（含点差+滑点成本）、预计成交价、释放保证金。发射 `close_all_confirmed` 信号。
+- **FxDomesticAppRootController** 扩展：从轻量主控升级为跨模块调度器——缓存三个弹窗和货币面板控制器引用；连接下方按钮的 pressed 事件到对应弹窗；连接弹窗确认信号到货币面板控制器的回调。
+- **FxCurrencyPanelController** 新增三个中文公开方法：`处理减仓`（更新手数/保证金）、`处理补仓`（合并新开仓）、`处理一键平仓`（清除持仓标记）。
+- 弹窗数据来源：优先从 TradingSystem/MarketEngine 获取实时行情和账户数据，回退到slot的mock数据；合约参数从 `trading_config.json` 读取。
 
 ### 已知说明
 
-- 当前环境下 AI 代理执行 `git add` / `git commit` 仍受外部审批服务 `503` 影响，未能代为完成本地 git 提交。
-- 货币框上下换位目前已加入延迟触发参数；若后续需要更明显的视觉补间，建议将列表从自动容器布局进一步改为手动行布局。
+- 当前减仓/补仓/一键平仓为 UI 模拟层操作，后续接入真实的 TradingSystem 开/平仓 API 后只需替换 FxCurrencyPanelController 中的处理函数。
+- `FxCloseAllPanelController` 中的平仓点差成本计算遵循 `trading_config.json` 中 platform.spread_rate + base_slippage_rate 的配置。
+- 当槽位 mock_lots <= 0 时，三个按钮均被保护性拦截（push_warning），不打开弹窗。

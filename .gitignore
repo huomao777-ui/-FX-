@@ -16,3 +16,11 @@ export/
 *.log
 tmp_*
 
+# AI 工具备份文件
+*.bak_codex
+*.bak_step*
+*.bak
+
+# 网页快捷方式（非项目文件）
+*.url
+

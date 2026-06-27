@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/思源黑体 Bold.otf-5539d48a699e8d95a533f5d
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=2
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
@@ -25,7 +25,7 @@ modulate_color_glyphs=false
 hinting=1
 subpixel_positioning=4
 keep_rounding_remainders=true
-oversampling=5.0
+oversampling=10.0
 Fallbacks=null
 fallbacks=[]
 Compress=null
@@ -34,7 +34,8 @@ preload=[{
 "chars": [],
 "glyphs": [],
 "name": "新建配置",
-"size": Vector2i(16, 0)
+"size": Vector2i(16, 0),
+&"variation_embolden": 0.0
 }]
 language_support={}
 script_support={}

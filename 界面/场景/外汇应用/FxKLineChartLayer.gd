@@ -14,10 +14,28 @@ extends Control
 @export_group("坐标轴")
 ## 右侧为未来行情预留的空白宽度，单位为 K 线根数
 @export var 未来留白K线数: int = 6
-## 价格轴分段数量
-@export_range(3, 8, 1) var 价格轴分段数量: int = 4
+## 右侧价格轴显示的刻度数量
+@export_range(2, 20, 1) var 右侧刻度数量: int = 5
+## 底部时间轴默认刻度数量（当周期标签间隔为0时使用）
+@export_range(2, 30, 1) var 下方刻度数量: int = 6
 ## 底部时间坐标高度
 @export var 时间坐标高度: float = 24.0
+## 坐标文字字号
+@export_range(8, 24, 1) var 坐标字体大小: int = 13
+
+@export_group("各周期标签间隔（0=使用默认刻度数量）")
+## 一分钟周期下，每多少分钟显示一个时间标签
+@export_range(0, 120, 1) var 分钟间隔分钟: int = 12
+## 一小时周期下，每多少小时显示一个时间标签
+@export_range(0, 48, 1) var 小时间隔小时: int = 6
+## 一天周期下，每多少天显示一个时间标签
+@export_range(0, 60, 1) var 天间隔天: int = 7
+## 一周周期下，每多少天显示一个时间标签（默认7天=每周一个）
+@export_range(0, 60, 1) var 周间隔天: int = 7
+## 一月周期下，每多少月显示一个时间标签
+@export_range(0, 30, 1) var 月间隔月: int = 6
+## 一年周期下，每多少年显示一个时间标签
+@export_range(0, 30, 1) var 年间隔年: int = 5
 
 @export_group("绘制")
 ## 右侧价格坐标宽度
@@ -87,7 +105,8 @@ func _draw() -> void:
 		_draw_volume(volume_rect)
 	_draw_grid(chart_rect, volume_rect, price_axis)
 	_draw_liquidation_line(chart_rect, price_axis, has_active_pair)
-	_draw_axis_labels(chart_rect, volume_rect, axis_reference_candles, price_axis, has_active_pair)
+	# 时间轴标签用真实K线数据（无K线时走空白回退）；价格轴标签用 axis_reference_candles
+	_draw_axis_labels(chart_rect, volume_rect, visible_candles, price_axis, has_active_pair)
 
 func 设置周期(period_name: String) -> void:
 	_timeframe = period_name
@@ -302,13 +321,16 @@ func _with_price_axis_space(rect: Rect2) -> Rect2:
 	)
 
 func _draw_grid(chart_rect: Rect2, volume_rect: Rect2, price_axis: Dictionary) -> void:
+	# 水平虚线 = 恢复原有的 _draw_dashed_line 虚线风格
 	var labels: Array = price_axis.get("labels", []) as Array
 	var segment_count: int = max(labels.size() - 1, 1)
-	var horizontal_line_positions: Array = _get_price_axis_line_positions(chart_rect, segment_count)
-	for y in horizontal_line_positions:
+	var h_pos: Array = _get_price_axis_line_positions(chart_rect, segment_count)
+	for y in h_pos:
 		_draw_dashed_line(Vector2(chart_rect.position.x, y), Vector2(chart_rect.end.x, y), 虚线颜色)
+	# 垂直虚线 = 恢复原有硬编码 6 条等分，不依赖时间标签
+	var w: float = chart_rect.size.x
 	for i in range(6):
-		var x: float = chart_rect.position.x + chart_rect.size.x * float(i) / 5.0
+		var x: float = chart_rect.position.x + w * float(i) / 5.0
 		_draw_dashed_line(Vector2(x, chart_rect.position.y), Vector2(x, volume_rect.end.y), 虚线颜色)
 
 func _draw_candles(chart_rect: Rect2, visible_candles: Array, price_axis: Dictionary) -> void:
@@ -364,12 +386,13 @@ func _draw_volume(volume_rect: Rect2) -> void:
 
 func _draw_axis_labels(chart_rect: Rect2, volume_rect: Rect2, visible_candles: Array, price_axis: Dictionary, has_active_pair: bool) -> void:
 	var font: Font = get_theme_default_font()
-	var font_size: int = 13
+	var font_size: int = 坐标字体大小
 	var labels: Array = price_axis.get("labels", []) as Array
 	var segment_count: int = max(labels.size() - 1, 1)
 	var horizontal_line_positions: Array = _get_price_axis_line_positions(chart_rect, segment_count)
-	for index in range(labels.size()):
-		var y: float = float(horizontal_line_positions[min(index, horizontal_line_positions.size() - 1)]) + 4.0
+	var label_count: int = min(labels.size(), horizontal_line_positions.size())
+	for index in range(label_count):
+		var y: float = float(horizontal_line_positions[index]) + 4.0
 		var price_text: String = _format_price(float(labels[index])) if has_active_pair else "--"
 		draw_string(font, Vector2(chart_rect.end.x + 8.0, y), price_text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, 坐标文字颜色)
 	_draw_axis_break_markers(chart_rect, price_axis, horizontal_line_positions)
@@ -381,7 +404,7 @@ func _draw_liquidation_line(chart_rect: Rect2, price_axis: Dictionary, has_activ
 	var y: float = _price_to_axis_y(_liquidation_line_price, price_axis, chart_rect)
 	draw_line(Vector2(chart_rect.position.x, y), Vector2(chart_rect.end.x, y), 强平线颜色, 1.8)
 	var font: Font = get_theme_default_font()
-	var font_size: int = 13
+	var font_size: int = 坐标字体大小
 	var label_text: String = _liquidation_line_label if not _liquidation_line_label.is_empty() else "强平 " + _format_price(_liquidation_line_price)
 	var label_y: float = clampf(y + 4.0, chart_rect.position.y + 12.0, chart_rect.end.y - 4.0)
 	draw_string(font, Vector2(chart_rect.end.x + 8.0, label_y), label_text, HORIZONTAL_ALIGNMENT_LEFT, -1.0, font_size, 强平线颜色)
@@ -412,16 +435,95 @@ func _draw_axis_break_marker(chart_rect: Rect2, y: float) -> void:
 	draw_polyline(points, Color(0.94, 0.98, 0.93, 0.92), 1.2)
 
 func _draw_time_axis_labels(font: Font, font_size: int, visible_candles: Array, volume_rect: Rect2) -> void:
-	if visible_candles.is_empty():
-		return
-	var label_count: int = 5
-	var candle_gap: float = _get_candle_gap(volume_rect, visible_candles.size())
 	var y: float = volume_rect.end.y + min(时间坐标高度, 20.0)
-	for i in range(label_count):
-		var candle_index: int = roundi(float(visible_candles.size() - 1) * float(i) / float(label_count - 1))
-		var x: float = volume_rect.position.x + candle_gap * (float(candle_index) + 0.5)
-		var label_text: String = _get_time_axis_text(visible_candles.size() - 1 - candle_index)
+	var positions: Array = _get_time_label_positions(visible_candles, volume_rect)
+	for item in positions:
+		var x: float = float(item.get("x", 0.0))
+		var label_text: String = str(item.get("text", "--"))
 		draw_string(font, Vector2(x - 24.0, y), label_text, HORIZONTAL_ALIGNMENT_CENTER, 78.0, font_size, 坐标文字颜色)
+
+## 返回底部时间标签的位置和文字列表
+## 有K线时按步长取位置和真实时间文字，空白时等分宽度显示"--"
+func _get_time_label_positions(visible_candles: Array, volume_rect: Rect2) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	var total_count: int = visible_candles.size()
+	if total_count > 0:
+		# 有K线 → 按步长从最新K线向左取位置，防重叠
+		var candle_gap: float = _get_candle_gap(volume_rect, total_count)
+		var max_idx: int = total_count - 1
+		var base_step: int = _get_label_interval_for_timeframe()
+		var min_step: int = base_step
+		var test_idx: int = max_idx
+		while test_idx >= 0:
+			var label_text: String = _get_time_axis_text(max_idx - test_idx)
+			var text_width: float = 0.0
+			var font: Font = get_theme_default_font()
+			if font != null:
+				text_width = font.get_string_size(label_text, HORIZONTAL_ALIGNMENT_LEFT, -1, 坐标字体大小).x
+			var available: float = candle_gap * float(min_step)
+			if text_width >= available:
+				min_step = max(min_step, int(ceil(text_width / max(candle_gap, 1.0))))
+			test_idx -= base_step
+		var step_candles: int = min_step
+		var idx: int = max_idx
+		while idx >= 0:
+			var x: float = volume_rect.position.x + candle_gap * (float(idx) + 0.5)
+			var label_text: String = _get_time_axis_text(max_idx - idx)
+			results.append({"x": x, "text": label_text})
+			idx -= step_candles
+	else:
+		# 空白图 → 按"下方刻度数量"等分宽度，显示"--"
+		var desired: int = max(下方刻度数量, 2)
+		for i in range(desired):
+			var x: float = volume_rect.position.x + volume_rect.size.x * float(i) / float(desired - 1)
+			results.append({"x": x, "text": "--"})
+	return results
+
+## 返回底部垂直虚线的X坐标列表（与时间标签位置完全一致）
+func _get_time_axis_line_positions(volume_rect: Rect2) -> Array:
+	var positions: Array = []
+	var total_count: int = _get_visible_candles_count()
+	if total_count > 0:
+		var candle_gap: float = _get_candle_gap(volume_rect, total_count)
+		var step_candles: int = _get_label_interval_for_timeframe()
+		var max_idx: int = total_count - 1
+		var idx: int = max_idx
+		while idx >= 0:
+			positions.append(volume_rect.position.x + candle_gap * (float(idx) + 0.5))
+			idx -= step_candles
+	else:
+		# 空白图 → 等分宽度
+		var desired: int = max(下方刻度数量, 2)
+		for i in range(desired):
+			positions.append(volume_rect.position.x + volume_rect.size.x * float(i) / float(desired - 1))
+	return positions
+
+## 根据当前周期和标签间隔设置，返回标签步长（单位：K线根数）
+## 先尝试用间隔参数（分钟/小时/天/月/年）换算，为0时回退到"下方刻度数量"
+func _get_label_interval_for_timeframe() -> int:
+	var series: Array = _series_by_timeframe.get(_timeframe, []) as Array
+	var total: int = max(series.size(), 1)
+	var candle_minutes: int = _get_timeframe_minutes()
+	# 将各周期间隔统一转为分钟，再换算成K线步长
+	var interval_minutes: int = 0
+	match _timeframe:
+		"一分钟":
+			if 分钟间隔分钟 > 0: interval_minutes = 分钟间隔分钟 * 1
+		"一小时":
+			if 小时间隔小时 > 0: interval_minutes = 小时间隔小时 * 60
+		"一天":
+			if 天间隔天 > 0: interval_minutes = 天间隔天 * 1440
+		"一周":
+			if 周间隔天 > 0: interval_minutes = 周间隔天 * 1440
+		"一月":
+			if 月间隔月 > 0: interval_minutes = 月间隔月 * 43200
+		"一年":
+			if 年间隔年 > 0: interval_minutes = 年间隔年 * 525600
+	if interval_minutes > 0 and candle_minutes > 0:
+		return max(1, int(round(float(interval_minutes) / float(candle_minutes))))
+	# 回退到"下方刻度数量"模式
+	var desired_count: int = max(下方刻度数量, 2)
+	return max(1, int(round(float(total) / float(desired_count))))
 
 func _get_time_axis_text(bars_ago: int) -> String:
 	var time_stamp: Dictionary = _get_current_time_stamp()
@@ -506,66 +608,66 @@ func _format_time_axis_stamp(time_stamp: Dictionary) -> String:
 	var minute_of_day: int = int(time_stamp.get("minute_of_day", 0))
 	var hour: int = int(minute_of_day / 60)
 	var minute: int = minute_of_day % 60
-	var timeframe_minutes: int = _get_timeframe_minutes()
-	if timeframe_minutes < 1440:
+	var day: int = int(time_stamp.get("day", 1))
+	var month: int = int(time_stamp.get("month", 1))
+	var year: int = int(time_stamp.get("year", 2026))
+	var tfm: int = _get_timeframe_minutes()
+	# 每个周期内标签格式统一
+	if tfm < 1440:
+		# 一分钟 / 一小时 → 仅显示时分
 		return "%02d:%02d" % [hour, minute]
-	if timeframe_minutes < 10080:
-		return "%d日%02d:%02d" % [int(time_stamp.get("day", 1)), hour, minute]
-	return "%d月%d日" % [int(time_stamp.get("month", 1)), int(time_stamp.get("day", 1))]
+	if tfm < 10080:
+		# 一天 → 仅显示日
+		return "%d日" % day
+	if tfm < 43200:
+		# 一周 → 月日
+		return "%d月%d日" % [month, day]
+	if tfm < 525600:
+		# 一月 → 年月
+		return "%d年%d月" % [year, month]
+	# 一年 → 仅显示年
+	return "%d年" % year
 
 func _draw_dashed_line(from: Vector2, to: Vector2, color: Color, dash_length: float = 6.0, gap_length: float = 5.0) -> void:
 	var direction: Vector2 = to - from
 	var length: float = direction.length()
 	if length <= 0.0:
 		return
-	if absf(from.y - to.y) <= 0.01:
-		var start_x: float = min(from.x, to.x)
-		var end_x: float = max(from.x, to.x)
-		var y: float = roundf(from.y)
-		var cursor_x: float = start_x
-		while cursor_x < end_x:
-			var dash_end_x: float = min(cursor_x + dash_length, end_x)
-			draw_rect(Rect2(Vector2(cursor_x, y), Vector2(max(dash_end_x - cursor_x, 1.0), 1.0)), color, true)
-			cursor_x += dash_length + gap_length
-		return
-	if absf(from.x - to.x) <= 0.01:
-		var start_y: float = min(from.y, to.y)
-		var end_y: float = max(from.y, to.y)
-		var x: float = roundf(from.x)
-		var cursor_y: float = start_y
-		while cursor_y < end_y:
-			var dash_end_y: float = min(cursor_y + dash_length, end_y)
-			draw_rect(Rect2(Vector2(x, cursor_y), Vector2(1.0, max(dash_end_y - cursor_y, 1.0))), color, true)
-			cursor_y += dash_length + gap_length
-		return
+	# 统一用 draw_line 画虚线，不单独处理水平/垂直分支。
+	# 之前的 draw_rect 画1px高矩形在某些位置不可靠导致虚线丢失。
 	var normal: Vector2 = direction / length
 	var distance: float = 0.0
 	while distance < length:
-		var segment_end: float = min(distance + dash_length, length)
-		draw_line(from + normal * distance, from + normal * segment_end, color, 1.0)
+		var seg_end: float = min(distance + dash_length, length)
+		if seg_end > distance:
+			draw_line(from + normal * distance, from + normal * seg_end, color, 1.0)
 		distance += dash_length + gap_length
 
 func _get_price_axis_line_positions(chart_rect: Rect2, segment_count: int) -> Array:
 	var positions: Array = []
-	var safe_segment_count: int = max(segment_count, 1)
-	var raw_bottom_y: float = chart_rect.end.y - 1.0
-	var raw_top_y: float = chart_rect.position.y
-	var min_y: float = roundf(raw_top_y) + 0.5
-	var max_y: float = roundf(raw_bottom_y) + 0.5
-	for index in range(safe_segment_count + 1):
-		var ratio: float = float(index) / float(safe_segment_count)
-		var raw_y: float = lerpf(raw_bottom_y, raw_top_y, ratio)
-		var snapped_y: float = clampf(roundf(raw_y) + 0.5, min_y, max_y)
-		positions.append(snapped_y)
-	# Godot 的半像素/整数混合在个别高度下可能让相邻虚线贴得太近；这里保证每个刻度都有独立可见的Y。
-	for index in range(1, positions.size()):
-		if absf(float(positions[index]) - float(positions[index - 1])) < 1.0:
-			positions[index] = float(positions[index - 1]) - 1.0
-	return positions
+	var safe_n: int = max(segment_count, 1)
+	var btm: float = chart_rect.end.y - 1.0
+	var top: float = chart_rect.position.y
+	var min_y: float = roundf(top) + 0.5
+	var max_y: float = roundf(btm) + 0.5
+	for i in range(safe_n + 1):
+		var ratio: float = float(i) / float(safe_n)
+		var raw: float = lerpf(btm, top, ratio)
+		positions.append(clampf(roundf(raw) + 0.5, min_y, max_y))
+	# 剔除因高度不足而重叠的刻度（间距 < 1px 的只保留第一个）
+	var deduped: Array = []
+	for y in positions:
+		if deduped.is_empty() or absf(float(y) - float(deduped[deduped.size() - 1])) >= 1.0:
+			deduped.append(y)
+	return deduped
 
 func _get_visible_candles() -> Array:
 	var series: Array = _series_by_timeframe.get(_timeframe, []) as Array
 	return series.duplicate(true)
+
+func _get_visible_candles_count() -> int:
+	var series: Array = _series_by_timeframe.get(_timeframe, []) as Array
+	return series.size()
 
 func _get_axis_reference_candles(visible_candles: Array) -> Array:
 	if not visible_candles.is_empty():
@@ -628,7 +730,7 @@ func _should_include_liquidation_in_axis(min_price: float, max_price: float) -> 
 func _get_price_axis_data(candles: Array) -> Dictionary:
 	var raw_range: Vector2 = _get_price_range(candles)
 	var raw_span: float = max(raw_range.y - raw_range.x, 0.000001)
-	var segment_count: int = max(价格轴分段数量, 1)
+	var segment_count: int = max(右侧刻度数量 - 1, 1)
 	var step: float = _get_nice_tick_step(raw_span / float(segment_count))
 	var axis_min: float = floor(raw_range.x / step) * step
 	var axis_max: float = axis_min + step * float(segment_count)

@@ -1,0 +1,42 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://bl4p8m2d1k7qx"
+path="res://.godot/imported/DouyinSansBold Display.ttf-7426160c1517064ad937111c2886e572.fontdata"
+
+[deps]
+
+source_file="res://资源/字体/DouyinSansBold Display.ttf"
+dest_files=["res://.godot/imported/DouyinSansBold Display.ttf-7426160c1517064ad937111c2886e572.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=2
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=true
+msdf_pixel_range=12
+msdf_size=64
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=1.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[{
+"chars": [],
+"glyphs": [],
+"name": "鏂板缓閰嶇疆",
+"size": Vector2i(16, 0),
+&"variation_embolden": 0.0
+}]
+language_support={}
+script_support={}
+opentype_features={}

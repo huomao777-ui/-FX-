@@ -32,6 +32,9 @@ var _dynamic_slot_counter: int = 2
 var _app_root: Node = null
 var _chart_controller: Node = null
 var _open_account_panel: Node = null
+var _reduce_position_panel: Node = null
+var _add_position_panel: Node = null
+var _close_all_panel: Node = null
 var _currency_picker_panel: Panel = null
 var _slot_header_panel: Panel = null
 var _slot_scroll_container: ScrollContainer = null
@@ -68,6 +71,7 @@ func _ready() -> void:
 	_connect_currency_picker_buttons()
 	_connect_header_drag()
 	_connect_open_button()
+	_connect_operation_buttons()
 	_cache_header_layout_metrics()
 	_apply_header_layout(_header_rest_top)
 	_ensure_trailing_placeholder_slot()
@@ -115,6 +119,63 @@ func mark_selected_slot_open(open_data: Dictionary = {}) -> void:
 	_refresh_slot_views()
 	_select_slot(_find_slot_index_by_panel_name(opening_panel_name))
 
+## 处理减仓确认：更新槽位持仓数据（手数、保证金等）
+func 处理减仓(slot: Dictionary, reduce_lots: float) -> void:
+	if _selected_slot_index < 0 or _selected_slot_index >= _pair_slots.size():
+		return
+	var current_slot: Dictionary = _pair_slots[_selected_slot_index]
+	var current_lots: float = max(float(current_slot.get("mock_lots", 0.0)), 0.0)
+	var new_lots: float = max(snappedf(current_lots - reduce_lots, 0.01), 0.0)
+	if new_lots <= 0.0:
+		# 全部减完 = 平仓
+		current_slot["display_open_position"] = false
+		current_slot["mock_lots"] = 0.0
+		current_slot["mock_entry_rate"] = 0.0
+		current_slot["mock_leverage"] = 1
+		current_slot["mock_overnight_interest_text"] = "0.00元"
+		# 保留 configured=true，只清掉持仓标记
+	else:
+		var current_leverage: int = max(int(current_slot.get("mock_leverage", 1)), 1)
+		var reduce_pct: float = reduce_lots / max(current_lots, 0.01)
+		var current_margin: float = float(current_slot.get("mock_margin_xmy", 0.0))
+		var margin_reduction: float = current_margin * reduce_pct
+		current_slot["mock_lots"] = new_lots
+		current_slot["mock_margin_xmy"] = max(current_margin - margin_reduction, 0.0)
+	_move_selected_open_slot_to_top_group()
+	_reorder_slot_nodes_to_match_data()
+	_refresh_slot_views()
+	_select_slot(_selected_slot_index)
+
+## 处理补仓确认：合并新开仓到当前持仓
+func 处理补仓(slot: Dictionary, add_lots: float) -> void:
+	if _selected_slot_index < 0 or _selected_slot_index >= _pair_slots.size():
+		return
+	var current_slot: Dictionary = _pair_slots[_selected_slot_index]
+	var current_lots: float = max(float(current_slot.get("mock_lots", 0.0)), 0.0)
+	var new_lots: float = snappedf(current_lots + add_lots, 0.01)
+	current_slot["mock_lots"] = new_lots
+	current_slot["display_open_position"] = true
+	_move_selected_open_slot_to_top_group()
+	_reorder_slot_nodes_to_match_data()
+	_refresh_slot_views()
+	_select_slot(_selected_slot_index)
+
+## 处理一键平仓确认：清除当前持仓标记和数据
+func 处理一键平仓(slot: Dictionary) -> void:
+	if _selected_slot_index < 0 or _selected_slot_index >= _pair_slots.size():
+		return
+	var current_slot: Dictionary = _pair_slots[_selected_slot_index]
+	current_slot["display_open_position"] = false
+	current_slot["mock_lots"] = 0.0
+	current_slot["mock_entry_rate"] = 0.0
+	current_slot["mock_leverage"] = 1
+	current_slot["mock_overnight_interest_text"] = "0.00元"
+	current_slot["mock_margin_xmy"] = 0.0
+	_move_selected_open_slot_to_top_group()
+	_reorder_slot_nodes_to_match_data()
+	_refresh_slot_views()
+	_select_slot(_selected_slot_index)
+
 func _load_ui_config() -> void:
 	_currency_catalog.clear()
 	_pair_slots.clear()
@@ -149,6 +210,9 @@ func _load_ui_config() -> void:
 func _cache_nodes() -> void:
 	_chart_controller = _find_descendant_by_name(_app_root, "k线图画布")
 	_open_account_panel = _find_descendant_by_name(_app_root, "开户面板")
+	_reduce_position_panel = _find_descendant_by_name(_app_root, "减仓弹窗")
+	_add_position_panel = _find_descendant_by_name(_app_root, "补仓弹窗")
+	_close_all_panel = _find_descendant_by_name(_app_root, "一键平仓弹窗")
 	_currency_picker_panel = _find_descendant_by_name(_app_root, "货币选择") as Panel
 	_currency_background_panel = _find_descendant_by_name(self, "货币背景") as Panel
 	_slot_header_panel = _find_descendant_by_name(self, "上方遮挡") as Panel
@@ -220,6 +284,47 @@ func _connect_open_button() -> void:
 	var one_click_button: BaseButton = _find_first_button(one_click_panel)
 	if one_click_button != null and not one_click_button.pressed.is_connected(_on_one_click_open_pressed):
 		one_click_button.pressed.connect(_on_one_click_open_pressed)
+
+## 连接减仓/补仓/一键平仓按钮，与一键开仓采用相同模式
+func _connect_operation_buttons() -> void:
+	var 减仓_btn: Button = _find_descendant_by_name(_app_root, "减仓") as Button
+	if 减仓_btn != null and not 减仓_btn.pressed.is_connected(_on_reduce_button_pressed):
+		减仓_btn.pressed.connect(_on_reduce_button_pressed)
+	var 补仓_btn: Button = _find_descendant_by_name(_app_root, "补仓") as Button
+	if 补仓_btn != null and not 补仓_btn.pressed.is_connected(_on_add_button_pressed):
+		补仓_btn.pressed.connect(_on_add_button_pressed)
+	var 平仓_btn: Button = _find_descendant_by_name(_app_root, "一键平仓") as Button
+	if 平仓_btn != null and not 平仓_btn.pressed.is_connected(_on_close_all_button_pressed):
+		平仓_btn.pressed.connect(_on_close_all_button_pressed)
+
+func _on_reduce_button_pressed() -> void:
+	var slot: Dictionary = get_selected_slot()
+	if slot.is_empty() or not _slot_has_open_position_display(slot):
+		return
+	_close_trade_popups()
+	if _reduce_position_panel != null and _reduce_position_panel.has_method("open_for_slot"):
+		_reduce_position_panel.call("open_for_slot", slot, self)
+
+func _on_add_button_pressed() -> void:
+	var slot: Dictionary = get_selected_slot()
+	if slot.is_empty() or not _slot_has_open_position_display(slot):
+		return
+	_close_trade_popups()
+	if _add_position_panel != null and _add_position_panel.has_method("open_for_slot"):
+		_add_position_panel.call("open_for_slot", slot, self)
+
+func _on_close_all_button_pressed() -> void:
+	var slot: Dictionary = get_selected_slot()
+	if slot.is_empty() or not _slot_has_open_position_display(slot):
+		return
+	_close_trade_popups()
+	if _close_all_panel != null and _close_all_panel.has_method("open_for_slot"):
+		_close_all_panel.call("open_for_slot", slot, self)
+
+func _close_trade_popups() -> void:
+	for panel in [_reduce_position_panel, _add_position_panel, _close_all_panel]:
+		if panel != null and panel.has_method("close_panel"):
+			panel.call("close_panel")
 
 func _on_header_panel_gui_input(event: InputEvent) -> void:
 	# 货币列表顶部遮挡：按住上拉后吸附到K线顶部，松手时用缓动弹回/吸附。
@@ -549,6 +654,9 @@ func _select_slot(slot_index: int) -> void:
 			_chart_controller.call("set_liquidation_line", liquidation_rate, "强平线 " + _format_rate_or_placeholder(liquidation_rate))
 		elif _chart_controller != null and _chart_controller.has_method("clear_liquidation_line"):
 			_chart_controller.call("clear_liquidation_line")
+		# 同步持仓信息到K线图头部标签（开仓日期/预计损益）
+		if _chart_controller != null and _chart_controller.has_method("update_position_info"):
+			_chart_controller.call("update_position_info", str(slot.get("left_code", "")), str(slot.get("right_code", "")), slot)
 	else:
 		if _chart_controller != null and _chart_controller.has_method("clear_chart"):
 			_chart_controller.call("clear_chart")
@@ -923,10 +1031,51 @@ func _apply_panel_style(panel: Panel, is_selected: bool) -> void:
 func _refresh_slot_container_size() -> void:
 	if _slot_list_container == null:
 		return
-	var row_height: float = 96.0
-	if _slot_template_panel != null:
-		row_height = maxf(_slot_template_panel.custom_minimum_size.y + 8.0, row_height)
-	_slot_list_container.custom_minimum_size.y = maxf((_pair_slots.size() + 3) * row_height, 600.0)
+	var total_height: float = 0.0
+	var max_width: float = 0.0
+	var visible_row_count: int = 0
+	var last_row_height: float = 0.0
+	var separation: float = 0.0
+	if _slot_list_container is BoxContainer:
+		separation = float((_slot_list_container as BoxContainer).get_theme_constant("separation"))
+	for child in _slot_list_container.get_children():
+		if not (child is Control):
+			continue
+		var row: Control = child as Control
+		if row.is_queued_for_deletion():
+			continue
+		var row_size: Vector2 = row.custom_minimum_size
+		if row_size.x <= 0.0:
+			row_size.x = row.size.x
+		if row_size.y <= 0.0:
+			row_size.y = row.size.y
+		max_width = maxf(max_width, row_size.x)
+		total_height += row_size.y
+		last_row_height = row_size.y
+		visible_row_count += 1
+	if visible_row_count > 1:
+		total_height += separation * float(visible_row_count - 1)
+	var top_scroll_reserve: float = 0.0
+	if _slot_scroll_container != null and visible_row_count > 0:
+		# 让滚动到底时，最后一个货币对正好完整露出，而不是只露半截。
+		top_scroll_reserve = maxf(_slot_scroll_container.size.y - last_row_height, 0.0)
+	_slot_list_container.custom_minimum_size = Vector2(
+		maxf(max_width, 474.0),
+		maxf(total_height + top_scroll_reserve, 0.0)
+	)
+	_slot_list_container.update_minimum_size()
+	if _slot_list_container.get_parent() is Control:
+		(_slot_list_container.get_parent() as Control).update_minimum_size()
+	call_deferred("_clamp_slot_scroll_to_valid_range")
+
+func _clamp_slot_scroll_to_valid_range() -> void:
+	if _slot_scroll_container == null:
+		return
+	var v_scroll: VScrollBar = _slot_scroll_container.get_v_scroll_bar()
+	if v_scroll == null:
+		return
+	var max_scroll: float = maxf(v_scroll.max_value - v_scroll.page, 0.0)
+	_slot_scroll_container.scroll_vertical = int(clampf(float(_slot_scroll_container.scroll_vertical), 0.0, max_scroll))
 
 func _set_display_controls_ignore_mouse(root: Node) -> void:
 	if root == null:

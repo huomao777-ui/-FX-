@@ -18,21 +18,44 @@
 [ext_resource type="Texture2D" uid="uid://b2xl1srtug6pp" path="res://界面/场景/外汇应用/美术资源/按钮.png" id="13_wnt5h"]
 [ext_resource type="Texture2D" uid="uid://c5x1wudxrnsq4" path="res://界面/场景/外汇应用/美术资源/按钮1.png" id="14_wnt5h"]
 [ext_resource type="Script" uid="uid://8v2243w7lf8y" path="res://界面/场景/外汇应用/FxOpenAccountPanelController.gd" id="15_open_account"]
+[ext_resource type="Script" uid="uid://cx1t28aosjo4v" path="res://界面/场景/外汇应用/FxReducePositionPanelController.gd" id="16_reduce"]
+[ext_resource type="Script" uid="uid://b6owwca1ggsgq" path="res://界面/场景/外汇应用/FxAddPositionPanelController.gd" id="17_add"]
+[ext_resource type="Script" uid="uid://bd17jdst8gvrn" path="res://界面/场景/外汇应用/FxCloseAllPanelController.gd" id="18_close_all"]
+[ext_resource type="Script" uid="uid://devpe16udg6mb" path="res://界面/场景/外汇应用/FxTopAssetPanelController.gd" id="19_top_asset"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_66mpo"]
-bg_color = Color(0.033853274, 0.03385329, 0.033853233, 1)
+bg_color = Color(0.019607844, 0.02745098, 0.05490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13333334, 0.20392157, 0.3372549, 0.95)
 corner_radius_top_left = 70
 corner_radius_top_right = 70
 corner_radius_bottom_right = 70
 corner_radius_bottom_left = 70
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l0vn2"]
-bg_color = Color(0.003921569, 0.11764706, 0.2, 1)
+bg_color = Color(0.023529412, 0.105882354, 0.1764706, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.16078432, 0.26666668, 0.4, 0.65)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6i12"]
-bg_color = Color(0.0627451, 0.15686275, 0.26666668, 1)
+bg_color = Color(0.07058824, 0.18039216, 0.3019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.27450982, 0.4745098, 0.7058824, 0.85)
 corner_radius_top_left = 70
 corner_radius_top_right = 70
+shadow_color = Color(0, 0, 0, 0.22)
+shadow_size = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cpx6"]
 bg_color = Color(1, 0.14117648, 0, 1)
@@ -41,19 +64,19 @@ corner_radius_top_right = 15
 corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drf31"]
-bg_color = Color(0.88647205, 0.6988192, 0.28023443, 1)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1fpn"]
+bg_color = Color(1, 0.31513217, 0.22031, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65srn"]
-bg_color = Color(0.98039216, 0.8627451, 0.627451, 0.9098039)
-corner_radius_top_left = 22
-corner_radius_top_right = 22
-corner_radius_bottom_right = 22
-corner_radius_bottom_left = 22
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o77ik"]
+bg_color = Color(0.7921569, 0.101960786, 0, 0.88235295)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4dy66"]
 bg_color = Color(0.27058825, 0.8235294, 0.05490196, 1)
@@ -77,36 +100,88 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2mhw"]
-bg_color = Color(0.0627451, 0.15686275, 0.26666668, 1)
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.05882353, 0.14509805, 0.24705882, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.1882353, 0.33333334, 0.49411765, 0.82)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rh6mk"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.03529412, 0.10980392, 0.19215687, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.21568628, 0.3764706, 0.58431375, 0.78)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hw0n"]
 bg_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xv3ui"]
-bg_color = Color(0.6748146, 0.67481464, 0.6748144, 0.43529412)
+bg_color = Color(0.21960784, 0.38039216, 0.6, 0.88)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6313726, 0.8039216, 1, 0.65)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_olqn1"]
-bg_color = Color(0.6955031, 0.6955032, 0.6955029, 0.3254902)
+bg_color = Color(0.14509805, 0.2784314, 0.44313726, 0.7)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v14yb"]
-bg_color = Color(0.23701906, 0.44383755, 0.682641, 1)
+bg_color = Color(0.14901961, 0.2901961, 0.46666667, 0.96)
+border_width_bottom = 1
+border_color = Color(0.5372549, 0.7411765, 0.98039216, 0.55)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu86k"]
-bg_color = Color(0.74978, 0.74978, 0.7497799, 0.5921569)
+bg_color = Color(0.8392157, 0.88235295, 0.9529412, 0.2)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f3g6a"]
-bg_color = Color(0.0627451, 0.15686275, 0.36862746, 1)
+bg_color = Color(0.047058824, 0.13725491, 0.29803923, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22745098, 0.42352942, 0.6509804, 0.72)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+shadow_color = Color(0, 0, 0, 0.14)
+shadow_size = 6
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lu86k"]
 atlas = ExtResource("10_tdoio")
@@ -149,36 +224,95 @@ atlas = ExtResource("10_tdoio")
 region = Rect2(660, 46, 292, 294)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqv7q"]
-bg_color = Color(0.0627451, 0.15686275, 0.26666668, 1)
+bg_color = Color(0.050980393, 0.12941177, 0.22352941, 1)
+border_width_top = 2
+border_color = Color(0.1764706, 0.31764707, 0.49019608, 0.75)
 corner_radius_bottom_right = 70
 corner_radius_bottom_left = 70
+shadow_color = Color(0, 0, 0, 0.24)
+shadow_size = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4y7fb"]
-bg_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+bg_color = Color(0.972549, 0.84313726, 0.56078434, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.95686275, 0.7764706, 0.85)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+shadow_color = Color(0.2627451, 0.18039216, 0.043137256, 0.2)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_drf31"]
+bg_color = Color(0.8352941, 0.6509804, 0.23921569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9254902, 0.77254903, 0.41960785, 0.7)
+corner_radius_top_left = 22
+corner_radius_top_right = 22
+corner_radius_bottom_right = 22
+corner_radius_bottom_left = 22
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_65srn"]
+bg_color = Color(1, 0.89411765, 0.6745098, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.96862745, 0.8392157, 0.9)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pnbde"]
-bg_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+bg_color = Color(0.9529412, 0.85882354, 0.654902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.9490196, 0.8392157, 0.72)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wnt5h"]
-bg_color = Color(0.23529412, 0.44313726, 0.68235296, 1)
+bg_color = Color(0.25490198, 0.4627451, 0.72156864, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5529412, 0.74509805, 0.98039216, 0.7)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr6nj"]
-bg_color = Color(0.23529412, 0.44313726, 0.7882353, 0.88235295)
+bg_color = Color(0.19607843, 0.3882353, 0.6313726, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45882353, 0.6784314, 0.9411765, 0.7)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7wfub"]
-bg_color = Color(0.33333334, 0.5568628, 0.8156863, 1)
+bg_color = Color(0.36078432, 0.5882353, 0.85882354, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.69411767, 0.8392157, 1, 0.82)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
@@ -213,87 +347,148 @@ atlas = ExtResource("10_tdoio")
 region = Rect2(658, 375, 286, 284)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twl0d"]
-bg_color = Color(0.0627451, 0.121569, 0.207843, 0.96)
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.050980393, 0.10980392, 0.19215687, 0.97)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.180392, 0.352941, 0.564706, 0.9)
+border_color = Color(0.25882354, 0.42352942, 0.6313726, 0.95)
 corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.32)
+shadow_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmy_open"]
-bg_color = Color(0.3019608, 0.6509804, 0.81960785, 0.95)
+bg_color = Color(0.26666668, 0.62352943, 0.8, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.7254902, 0.9137255, 0.9882353, 0.65)
 corner_radius_top_left = 26
 corner_radius_top_right = 26
 corner_radius_bottom_right = 26
 corner_radius_bottom_left = 26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_usd_open"]
-bg_color = Color(0.16078432, 0.59607846, 0.54509807, 0.95)
+bg_color = Color(0.13333334, 0.5372549, 0.49803922, 0.98)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.65882355, 0.92941177, 0.87058824, 0.58)
 corner_radius_top_left = 26
 corner_radius_top_right = 26
 corner_radius_bottom_right = 26
 corner_radius_bottom_left = 26
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xpnnk"]
-bg_color = Color(0.0627451, 0.121569, 0.207843, 0.96)
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.050980393, 0.10980392, 0.19215687, 0.97)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.180392, 0.352941, 0.564706, 0.9)
+border_color = Color(0.25882354, 0.42352942, 0.6313726, 0.95)
 corner_radius_top_left = 28
 corner_radius_top_right = 28
 corner_radius_bottom_right = 28
 corner_radius_bottom_left = 28
+shadow_color = Color(0, 0, 0, 0.32)
+shadow_size = 18
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8g5wb"]
-bg_color = Color(0.0627451, 0.15686275, 0.26666668, 1)
+bg_color = Color(0.05882353, 0.14509805, 0.24705882, 0.99)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18431373, 0.3372549, 0.5058824, 0.75)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
+shadow_color = Color(0, 0, 0, 0.18)
+shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_roptp"]
-bg_color = Color(0.23529412, 0.44313726, 0.68235296, 1)
+bg_color = Color(0.25490198, 0.4627451, 0.72156864, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5529412, 0.74509805, 0.98039216, 0.7)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8g5f"]
-bg_color = Color(0.23529412, 0.44313726, 0.7882353, 0.88235295)
+bg_color = Color(0.19607843, 0.3882353, 0.6313726, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45882353, 0.6784314, 0.9411765, 0.7)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5lm"]
-bg_color = Color(0.33333334, 0.5568628, 0.8156863, 1)
+bg_color = Color(0.36078432, 0.5882353, 0.85882354, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.69411767, 0.8392157, 1, 0.82)
 corner_radius_top_left = 14
 corner_radius_top_right = 14
 corner_radius_bottom_right = 14
 corner_radius_bottom_left = 14
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqc0a"]
-bg_color = Color(0.98039216, 0.8627451, 0.627451, 1)
+bg_color = Color(0.972549, 0.84313726, 0.56078434, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.95686275, 0.7764706, 0.85)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
+shadow_color = Color(0.2627451, 0.18039216, 0.043137256, 0.2)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ig7pt"]
-bg_color = Color(0.88647205, 0.6988192, 0.28023443, 1)
+bg_color = Color(0.8352941, 0.6509804, 0.23921569, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9254902, 0.77254903, 0.41960785, 0.7)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
 corner_radius_bottom_left = 22
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jvfv0"]
-bg_color = Color(0.98039216, 0.8627451, 0.627451, 0.9098039)
+bg_color = Color(1, 0.89411765, 0.6745098, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.96862745, 0.8392157, 0.9)
 corner_radius_top_left = 22
 corner_radius_top_right = 22
 corner_radius_bottom_right = 22
@@ -364,6 +559,7 @@ offset_top = -643.59674
 offset_right = 257.09393
 offset_bottom = -420.17856
 theme_override_styles/panel = SubResource("StyleBoxFlat_v6i12")
+script = ExtResource("19_top_asset")
 
 [node name="充值" type="Button" parent="APP/顶部资产" unique_id=1667173946]
 layout_mode = 0
@@ -372,8 +568,8 @@ offset_top = 81.24298
 offset_right = 358.8376
 offset_bottom = 121.864456
 theme_override_styles/normal = SubResource("StyleBoxFlat_0cpx6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_drf31")
-theme_override_styles/hover = SubResource("StyleBoxFlat_65srn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r1fpn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_o77ik")
 
 [node name="Label" type="Label" parent="APP/顶部资产/充值" unique_id=480315709]
 layout_mode = 0
@@ -609,6 +805,12 @@ offset_right = 257.09393
 offset_bottom = 46.968597
 theme_override_styles/panel = SubResource("StyleBoxFlat_l0vn2")
 script = ExtResource("8_kline_panel")
+"下方刻度数量" = 7
+"坐标字体大小" = 11
+"分钟间隔分钟" = 10
+"天间隔天" = 1
+"月间隔月" = 1
+"年间隔年" = 1
 
 [node name="分时日周月切换" type="Panel" parent="APP/k线图画布" unique_id=1474166310]
 clip_children = 1
@@ -766,6 +968,21 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 21.0
 text = "XMY/USD"
+
+[node name="开仓日期" type="Label" parent="APP/k线图画布" unique_id=1707994582]
+layout_mode = 0
+offset_left = 78.76922
+offset_right = 149.76923
+offset_bottom = 21.0
+text = "开仓日期： 2026年6月25日21:55:22"
+
+[node name="预计损益" type="RichTextLabel" parent="APP/k线图画布" unique_id=2016350682]
+layout_mode = 0
+offset_top = 20.310745
+offset_right = 201.29907
+offset_bottom = 41.310745
+bbcode_enabled = true
+text = "预计损益：[color=white]+12,334熊猫元[/color]"
 
 [node name="货币种类" type="Control" parent="APP" unique_id=694875814]
 anchors_preset = 0
@@ -1873,6 +2090,7 @@ offset_top = -359.2463
 offset_right = 257.09393
 offset_bottom = 229.76529
 theme_override_styles/panel = SubResource("StyleBoxFlat_xpnnk")
+script = ExtResource("16_reduce")
 
 [node name="内容边距" type="MarginContainer" parent="APP/减仓弹窗" unique_id=2083456585]
 layout_mode = 0
@@ -2095,6 +2313,7 @@ offset_top = -359.2463
 offset_right = 257.09393
 offset_bottom = 229.76529
 theme_override_styles/panel = SubResource("StyleBoxFlat_xpnnk")
+script = ExtResource("17_add")
 
 [node name="内容边距" type="MarginContainer" parent="APP/补仓弹窗" unique_id=1386376197]
 layout_mode = 0
@@ -2337,6 +2556,7 @@ offset_top = -259.2463
 offset_right = 257.09393
 offset_bottom = 229.76529
 theme_override_styles/panel = SubResource("StyleBoxFlat_xpnnk")
+script = ExtResource("18_close_all")
 
 [node name="内容边距" type="MarginContainer" parent="APP/一键平仓弹窗" unique_id=1262967192]
 layout_mode = 0
