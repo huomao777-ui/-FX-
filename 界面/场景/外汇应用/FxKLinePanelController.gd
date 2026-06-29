@@ -37,6 +37,13 @@ var _time_system: Node = null
 var _current_left_code: String = ""
 var _current_right_code: String = ""
 var _last_slot_data: Dictionary = {}
+var _timeframe_buttons: Dictionary = {}
+var _selected_timeframe_button: String = "一分钟"
+var _timeframe_normal_style: StyleBox = null
+var _timeframe_hover_style: StyleBox = null
+var _timeframe_selected_style: StyleBox = null
+var _timeframe_label_normal_color: Color = Color(0.86, 0.91, 0.97, 0.9)
+var _timeframe_label_selected_color: Color = Color(0.95, 0.98, 1.0, 0.98)
 
 func _ready() -> void:
 	_pair_label = _find_descendant_by_name(self, "货币种类") as Label
@@ -138,16 +145,16 @@ func _clear_position_labels() -> void:
 	if _open_date_label != null:
 		_open_date_label.text = "开仓日期： --"
 	if _pnl_label != null:
-		_pnl_label.text = "预计损益：[color=white]--[/color]"
+		_pnl_label.text = "[color=white]预计损益：[/color][color=white]--[/color]"
 
 func _set_pnl_label(pnl_value: float) -> void:
 	if _pnl_label == null:
 		return
 	var formatted: String = _format_number(absf(pnl_value))
 	if pnl_value >= 0.0:
-		_pnl_label.text = "预计损益：[color=#ee4444]+%s熊猫元[/color]" % formatted
+		_pnl_label.text = "[color=white]预计损益：[/color][color=#ee4444]+%s熊猫元[/color]" % formatted
 	else:
-		_pnl_label.text = "预计损益：[color=#22cc44]-%s熊猫元[/color]" % formatted
+		_pnl_label.text = "[color=white]预计损益：[/color][color=#22cc44]-%s熊猫元[/color]" % formatted
 
 ## 将 opened_turn 转为可读的日期文本
 func _set_open_date_label(opened_turn: int) -> void:
@@ -263,6 +270,8 @@ func _on_account_changed(_snapshot: Dictionary) -> void:
 		_refresh_position_labels()
 
 func _on_timeframe_button_pressed(button_name: String) -> void:
+	_selected_timeframe_button = button_name
+	_apply_timeframe_button_styles()
 	if _chart_layer != null and _chart_layer.has_method("设置周期"):
 		_chart_layer.call("设置周期", button_name)
 
@@ -294,9 +303,31 @@ func _connect_timeframe_buttons() -> void:
 		var button: Button = _find_descendant_by_name(self, button_name) as Button
 		if button == null:
 			continue
+		_timeframe_buttons[button_name] = button
+		if _timeframe_normal_style == null:
+			_timeframe_normal_style = button.get_theme_stylebox("normal")
+			_timeframe_hover_style = button.get_theme_stylebox("hover")
+			_timeframe_selected_style = button.get_theme_stylebox("pressed")
+			var label: Label = button.get_node_or_null("Label") as Label
+			if label != null:
+				_timeframe_label_normal_color = label.get_theme_color("font_color")
 		var callback: Callable = _on_timeframe_button_pressed.bind(button_name)
 		if not button.pressed.is_connected(callback):
 			button.pressed.connect(callback)
+	_apply_timeframe_button_styles()
+
+func _apply_timeframe_button_styles() -> void:
+	for button_name in _timeframe_buttons.keys():
+		var button: Button = _timeframe_buttons[button_name] as Button
+		if button == null:
+			continue
+		var is_selected: bool = button_name == _selected_timeframe_button
+		button.add_theme_stylebox_override("normal", _timeframe_selected_style if is_selected else _timeframe_normal_style)
+		button.add_theme_stylebox_override("pressed", _timeframe_selected_style if is_selected else _timeframe_hover_style)
+		button.add_theme_stylebox_override("hover", _timeframe_selected_style if is_selected else _timeframe_hover_style)
+		var label: Label = button.get_node_or_null("Label") as Label
+		if label != null:
+			label.add_theme_color_override("font_color", _timeframe_label_selected_color if is_selected else _timeframe_label_normal_color)
 
 ## ===== 工具 =====
 
