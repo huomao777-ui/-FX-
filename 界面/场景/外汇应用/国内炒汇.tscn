@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dw881pkgdjkid"]
 
+[ext_resource type="Script" uid="uid://b8wbxnxukga4k" path="res://界面/场景/通用/AppShellController.gd" id="1_6e5lm"]
 [ext_resource type="Texture2D" uid="uid://bhbxipfbnysm7" path="res://界面/场景/手机/美术资源/仅剩边框.png" id="1_xqb5w"]
+[ext_resource type="Script" uid="uid://yc1vxe6wvr2o" path="res://界面/场景/通用/AppInteractionAreaController.gd" id="2_mqc0a"]
 [ext_resource type="FontFile" uid="uid://drlvf673qmet" path="res://资源/字体/思源黑体.otf" id="2_xv3ui"]
 [ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="3_0cpx6"]
 [ext_resource type="FontFile" uid="uid://c04l4h0i4f3gu" path="res://资源/字体/思源黑体 Display.otf" id="3_roptp"]
@@ -10,7 +12,6 @@
 [ext_resource type="FontFile" uid="uid://b8n5nq8o6m5dd" path="res://资源/字体/思源黑体 Bold Display.otf" id="5_m8g5f"]
 [ext_resource type="FontFile" uid="uid://chnrus28lurjl" path="res://资源/字体/DouyinSansBold.ttf" id="5_pnbde"]
 [ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="6_1dpgi"]
-[ext_resource type="Script" uid="uid://iochsjb1kwvl" path="res://界面/场景/外汇应用/FxDomesticAppRootController.gd" id="7_root"]
 [ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="7_xb5us"]
 [ext_resource type="Script" uid="uid://brp04yrgo1sga" path="res://界面/场景/外汇应用/FxKLinePanelController.gd" id="8_kline_panel"]
 [ext_resource type="Script" uid="uid://ggp3hvi0eao1" path="res://界面/组件/PhoneStatusBinder.gd" id="9_status"]
@@ -24,6 +25,7 @@
 [ext_resource type="Script" uid="uid://b6owwca1ggsgq" path="res://界面/场景/外汇应用/FxAddPositionPanelController.gd" id="17_add"]
 [ext_resource type="Script" uid="uid://bd17jdst8gvrn" path="res://界面/场景/外汇应用/FxCloseAllPanelController.gd" id="18_close_all"]
 [ext_resource type="Script" uid="uid://devpe16udg6mb" path="res://界面/场景/外汇应用/FxTopAssetPanelController.gd" id="19_top_asset"]
+[ext_resource type="Script" uid="uid://c8dd6xp7d3i3q" path="res://界面/场景/外汇应用/APPController.gd" id="21_app_root"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5lm"]
 bg_color = Color(0.02745098, 0.050980393, 0.09411765, 1)
@@ -644,7 +646,16 @@ bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
 [node name="国内炒汇" type="Control" unique_id=1248338117]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("7_root")
+script = ExtResource("1_6e5lm")
+
+[node name="交互范围" type="Control" parent="." unique_id=212345678]
+anchors_preset = 0
+offset_left = 648.0
+offset_top = 48.0
+offset_right = 1138.0
+offset_bottom = 1032.0
+mouse_filter = 2
+script = ExtResource("2_mqc0a")
 
 [node name="APP" type="Control" parent="." unique_id=177741036]
 anchors_preset = 0
@@ -653,6 +664,7 @@ offset_top = 563.0
 offset_right = 893.0
 offset_bottom = 563.0
 scale = Vector2(0.9140626, 0.7877604)
+script = ExtResource("21_app_root")
 
 [node name="大背景" type="Panel" parent="APP" unique_id=1135701728]
 layout_mode = 0

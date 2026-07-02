@@ -168,6 +168,12 @@ func _input(event: InputEvent) -> void:
 		if mouse_event.button_index != MOUSE_BUTTON_LEFT:
 			return
 		if mouse_event.pressed and mouse_event.double_click:
+			if not _is_point_inside_phone_screen(mouse_event.position):
+				var viewport := get_viewport()
+				_return_to_mobile_phone()
+				if viewport != null:
+					viewport.set_input_as_handled()
+				return
 			if _try_open_app_at_position(mouse_event.position):
 				return
 		if mouse_event.pressed:
@@ -771,6 +777,18 @@ func _get_drag_limit_global_rect() -> Rect2:
 	var top_left: Vector2 = _control_local_to_global(self, 手机屏幕拖拽区域.position)
 	var bottom_right: Vector2 = _control_local_to_global(self, 手机屏幕拖拽区域.position + 手机屏幕拖拽区域.size)
 	return Rect2(top_left, bottom_right - top_left)
+
+func _is_point_inside_phone_screen(global_position: Vector2) -> bool:
+	var top_left: Vector2 = _control_local_to_global(self, 页面可视区域.position)
+	var bottom_right: Vector2 = _control_local_to_global(self, 页面可视区域.position + 页面可视区域.size)
+	return Rect2(top_left, bottom_right - top_left).has_point(global_position)
+
+func _return_to_mobile_phone() -> void:
+	var tree := get_tree()
+	if tree != null and tree.current_scene == self:
+		tree.change_scene_to_file("res://界面/场景/手机/mobile_phone.tscn")
+		return
+	queue_free()
 
 func _infer_layout_from_scene() -> void:
 	if _app_icons.size() > 0:
