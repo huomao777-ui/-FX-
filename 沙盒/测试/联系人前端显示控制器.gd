@@ -5,65 +5,81 @@ const MASK_OVERLAY_NAME: StringName = &"__rounded_mask_overlay"
 const CONTENT_ROOT_PATH: NodePath = ^"__content_root"
 const MASK_OVERLAY_PATH: NodePath = ^"__rounded_mask_overlay"
 
-@export_group("Init Layout")
-## 左侧头像的初始摆放位置。
+@export_group("初始布局")
+## 左侧球体的初始位置。
 @export var left_avatar_start: Vector2 = Vector2(120.0, 360.0)
-## 右侧头像的初始摆放位置。
+## 右侧球体的初始位置。
 @export var right_avatar_start: Vector2 = Vector2(385.0, 448.0)
 
-@export_group("Zoom")
-## 允许缩放到的最小值。
+@export_group("缩放")
+## 最小缩放值。
 @export var min_zoom: float = 0.52
-## 允许缩放到的最大值。
+## 最大缩放值。
 @export var max_zoom: float = 1.85
-## 鼠标滚轮每次缩放的步进。
+## 每次滚轮缩放的步进。
 @export var zoom_step: float = 0.08
 
-@export_group("World")
-## 活动范围倍率，2 代表宽高各扩成 2 倍。
+@export_group("可活动范围")
+## 前端显示内部真实活动范围相对屏幕范围的倍数。
 @export var activity_range_multiplier: float = 2.0
-## 限制最远缩小时用到的留白。
+## 计算最小缩放时预留的边距。
 @export var zoom_limit_padding: float = 18.0
 
-@export_group("Motion")
-## 左侧头像质量，越大越沉。
+@export_group("运动")
+## 左侧球体质量，越大越沉。
 @export var left_mass: float = 1.75
-## 右侧头像质量，越大越沉。
+## 右侧球体质量，越大越沉。
 @export var right_mass: float = 2.0
-## 摩擦越大，松手后停得越快。
+## 摩擦力，越大减速越快。
 @export var friction_strength: float = 1250.0
-## 鼠标速度转为甩出速度的系数。
+## 鼠标速度转换为甩出速度的系数。
 @export var throw_speed_factor: float = 1.85
+## 最小甩出速度。
 @export var min_throw_speed: float = 420.0
+## 最大甩出速度。
 @export var max_throw_speed: float = 1320.0
-## 跟随时预留给球体的安全边距。
+## 镜头跟随时给球体预留的安全边距。
 @export var follow_safe_margin: float = 26.0
-## 拖拽时在前进方向上额外看的距离。
+## 拖拽时镜头沿拖拽方向提前看的距离。
 @export var follow_lead_distance: float = 58.0
-## 镜头每秒最多移动多远。
+## 镜头每秒最大跟随速度。
 @export var follow_max_speed: float = 112.0
-## 取消跟随后镜头回正速度。
+## 松手后镜头回正速度。
 @export var camera_return_speed: float = 5.2
 
-@export_group("Collision")
-## 默认碰撞半径，找不到外框时兜底使用。
+@export_group("碰撞")
+## 找不到外框提示节点时使用的默认碰撞半径。
 @export var default_collision_radius: float = 54.0
-## 额外分离一点距离，避免视觉上重叠。
+## 两个球体分离时额外补一点距离，避免视觉重叠。
 @export var overlap_padding: float = 1.0
-## 靠近边缘后提前开始增加阻力的范围。
+## 靠近边缘时开始增加阻力的范围。
 @export var edge_resistance_range: float = 42.0
 ## 边缘阻力强度。
 @export var edge_resistance_strength: float = 0.72
-## 撞击后保留的速度比例。
+## 碰撞后保留的速度比例。
 @export var collision_velocity_keep: float = 0.18
 
-@export_group("Mask")
-## 圆角遮罩颜色，用来盖住圆角外侧区域。
+@export_group("圆角遮罩")
+## 圆角外侧的遮罩颜色。
 @export var rounded_mask_color: Color = Color(0.31764707, 0.31764707, 0.31764707, 1.0)
 @export var clip_left_padding: float = 0.0
 @export var clip_top_padding: float = 0.0
 @export var clip_right_padding: float = 0.0
 @export var clip_bottom_padding: float = 0.0
+
+@export_group("连接线")
+## 连接线端头向球体内部回收的距离。
+@export var line_end_inset: float = 0.0
+## 连接线整体额外缩短一点，方便微调端头贴合。
+@export var line_extra_shrink: float = 0.0
+## 两球贴得很近时，中段允许保留的最小长度。
+@export var line_min_middle_length: float = 0.0
+## 找不到连接线素材时，是否自动退回为代码示意线。
+@export var line_use_debug_fallback: bool = true
+## 示意线颜色。
+@export var debug_line_color: Color = Color(0.63, 0.87, 1.0, 0.9)
+## 示意线宽度。
+@export var debug_line_width: float = 5.0
 
 var left_avatar: Control = null
 var right_avatar: Control = null
@@ -78,9 +94,14 @@ var line_right: Sprite2D = null
 var line_left_base_scale: Vector2 = Vector2.ONE
 var line_mid_base_scale: Vector2 = Vector2.ONE
 var line_right_base_scale: Vector2 = Vector2.ONE
+var line_left_base_pos: Vector2 = Vector2.ZERO
+var line_mid_base_pos: Vector2 = Vector2.ZERO
+var line_right_base_pos: Vector2 = Vector2.ZERO
+var debug_line_start: Vector2 = Vector2.ZERO
+var debug_line_end: Vector2 = Vector2.ZERO
+var debug_line_visible: bool = false
 
 var dragged_avatar: Control = null
-## 当前镜头持续跟随的头像。拖拽时赋值，松手后保留，直到点击空白区域才清空。
 var focused_avatar: Control = null
 var drag_center_offset: Vector2 = Vector2.ZERO
 var previous_drag_position: Vector2 = Vector2.ZERO
@@ -108,6 +129,7 @@ func _ready() -> void:
 	apply_avatar_masks()
 	cache_background_shape()
 	ensure_rounded_mask_overlay()
+	cache_line_parts()
 	initialize_world_state()
 
 	set_process(true)
@@ -123,6 +145,10 @@ func _process(delta: float) -> void:
 	resolve_overlap()
 	apply_content_transform()
 	update_connection_visual()
+
+
+func _draw() -> void:
+	return
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -162,7 +188,6 @@ func begin_pointer_action(local_pos: Vector2, global_pos: Vector2) -> void:
 	recent_mouse_world_velocity = Vector2.ZERO
 
 	if dragged_avatar != null:
-		# 点中头像后，镜头锁定到这个头像。
 		focused_avatar = dragged_avatar
 		var world_pos: Vector2 = local_to_world(local_pos)
 		drag_center_offset = dragged_avatar.position - world_pos
@@ -171,7 +196,6 @@ func begin_pointer_action(local_pos: Vector2, global_pos: Vector2) -> void:
 		update_avatar_drag(local_pos, Vector2.ZERO)
 		return
 
-	# 点击空白区域时取消头像跟随，改为手动拖动画布。
 	focused_avatar = null
 	dragging_canvas = true
 	last_mouse_global = global_pos
@@ -180,7 +204,6 @@ func begin_pointer_action(local_pos: Vector2, global_pos: Vector2) -> void:
 func end_pointer_action() -> void:
 	if dragged_avatar != null:
 		avatar_velocities[dragged_avatar.name] = build_throw_velocity(dragged_avatar, recent_mouse_world_velocity)
-		# 松手后保留焦点，让镜头继续确保这个球完整可见。
 		focused_avatar = dragged_avatar
 	dragged_avatar = null
 	dragging_canvas = false
@@ -453,7 +476,6 @@ func update_single_avatar_inertia(avatar: Control, delta: float) -> void:
 
 
 func update_camera_follow(delta: float) -> void:
-	# 只要焦点头像还在，就持续保证它完整出现在屏幕内。
 	if focused_avatar == null or not is_instance_valid(focused_avatar):
 		focused_avatar = null
 		follow_pan_offset = follow_pan_offset.lerp(Vector2.ZERO, clampf(delta * camera_return_speed, 0.0, 1.0))
@@ -464,7 +486,7 @@ func update_camera_follow(delta: float) -> void:
 	var current_total_pan: Vector2 = get_total_pan()
 	var current_screen_center: Vector2 = avatar_world_center * zoom_value + current_total_pan
 	var lead_offset: Vector2 = Vector2.ZERO
-	if dragged_avatar == focused_avatar:
+	if dragged_avatar == focused_avatar and recent_mouse_world_velocity.length() > 0.001:
 		lead_offset = recent_mouse_world_velocity.normalized() * follow_lead_distance
 	var radius_on_screen: float = get_avatar_collision_radius(focused_avatar) * zoom_value
 	var target_screen_center: Vector2 = clamp_point_to_rounded_rect(current_screen_center + lead_offset, radius_on_screen, follow_safe_margin)
@@ -760,6 +782,10 @@ func local_to_world(local_pos: Vector2) -> Vector2:
 	return (local_pos - get_total_pan()) / zoom_value
 
 
+func world_to_screen_point(world_pos: Vector2) -> Vector2:
+	return world_pos * get_zoom_value() + get_total_pan()
+
+
 func clamp_point_to_rounded_rect(point: Vector2, radius: float, extra_padding: float) -> Vector2:
 	var inset_rect: Rect2 = Rect2(Vector2.ZERO, size).grow(-(radius + extra_padding))
 	var result: Vector2 = point
@@ -864,10 +890,19 @@ func find_hidden_hint_panel(root: Node) -> Panel:
 
 
 func find_portrait_sprite(root: Node) -> Sprite2D:
+	var inner_panel: Panel = find_inner_panel(root)
+	if inner_panel != null:
+		var inner_sprite: Sprite2D = find_first_sprite(inner_panel)
+		if inner_sprite != null:
+			return inner_sprite
+	return null
+
+
+func find_first_sprite(root: Node) -> Sprite2D:
 	for child: Node in root.get_children():
-		if child is Sprite2D and child.name == "人物头像":
+		if child is Sprite2D:
 			return child as Sprite2D
-		var nested_result: Sprite2D = find_portrait_sprite(child)
+		var nested_result: Sprite2D = find_first_sprite(child)
 		if nested_result != null:
 			return nested_result
 	return null

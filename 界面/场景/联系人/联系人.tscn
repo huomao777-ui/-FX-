@@ -7,9 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c5qoxrdq4ohq" path="res://界面/场景/属性状态/美术资源/角色头像/窘迫图.png" id="5_a6jii"]
 [ext_resource type="Texture2D" uid="uid://ddfe8nt14x14u" path="res://界面/场景/联系人/美术资源/前景星点层.png" id="5_sdnmu"]
 [ext_resource type="Texture2D" uid="uid://dqi2jlq0lj54w" path="res://界面/场景/联系人/美术资源/头像框地球.png" id="7_wyby1"]
-[ext_resource type="Texture2D" uid="uid://c11mubdwwjdnq" path="res://界面/场景/联系人/美术资源/连接线左端头.png" id="8_2hpco"]
-[ext_resource type="Texture2D" uid="uid://dblvpur5bghw7" path="res://界面/场景/联系人/美术资源/连接线右端头.png" id="9_8t2fw"]
-[ext_resource type="Texture2D" uid="uid://b8rbuti8dw473" path="res://界面/场景/联系人/美术资源/连接线中部.png" id="9_a6jii"]
 [ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="20_uan0r"]
 [ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="21_1wmgh"]
 [ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="22_iibmh"]
@@ -19,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bhbxipfbnysm7" path="res://界面/场景/手机/美术资源/仅剩边框.png" id="26_k2art"]
 [ext_resource type="Script" uid="uid://cfwajcqqxk41n" path="res://沙盒/测试/联系人前端显示控制器.gd" id="27_front_display"]
 [ext_resource type="Script" uid="uid://drgc8mi2bteeu" path="res://沙盒/测试/联系人背景视差控制器.gd" id="28_contact_parallax"]
+[ext_resource type="Script" uid="uid://0rppwl7sidwk" path="res://沙盒/测试/contact_line_controller.gd" id="29_contact_line"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5lm"]
 bg_color = Color(0.02745098, 0.050980393, 0.09411765, 1)
@@ -184,21 +182,22 @@ offset_left = 114.871765
 offset_top = -126.942154
 offset_right = 127.99994
 offset_bottom = -93.93721
+script = ExtResource("29_contact_line")
 
-[node name="连接线左端头" type="Sprite2D" parent="APP/前端显示/连接线" unique_id=755082692]
-position = Vector2(-127.999985, 305.9306)
-scale = Vector2(0.059829034, 0.14876035)
-texture = ExtResource("8_2hpco")
+[node name="主体层" type="ColorRect" parent="APP/前端显示/连接线" unique_id=2026454061]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="连接线中部" type="Sprite2D" parent="APP/前端显示/连接线" unique_id=1136414708]
-position = Vector2(-127.999985, 305.9306)
-scale = Vector2(0.059829034, 0.14876035)
-texture = ExtResource("9_a6jii")
+[node name="雾层" type="ColorRect" parent="APP/前端显示/连接线" unique_id=891878000]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="连接线右端头" type="Sprite2D" parent="APP/前端显示/连接线" unique_id=1988810772]
-position = Vector2(-127.999985, 305.9306)
-scale = Vector2(0.059829034, 0.14876035)
-texture = ExtResource("9_8t2fw")
+[node name="环绕层" type="ColorRect" parent="APP/前端显示/连接线" unique_id=1936001880]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="手机相关节点" type="Control" parent="." unique_id=281959985]
 anchors_preset = 0
