@@ -1,0 +1,628 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/弹窗卡片背景.png" id="1_card_bg"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop0.png" id="2_coop_0"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop1.png" id="3_coop_1"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop2.png" id="4_coop_2"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop3.png" id="5_coop_3"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop4.png" id="6_coop_4"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop5.png" id="7_coop_5"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop6.png" id="8_coop_6"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop7.png" id="9_coop_7"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop8.png" id="10_coop_8"]
+[ext_resource type="Texture2D" path="res://界面/场景/联系人/美术资源/coop9.png" id="11_coop_9"]
+
+[node name="CharacterInfoCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+
+[node name="DimBackground" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0156863, 0.027451, 0.0509804, 0.42)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardRoot" type="Control" parent="CenterContainer"]
+custom_minimum_size = Vector2(1577, 997)
+layout_mode = 2
+
+[node name="CardBackground" type="TextureRect" parent="CenterContainer/CardRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_card_bg")
+stretch_mode = 3
+
+[node name="ContentLayer" type="Control" parent="CenterContainer/CardRoot"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PortraitArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer"]
+anchors_preset = 0
+offset_left = 110.0
+offset_top = 138.0
+offset_right = 646.0
+offset_bottom = 778.0
+
+[node name="PortraitMargin" type="MarginContainer" parent="CenterContainer/CardRoot/ContentLayer/PortraitArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 24
+
+[node name="PortraitPlaceholder" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/PortraitArea/PortraitMargin"]
+modulate = Color(1, 1, 1, 0.15)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PortraitHint" type="Label" parent="CenterContainer/CardRoot/ContentLayer/PortraitArea/PortraitMargin/PortraitPlaceholder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -18.0
+offset_right = 120.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.968627, 1, 0.88)
+theme_override_font_sizes/font_size = 24
+text = "Portrait Area"
+horizontal_alignment = 1
+
+[node name="BasicInfoArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer"]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 144.0
+offset_right = 1452.0
+offset_bottom = 390.0
+
+[node name="BasicInfoMargin" type="MarginContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="BasicInfoColumn" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BasicInfoTitle" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Basic Info"
+
+[node name="NameRow" type="HBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NameLabel" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/NameRow"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 18
+text = "Name"
+
+[node name="NameValue" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/NameRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "CHARACTER / NAME"
+
+[node name="ProfileRow" type="HBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn"]
+layout_mode = 2
+theme_override_constants/separation = 34
+
+[node name="GenderBlock" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow"]
+layout_mode = 2
+
+[node name="GenderLabel" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/GenderBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "Gender"
+
+[node name="GenderValue" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/GenderBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "Female"
+
+[node name="JobBlock" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow"]
+layout_mode = 2
+
+[node name="JobLabel" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/JobBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "Job"
+
+[node name="JobValue" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/JobBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "Job Placeholder"
+
+[node name="LocationBlock" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow"]
+layout_mode = 2
+
+[node name="LocationLabel" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/LocationBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "Location"
+
+[node name="LocationValue" type="Label" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/LocationBlock"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "District"
+
+[node name="IntroText" type="RichTextLabel" parent="CenterContainer/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.92)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+text = "Character intro placeholder."
+
+[node name="GiftArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer"]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 406.0
+offset_right = 1452.0
+offset_bottom = 554.0
+
+[node name="GiftMargin" type="MarginContainer" parent="CenterContainer/CardRoot/ContentLayer/GiftArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="GiftColumn" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/GiftArea/GiftMargin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GiftTitle" type="Label" parent="CenterContainer/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Gift Preference"
+
+[node name="GiftLike" type="Label" parent="CenterContainer/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Like: tag / tag / tag"
+
+[node name="GiftDislike" type="Label" parent="CenterContainer/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "Dislike: tag / tag"
+
+[node name="SkillArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer"]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 580.0
+offset_right = 1452.0
+offset_bottom = 772.0
+
+[node name="SkillMargin" type="MarginContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="SkillColumn" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkillTitle" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "Assist Skills"
+
+[node name="SkillRow" type="HBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="SkillA" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillARank" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "RANK 3"
+
+[node name="SkillAName" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Skill A"
+
+[node name="SkillADesc" type="RichTextLabel" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "Skill description."
+fit_content = true
+scroll_active = false
+
+[node name="SkillB" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillBRank" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "RANK 7"
+
+[node name="SkillBName" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Skill B"
+
+[node name="SkillBDesc" type="RichTextLabel" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "Skill description."
+fit_content = true
+scroll_active = false
+
+[node name="SkillCSpacer" type="Control" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow"]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+
+[node name="SkillC" type="VBoxContainer" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillCRank" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "RANK 10"
+
+[node name="SkillCName" type="Label" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Skill C"
+
+[node name="SkillCDesc" type="RichTextLabel" parent="CenterContainer/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "Skill description."
+fit_content = true
+scroll_active = false
+
+[node name="CoopPanel" type="Control" parent="CenterContainer/CardRoot/ContentLayer"]
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 804.0
+offset_right = 1496.0
+offset_bottom = 941.0
+
+[node name="CoopContent" type="Control" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CoopGaugeArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent"]
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 27.0
+offset_right = 385.0
+offset_bottom = 153.0
+
+[node name="GaugeLayer" type="Control" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 30.0
+offset_right = -165.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Coop0" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_coop_0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop1" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_coop_1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop2" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_coop_2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop3" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_coop_3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop4" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_coop_4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop5" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_coop_5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop6" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_coop_6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop7" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_coop_7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop8" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_coop_8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop9" type="TextureRect" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_coop_9")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoopHeader" type="Control" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent"]
+anchors_preset = 0
+offset_left = 269.0
+offset_top = -5.0
+offset_right = 1265.0
+offset_bottom = 29.0
+
+[node name="CoopLevelText" type="Label" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopHeader"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 232.0
+offset_top = -8.0
+offset_right = 232.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "RANK 3 / 10    Next Unlock: Skill B"
+
+[node name="CoopInfoArea" type="Control" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent"]
+anchors_preset = 0
+offset_left = 277.0
+offset_top = 19.0
+offset_right = 1201.0
+offset_bottom = 115.0
+
+[node name="CurrentStageTitle" type="Label" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea"]
+layout_mode = 0
+offset_right = 236.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "Current Affinity"
+
+[node name="CurrentStageValue" type="Label" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea"]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 180.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 0.9)
+theme_override_font_sizes/font_size = 17
+text = "65 / 100"
+
+[node name="AffinityProgress" type="ProgressBar" parent="CenterContainer/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 0
+offset_top = 54.0
+offset_right = 504.0
+offset_bottom = 82.0
+value = 65.0
+show_percentage = false

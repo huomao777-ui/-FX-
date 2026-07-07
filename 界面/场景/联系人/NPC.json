@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "schema_name": "contact_npc_config",
+  "description": "联系人场景 NPC 配置模板。字段名固定，示例内容可随时替换。",
+  "defaults": {
+    "max_affinity_level": 10,
+    "initial_affinity_level": 1,
+    "initial_affinity_exp": 0,
+    "card_theme_id": "default_contact_card",
+    "locked_frame_node_name": "头像框2号",
+    "unlocked_frame_node_name": "头像框1号"
+  },
+  "npcs": [
+    {
+      "npc_id": "npc_001",
+      "display_name": "七海澄",
+      "sort_order": 100,
+      "is_enabled": true,
+      "is_visible_at_start": true,
+      "profile": {
+        "gender": "女",
+        "age": 24,
+        "job_title": "便利店夜班店员",
+        "location_name": "星潮区",
+        "intro_text": "白天寡言，夜里反而健谈的便利店店员，对城市里细小的变化异常敏感。"
+      },
+      "assets": {
+        "portrait_id": "portrait_nanami",
+        "portrait_locked_id": "portrait_locked_default",
+        "portrait_unlocked_id": "portrait_nanami",
+        "frame_locked_node_name": "头像框2号",
+        "frame_unlocked_node_name": "头像框1号",
+        "card_theme_id": "gray_blue_id_card"
+      },
+      "preferences": {
+        "hobby_tags": [
+          "深夜散步",
+          "甜品试吃",
+          "包装收藏"
+        ],
+        "liked_gift_tags": [
+          "甜食",
+          "香氛杂货",
+          "设计文具"
+        ],
+        "disliked_gift_tags": [
+          "廉价饰品",
+          "刺激饮料"
+        ]
+      },
+      "relationship": {
+        "unlock_condition_id": "contact_scene_debug_default",
+        "initial_affinity_level": 1,
+        "initial_affinity_exp": 0,
+        "current_affinity_level": 1,
+        "current_affinity_exp": 18,
+        "next_level_required_exp": 100,
+        "max_affinity_level": 10
+      },
+      "coop": {
+        "coop_id": "coop_nanami",
+        "coop_name": "夜色熟客",
+        "skill_unlocks": [
+          {
+            "unlock_level": 3,
+            "skill_id": "night_store_discount",
+            "skill_name": "熟客折扣",
+            "skill_desc": "夜间时间段在便利店购物时，部分商品享受折扣。",
+            "effect_type": "shop_discount",
+            "effect_target": "night_store_goods",
+            "effect_value": 0.7
+          },
+          {
+            "unlock_level": 7,
+            "skill_id": "city_night_charm",
+            "skill_name": "夜行魅力",
+            "skill_desc": "夜间外出相关行动结束时，额外获得魅力成长。",
+            "effect_type": "attribute_bonus",
+            "effect_target": "charm",
+            "effect_value": 2
+          },
+          {
+            "unlock_level": 10,
+            "skill_id": "midnight_supply_route",
+            "skill_name": "午夜补给线",
+            "skill_desc": "夜间探索前可额外领取一次补给支持。",
+            "effect_type": "resource_support",
+            "effect_target": "night_explore_supply",
+            "effect_value": 1
+          }
+        ]
+      },
+      "network": {
+        "faction_tags": [
+          "便利店",
+          "夜间活动",
+          "城市情报"
+        ],
+        "relationship_links": []
+      },
+      "notes": {
+        "designer_note": "当前为模板占位 NPC，文案和数值均可替换。",
+        "programmer_note": "程序优先读取 npc_id、profile、preferences、relationship、coop.skill_unlocks。"
+      }
+    }
+  ]
+}

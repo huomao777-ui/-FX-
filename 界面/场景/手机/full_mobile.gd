@@ -547,7 +547,9 @@ func _try_open_app_at_position(local_position: Vector2) -> bool:
 	var icon: Control = _find_icon_at_global_position(local_position)
 	if icon == null:
 		return false
-	var scene_path: String = str(APP_SCENE_PATHS.get(icon.name, ""))
+	var scene_path: String = AppShellController.get_scene_path_for_app(icon.name)
+	if scene_path.is_empty():
+		scene_path = str(APP_SCENE_PATHS.get(icon.name, ""))
 	if scene_path.is_empty():
 		return false
 	_is_pointer_down = false

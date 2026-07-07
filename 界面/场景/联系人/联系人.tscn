@@ -7,8 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://c5qoxrdq4ohq" path="res://界面/场景/属性状态/美术资源/角色头像/窘迫图.png" id="5_a6jii"]
 [ext_resource type="Texture2D" uid="uid://ddfe8nt14x14u" path="res://界面/场景/联系人/美术资源/前景星点层.png" id="5_sdnmu"]
 [ext_resource type="Texture2D" uid="uid://dqi2jlq0lj54w" path="res://界面/场景/联系人/美术资源/头像框地球.png" id="7_wyby1"]
+[ext_resource type="Texture2D" uid="uid://bqyqvjjd7xkuh" path="res://界面/场景/联系人/美术资源/弹窗卡片背景.png" id="11_agbp6"]
+[ext_resource type="Script" uid="uid://dekai14eejuje" path="res://沙盒/测试/联系人人物信息卡控制器.gd" id="11_jukd7"]
+[ext_resource type="Texture2D" uid="uid://bry1j0x2obw07" path="res://界面/场景/联系人/美术资源/coop0.png" id="12_jukd7"]
+[ext_resource type="Texture2D" uid="uid://hm65b4ii0mj3" path="res://界面/场景/联系人/美术资源/coop1.png" id="13_f11lr"]
+[ext_resource type="Texture2D" uid="uid://dt1okx14vvtgk" path="res://界面/场景/联系人/美术资源/coop2.png" id="14_jxg72"]
+[ext_resource type="Texture2D" uid="uid://d2nodn3anm84y" path="res://界面/场景/联系人/美术资源/coop3.png" id="15_5s64e"]
+[ext_resource type="Texture2D" uid="uid://cx4bgupucgr14" path="res://界面/场景/联系人/美术资源/coop4.png" id="16_ncab8"]
+[ext_resource type="Texture2D" uid="uid://dre3fgkut44j3" path="res://界面/场景/联系人/美术资源/coop5.png" id="17_d55gi"]
+[ext_resource type="Texture2D" uid="uid://ddb1nuiv2olhy" path="res://界面/场景/联系人/美术资源/coop6.png" id="18_kie5w"]
+[ext_resource type="Texture2D" uid="uid://d1bt5e1o8fjl1" path="res://界面/场景/联系人/美术资源/coop7.png" id="19_nmt8f"]
+[ext_resource type="Texture2D" uid="uid://blxgs32ttkk4m" path="res://界面/场景/联系人/美术资源/coop8.png" id="20_iwt0o"]
 [ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="20_uan0r"]
 [ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="21_1wmgh"]
+[ext_resource type="Texture2D" uid="uid://7djq38ipsv81" path="res://界面/场景/联系人/美术资源/coop9.png" id="21_80edf"]
 [ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="22_iibmh"]
 [ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="23_muyet"]
 [ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="24_m0j6h"]
@@ -17,6 +29,13 @@
 [ext_resource type="Script" uid="uid://cfwajcqqxk41n" path="res://沙盒/测试/联系人前端显示控制器.gd" id="27_front_display"]
 [ext_resource type="Script" uid="uid://drgc8mi2bteeu" path="res://沙盒/测试/联系人背景视差控制器.gd" id="28_contact_parallax"]
 [ext_resource type="Script" uid="uid://0rppwl7sidwk" path="res://沙盒/测试/contact_line_controller.gd" id="29_contact_line"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jukd7"]
+bg_color = Color(0.78548336, 0.4247311, 0.89601016, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6e5lm"]
 bg_color = Color(0.02745098, 0.050980393, 0.09411765, 1)
@@ -45,6 +64,9 @@ corner_radius_top_left = 299
 corner_radius_top_right = 299
 corner_radius_bottom_right = 299
 corner_radius_bottom_left = 299
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a6jii"]
+load_path = "res://.godot/imported/窘迫图灰色剪影.png-3b2f8302c5663af4e6d671fab25c5c53.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t83t5"]
 bg_color = Color(0.9372549, 0.94509804, 0.9647059, 1)
@@ -89,6 +111,10 @@ bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_gcb01")
+"进入时启用汇率专注时间" = false
+"进入时启用盯盘耗电" = false
+"离开时恢复普通状态" = false
+"FullMobile软件节点名" = "联系人"
 
 [node name="交互范围" type="Control" parent="." unique_id=212345678]
 anchors_preset = 0
@@ -98,6 +124,15 @@ offset_right = 1138.0
 offset_bottom = 1032.0
 mouse_filter = 2
 script = ExtResource("2_t8e3m")
+
+[node name="交互判定参考节点" type="Panel" parent="交互范围" unique_id=178283693]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 4.0
+offset_right = 489.0
+offset_bottom = 985.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jukd7")
 
 [node name="APP" type="Control" parent="." unique_id=177741036]
 anchors_preset = 0
@@ -142,6 +177,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("27_front_display")
+activity_range_multiplier = 4.0
 
 [node name="头像框1号" type="Control" parent="APP/前端显示" unique_id=66907394]
 anchors_preset = 0
@@ -176,6 +212,41 @@ position = Vector2(-14.2221985, -34.274384)
 scale = Vector2(0.2, 0.252)
 texture = ExtResource("7_wyby1")
 
+[node name="头像框2号" type="Control" parent="APP/前端显示" unique_id=664692095]
+anchors_preset = 0
+offset_left = 73.29913
+offset_top = 412.562
+offset_right = 113.29913
+offset_bottom = 452.562
+
+[node name="外框" type="Panel" parent="APP/前端显示/头像框2号" unique_id=524771115]
+visible = false
+layout_mode = 0
+offset_left = -91.897415
+offset_top = -130.75046
+offset_right = 62.358932
+offset_bottom = 62.20163
+theme_override_styles/panel = SubResource("StyleBoxFlat_7yxvs")
+
+[node name="内框" type="Panel" parent="APP/前端显示/头像框2号" unique_id=1844859857]
+clip_children = 1
+layout_mode = 0
+offset_left = -74.393166
+offset_top = -104.09255
+offset_right = 45.948692
+offset_bottom = 41.269386
+theme_override_styles/panel = SubResource("StyleBoxFlat_r1x2h")
+
+[node name="人物头像" type="Sprite2D" parent="APP/前端显示/头像框2号/内框" unique_id=1372767374]
+position = Vector2(68.92306, 316.08597)
+scale = Vector2(0.6797924, 0.7085517)
+texture = SubResource("CompressedTexture2D_a6jii")
+
+[node name="外框地球" type="Sprite2D" parent="APP/前端显示/头像框2号" unique_id=813085794]
+position = Vector2(-14.2221985, -34.274384)
+scale = Vector2(0.2, 0.252)
+texture = ExtResource("7_wyby1")
+
 [node name="连接线" type="Control" parent="APP/前端显示" unique_id=215451533]
 anchors_preset = 0
 offset_left = 114.871765
@@ -198,6 +269,611 @@ offset_bottom = 40.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="人物信息卡" type="Control" parent="APP/前端显示" unique_id=3885504]
+anchors_preset = 0
+offset_left = -5.470093
+offset_top = 6.347107
+offset_right = 34.529907
+offset_bottom = 46.347107
+scale = Vector2(0.33, 0.347)
+script = ExtResource("11_jukd7")
+
+[node name="内容容器" type="CenterContainer" parent="APP/前端显示/人物信息卡" unique_id=1096804258]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardRoot" type="Control" parent="APP/前端显示/人物信息卡/内容容器" unique_id=1111288979]
+custom_minimum_size = Vector2(1577, 997)
+layout_mode = 2
+
+[node name="CardBackground" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot" unique_id=500228665]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_agbp6")
+stretch_mode = 3
+
+[node name="ContentLayer" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot" unique_id=1929008088]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PortraitArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer" unique_id=568508590]
+anchors_preset = 0
+offset_left = 110.0
+offset_top = 138.0
+offset_right = 646.0
+offset_bottom = 778.0
+
+[node name="PortraitMargin" type="MarginContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/PortraitArea" unique_id=1353263783]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 24
+
+[node name="PortraitPlaceholder" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/PortraitArea/PortraitMargin" unique_id=881784302]
+modulate = Color(1, 1, 1, 0.15)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PortraitHint" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/PortraitArea/PortraitMargin/PortraitPlaceholder" unique_id=772858889]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -18.0
+offset_right = 120.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.823529, 0.968627, 1, 0.88)
+theme_override_font_sizes/font_size = 24
+text = "立绘区域"
+horizontal_alignment = 1
+
+[node name="BasicInfoArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer" unique_id=1352892128]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 144.0
+offset_right = 1452.0
+offset_bottom = 390.0
+
+[node name="BasicInfoMargin" type="MarginContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea" unique_id=1350823164]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="BasicInfoColumn" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin" unique_id=1531087530]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="BasicInfoTitle" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn" unique_id=1936433600]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "基础信息"
+
+[node name="NameRow" type="HBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn" unique_id=133854941]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NameLabel" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/NameRow" unique_id=190094201]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 18
+text = "姓名"
+
+[node name="NameValue" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/NameRow" unique_id=1521429014]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "角色姓名"
+
+[node name="ProfileRow" type="HBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn" unique_id=1315130280]
+layout_mode = 2
+theme_override_constants/separation = 34
+
+[node name="GenderBlock" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow" unique_id=1530844928]
+layout_mode = 2
+
+[node name="GenderLabel" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/GenderBlock" unique_id=1389121833]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "性别"
+
+[node name="GenderValue" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/GenderBlock" unique_id=1775232169]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "女"
+
+[node name="JobBlock" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow" unique_id=514031908]
+layout_mode = 2
+
+[node name="JobLabel" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/JobBlock" unique_id=453920026]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "职业"
+
+[node name="JobValue" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/JobBlock" unique_id=2077112174]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "职业占位"
+
+[node name="LocationBlock" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow" unique_id=663741884]
+layout_mode = 2
+
+[node name="LocationLabel" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/LocationBlock" unique_id=2003316188]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.533333, 0.85098, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "地区"
+
+[node name="LocationValue" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn/ProfileRow/LocationBlock" unique_id=931028044]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.921569, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 21
+text = "区域占位"
+
+[node name="IntroText" type="RichTextLabel" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/BasicInfoArea/BasicInfoMargin/BasicInfoColumn" unique_id=2114938977]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.92)
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "角色简介占位。"
+fit_content = true
+scroll_active = false
+
+[node name="GiftArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer" unique_id=1295388622]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 406.0
+offset_right = 1452.0
+offset_bottom = 554.0
+
+[node name="GiftMargin" type="MarginContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/GiftArea" unique_id=1830613758]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="GiftColumn" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/GiftArea/GiftMargin" unique_id=1357122119]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GiftTitle" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn" unique_id=105443259]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "礼物偏好"
+
+[node name="GiftLike" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn" unique_id=1352634706]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "喜欢：标签 / 标签 / 标签"
+
+[node name="GiftDislike" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/GiftArea/GiftMargin/GiftColumn" unique_id=316871713]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "讨厌：标签 / 标签"
+
+[node name="SkillArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer" unique_id=410206181]
+anchors_preset = 0
+offset_left = 688.0
+offset_top = 580.0
+offset_right = 1452.0
+offset_bottom = 772.0
+
+[node name="SkillMargin" type="MarginContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea" unique_id=1041159078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 18
+
+[node name="SkillColumn" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin" unique_id=464181972]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="SkillTitle" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn" unique_id=851943498]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 22
+text = "协助技能"
+
+[node name="SkillRow" type="HBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn" unique_id=559963381]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="SkillA" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow" unique_id=177066821]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillARank" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA" unique_id=1964937137]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "亲密 3"
+
+[node name="SkillAName" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA" unique_id=2069575512]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "技能一"
+
+[node name="SkillADesc" type="RichTextLabel" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillA" unique_id=815395609]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "技能描述。"
+fit_content = true
+scroll_active = false
+
+[node name="SkillB" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow" unique_id=1053155592]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillBRank" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB" unique_id=188500391]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "亲密 7"
+
+[node name="SkillBName" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB" unique_id=1968313162]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "技能二"
+
+[node name="SkillBDesc" type="RichTextLabel" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillB" unique_id=1987017668]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "技能描述。"
+fit_content = true
+scroll_active = false
+
+[node name="SkillCSpacer" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow" unique_id=1873872354]
+custom_minimum_size = Vector2(14, 0)
+layout_mode = 2
+
+[node name="SkillC" type="VBoxContainer" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow" unique_id=456755592]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SkillCRank" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC" unique_id=831373337]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.537255, 0.854902, 0.968627, 0.9)
+theme_override_font_sizes/font_size = 16
+text = "亲密 10"
+
+[node name="SkillCName" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC" unique_id=33919229]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "技能三"
+
+[node name="SkillCDesc" type="RichTextLabel" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/SkillArea/SkillMargin/SkillColumn/SkillRow/SkillC" unique_id=1749342351]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.839216, 0.972549, 1, 0.9)
+theme_override_font_sizes/normal_font_size = 15
+text = "技能描述。"
+fit_content = true
+scroll_active = false
+
+[node name="CoopPanel" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer" unique_id=980591555]
+anchors_preset = 0
+offset_left = 80.0
+offset_top = 804.0
+offset_right = 1496.0
+offset_bottom = 941.0
+
+[node name="CoopContent" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel" unique_id=681890801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CoopGaugeArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent" unique_id=1269695192]
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 27.0
+offset_right = 385.0
+offset_bottom = 153.0
+
+[node name="GaugeLayer" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea" unique_id=1321978352]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 30.0
+offset_right = -165.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Coop0" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=866794909]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_jukd7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop1" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=140785191]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("13_f11lr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop2" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=873580014]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("14_jxg72")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop3" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=627377923]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_5s64e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop4" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=2066002917]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ncab8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop5" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=205772530]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("17_d55gi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop6" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=379802160]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_kie5w")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop7" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=1782915813]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_nmt8f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop8" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=1073420648]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_iwt0o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Coop9" type="TextureRect" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopGaugeArea/GaugeLayer" unique_id=1774378718]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -108.0
+offset_right = 48.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("21_80edf")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoopHeader" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent" unique_id=385806658]
+anchors_preset = 0
+offset_left = 269.0
+offset_top = -5.0
+offset_right = 1265.0
+offset_bottom = 29.0
+
+[node name="CoopLevelText" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopHeader" unique_id=313012565]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 232.0
+offset_top = -8.0
+offset_right = 232.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.913725, 0.992157, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "亲密 3 / 10    下一解锁：技能二"
+
+[node name="CoopInfoArea" type="Control" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent" unique_id=785118762]
+anchors_preset = 0
+offset_left = 237.63237
+offset_top = 3.744832
+offset_right = 1161.6324
+offset_bottom = 99.744835
+
+[node name="CurrentStageTitle" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea" unique_id=522168157]
+layout_mode = 0
+offset_right = 236.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.819608, 0.972549, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "当前好感"
+
+[node name="CurrentStageValue" type="Label" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea" unique_id=1163218767]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 180.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.894118, 0.992157, 1, 0.9)
+theme_override_font_sizes/font_size = 17
+text = "65 / 100"
+
+[node name="AffinityProgress" type="ProgressBar" parent="APP/前端显示/人物信息卡/内容容器/CardRoot/ContentLayer/CoopPanel/CoopContent/CoopInfoArea" unique_id=1909495057]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 0
+offset_top = 54.0
+offset_right = 504.0
+offset_bottom = 82.0
+value = 65.0
+show_percentage = false
 
 [node name="手机相关节点" type="Control" parent="." unique_id=281959985]
 anchors_preset = 0

@@ -93,9 +93,16 @@ func _prepare_battery_style() -> void:
 	if _battery_bar == null:
 		return
 	var style: StyleBox = _battery_bar.get_theme_stylebox("fill")
-	if style is StyleBoxFlat:
-		_battery_fill_style = (style as StyleBoxFlat).duplicate() as StyleBoxFlat
-		_battery_bar.add_theme_stylebox_override("fill", _battery_fill_style)
+	if not (style is StyleBoxFlat):
+		_battery_fill_style = null
+		return
+
+	if _battery_bar.has_theme_stylebox_override("fill"):
+		_battery_fill_style = style as StyleBoxFlat
+		return
+
+	_battery_fill_style = (style as StyleBoxFlat).duplicate() as StyleBoxFlat
+	_battery_bar.add_theme_stylebox_override("fill", _battery_fill_style)
 
 func _bind_global_systems() -> void:
 	if not _has_game_data_manager():
