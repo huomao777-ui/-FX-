@@ -23,6 +23,10 @@ extends Node
 
 ## ===== 生命周期 =====
 
+var _last_slot_elapsed_minutes: float = 0.0
+var _last_slot_total_minutes: int = 240
+var _has_clock_sample: bool = false
+
 func _ready() -> void:
 	_验证子系统()
 	_连接子系统信号()
@@ -50,9 +54,31 @@ func _连接子系统信号() -> void:
 		return
 	if not 时间.回合推进.is_connected(_on_时间_回合推进):
 		时间.回合推进.connect(_on_时间_回合推进)
+	if not 时间.钟表时间变化.is_connected(_on_时间_钟表变化):
+		时间.钟表时间变化.connect(_on_时间_钟表变化)
+
+	_last_slot_elapsed_minutes = 时间.获取时段内分钟()
+	_last_slot_total_minutes = 时间.获取当前时段总分钟()
+	_has_clock_sample = true
 
 func _on_时间_回合推进(_总回合: int, _时段索引: int, _时段名称: String) -> void:
-	手机.处理回合耗电()
+	手机.处理回合耗电(float(_last_slot_total_minutes))
+
+func _on_时间_钟表变化(_小时: int, _分钟: int, 时段内分钟: float, _时段总分钟: int) -> void:
+	if 手机 == null:
+		return
+	if not _has_clock_sample:
+		_last_slot_elapsed_minutes = 时段内分钟
+		_last_slot_total_minutes = _时段总分钟
+		_has_clock_sample = true
+		return
+
+	var delta_minutes: float = 时段内分钟 - _last_slot_elapsed_minutes
+	if delta_minutes > 0.0:
+		手机.处理钟表耗电(delta_minutes)
+
+	_last_slot_elapsed_minutes = 时段内分钟
+	_last_slot_total_minutes = _时段总分钟
 
 ## ===== 配置加载接口（预留） =====
 

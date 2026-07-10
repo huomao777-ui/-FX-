@@ -7,12 +7,19 @@ class_name AppShellController
 ## 3. 可把当前场景自动注册到 FullMobile 指定软件图标
 
 const FULL_MOBILE_SCENE_PATH: String = "res://界面/场景/手机/full_mobile.tscn"
+const ATTRIBUTE_STATUS_SCENE_PATH: String = "res://界面/场景/属性状态/attribute_status.tscn"
 static var _app_scene_registry: Dictionary = {}
 static var _discovered_app_scene_registry: Dictionary = {}
 
 @export var 进入时启用汇率专注时间: bool = true
 @export var 进入时启用盯盘耗电: bool = true
 @export var 离开时恢复普通状态: bool = true
+## 是否在当前 APP 场景中同时显示属性状态栏场景。
+@export var 同时打开AttributeStatus: bool = false
+## Attribute Status 的场景路径；默认使用通用属性状态场景。
+@export_file("*.tscn") var AttributeStatus场景路径: String = ATTRIBUTE_STATUS_SCENE_PATH
+## Attribute Status 的挂载节点；留空时默认挂到当前父级根节点。
+@export var AttributeStatus挂载节点路径: NodePath
 
 ## 对应 FullMobile 场景里“软件”节点下的软件名，例如“联系人”。
 @export var FullMobile软件节点名: String = ""
@@ -20,6 +27,7 @@ static var _discovered_app_scene_registry: Dictionary = {}
 @export_file("*.tscn") var 当前APP场景路径: String = ""
 
 var _app_root: Node = null
+var _attribute_status_instance: Node = null
 
 
 func _ready() -> void:
@@ -30,6 +38,7 @@ func _ready() -> void:
 			GameDataManager.手机.进入汇率盯盘使用状态()
 
 	_app_root = _find_descendant_by_name(self, "APP")
+	_sync_attribute_status_scene()
 	_register_current_scene_to_full_mobile()
 
 
@@ -82,6 +91,42 @@ func _resolve_current_scene_path() -> String:
 	if current_scene != null and not current_scene.scene_file_path.is_empty():
 		return current_scene.scene_file_path
 	return ""
+
+
+func _sync_attribute_status_scene() -> void:
+	var existing_status: Node = _find_descendant_by_name(self, "Attribute Status")
+	if existing_status != null:
+		existing_status.visible = 同时打开AttributeStatus
+		_attribute_status_instance = existing_status
+		return
+
+	if not 同时打开AttributeStatus:
+		return
+	if AttributeStatus场景路径.is_empty():
+		push_warning("AppShellController: Attribute Status 场景路径为空，无法实例化。")
+		return
+	if not ResourceLoader.exists(AttributeStatus场景路径):
+		push_warning("AppShellController: Attribute Status 场景不存在: " + AttributeStatus场景路径)
+		return
+
+	var status_scene: PackedScene = load(AttributeStatus场景路径) as PackedScene
+	if status_scene == null:
+		push_warning("AppShellController: 无法加载 Attribute Status 场景: " + AttributeStatus场景路径)
+		return
+
+	var mount_parent: Node = _resolve_attribute_status_mount_parent()
+	if mount_parent == null:
+		push_warning("AppShellController: 未找到 Attribute Status 的挂载父节点。")
+		return
+
+	_attribute_status_instance = status_scene.instantiate()
+	mount_parent.add_child(_attribute_status_instance)
+
+
+func _resolve_attribute_status_mount_parent() -> Node:
+	if String(AttributeStatus挂载节点路径) != "":
+		return get_node_or_null(AttributeStatus挂载节点路径)
+	return self
 
 
 func _has_game_data_manager() -> bool:

@@ -12,34 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="10_5u7ib"]
 [ext_resource type="FontFile" uid="uid://chnrus28lurjl" path="res://资源/字体/DouyinSansBold.ttf" id="11_8q1me"]
 [ext_resource type="Texture2D" uid="uid://dn54kfvkn01el" path="res://界面/场景/手机/美术资源/原生基础软件.png" id="12_5u7ib"]
+[ext_resource type="Texture2D" uid="uid://ckmkkb1yomxt1" path="res://界面/场景/手机/美术资源/财经报.png" id="12_nbh5l"]
 [ext_resource type="Texture2D" uid="uid://dr5r1ytsm8mll" path="res://界面/场景/手机/美术资源/其他软件1.png" id="13_kmgp1"]
-[ext_resource type="Script" uid="uid://ggp3hvi0eao1" path="res://界面/组件/PhoneStatusBinder.gd" id="14_status"]
 [ext_resource type="Script" uid="uid://bwm7wuduego1i" path="res://界面/组件/PhoneUsageBinder.gd" id="15_usage"]
 [ext_resource type="Script" uid="uid://b3em312p1mg8b" path="res://界面/场景/手机/full_mobile.gd" id="16_full"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kmgp1"]
-bg_color = Color(1, 1, 0.9882353, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n8miq"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_r11x8"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_duv6j"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7unkk"]
-bg_color = Color(0.15686275, 0.16862746, 0.43529412, 0.8117647)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+[ext_resource type="Script" uid="uid://dar5ngcavsr6d" path="res://沙盒/测试/手机顶部信息总控.gd" id="17_nbh5l"]
+[ext_resource type="Script" uid="uid://b5elnquqg1xe8" path="res://沙盒/测试/手机时间显示.gd" id="18_he1wq"]
+[ext_resource type="Script" uid="uid://dcg7jhad38kgq" path="res://沙盒/测试/手机电量显示.gd" id="19_6udla"]
+[ext_resource type="Script" uid="uid://d30pmorryflmn" path="res://沙盒/测试/手机信号显示.gd" id="20_uk5g7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bfj7q"]
 bg_color = Color(0.6, 0.6, 0.6, 0.8509804)
@@ -124,15 +104,67 @@ region = Rect2(799.6001, 541.60004, 273.40002, 283.39996)
 atlas = ExtResource("13_kmgp1")
 region = Rect2(1789.9271, 302.8055, 850.64, 824.05774)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7unkk"]
+bg_color = Color(0.15686275, 0.16862746, 0.43529412, 0.8117647)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvr58"]
+bg_color = Color(0.9372549, 0.94509804, 0.9647059, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8509804, 0.8901961, 0.9490196, 0.9)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y6tn1"]
+bg_color = Color(0.9882353, 1, 0.9882353, 0.2784314)
+border_color = Color(0.9536491, 0.72342134, 0.83091956, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Theme" id="Theme_vb7j5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxqnc"]
+bg_color = Color(0.94509804, 0.95686275, 0.9843137, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.84705883, 0.89411765, 0.9647059, 0.92)
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ra0cf"]
+bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnxdd"]
+bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ndj6y"]
+bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8nak"]
+bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
+
 [node name="FullMobile" type="Control" unique_id=1248338117]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("16_full")
 "拖拽切页停留时间" = 0.55
 "拖拽切页冷却" = 0.65
-
-[node name="PhoneStatusBinder" type="Node" parent="." unique_id=369202297]
-script = ExtResource("14_status")
 
 [node name="PhoneUsageBinder" type="Node" parent="." unique_id=422411329]
 script = ExtResource("15_usage")
@@ -157,9 +189,6 @@ position = Vector2(-7.810112, -13.642761)
 scale = Vector2(0.4618539, 0.46700954)
 texture = ExtResource("3_dvdy4")
 
-[node name="灵动岛" type="Sprite2D" parent="手机进入状态" unique_id=1977716558]
-texture = ExtResource("4_xkv63")
-
 [node name="日期" type="Label" parent="手机进入状态" unique_id=1024772841]
 visible = false
 offset_left = -202.14352
@@ -169,21 +198,6 @@ offset_bottom = -520.4033
 theme_override_fonts/font = ExtResource("5_8q1me")
 theme_override_font_sizes/font_size = 34
 text = "6月8日周一·丙午年四月廿三"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="时间" type="RichTextLabel" parent="手机进入状态" unique_id=1982282013]
-offset_left = -213.33333
-offset_top = -629.63306
-offset_right = -84.239334
-offset_bottom = -567.4314
-theme_override_fonts/normal_font = ExtResource("5_8q1me")
-theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/bold_font_size = 30
-bbcode_enabled = true
-text = "18:38
-"
-tab_size = 3
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -198,87 +212,6 @@ visible = false
 position = Vector2(185.045, 424.969)
 scale = Vector2(0.07881192, 0.0875253)
 texture = ExtResource("7_kmgp1")
-
-[node name="电量" type="CanvasLayer" parent="手机进入状态" unique_id=502041728]
-
-[node name="电池" type="ProgressBar" parent="手机进入状态/电量" unique_id=2039439699]
-offset_left = 1050.0
-offset_top = 78.0
-offset_right = 1086.0
-offset_bottom = 98.0
-theme_override_styles/background = SubResource("StyleBoxFlat_kmgp1")
-theme_override_styles/fill = SubResource("StyleBoxFlat_n8miq")
-show_percentage = false
-
-[node name="数字" type="Label" parent="手机进入状态/电量/电池" unique_id=677967508]
-layout_mode = 0
-offset_left = 8.0
-offset_right = 29.0
-offset_bottom = 20.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 15
-text = "99"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="端点" type="Panel" parent="手机进入状态/电量/电池" unique_id=1401901812]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 7.0
-offset_right = 39.0
-offset_bottom = 12.0
-theme = SubResource("Theme_r11x8")
-theme_override_styles/panel = SubResource("StyleBoxFlat_duv6j")
-
-[node name="wifi" type="Node2D" parent="手机进入状态" unique_id=1960169967]
-position = Vector2(-4495.3154, -2237.9902)
-scale = Vector2(2.5915837, 2.7775764)
-
-[node name="1格信号" type="Sprite2D" parent="手机进入状态/wifi" unique_id=747132761]
-position = Vector2(1778.485, 589.1052)
-scale = Vector2(0.033983182, 0.036071923)
-texture = ExtResource("8_xkv63")
-
-[node name="2格信号" type="Sprite2D" parent="手机进入状态/wifi/1格信号" unique_id=992639003]
-texture = ExtResource("9_8q1me")
-
-[node name="3格信号" type="Sprite2D" parent="手机进入状态/wifi/1格信号/2格信号" unique_id=1421160914]
-texture = ExtResource("10_5u7ib")
-
-[node name="流量" type="Node2D" parent="手机进入状态" unique_id=1285308520]
-position = Vector2(-332.58112, -894.94214)
-scale = Vector2(2.5915837, 2.7775764)
-
-[node name="1格信号" type="Panel" parent="手机进入状态/流量" unique_id=399075359]
-offset_left = 180.0
-offset_top = 107.0
-offset_right = 182.0
-offset_bottom = 110.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
-
-[node name="2格信号" type="Panel" parent="手机进入状态/流量/1格信号" unique_id=1579130417]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -2.0
-offset_right = 5.0
-offset_bottom = 3.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
-
-[node name="3格信号" type="Panel" parent="手机进入状态/流量/1格信号/2格信号" unique_id=1898051072]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -2.0
-offset_right = 5.0
-offset_bottom = 5.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
-
-[node name="4格信号" type="Panel" parent="手机进入状态/流量/1格信号/2格信号/3格信号" unique_id=1954228677]
-layout_mode = 0
-offset_left = 3.0
-offset_top = -2.0
-offset_right = 5.0
-offset_bottom = 7.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_7unkk")
 
 [node name="灰色控件" type="Panel" parent="." unique_id=984981645]
 layout_mode = 0
@@ -866,6 +799,50 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
 
+[node name="财经报" type="Control" parent="软件" unique_id=448061588]
+anchors_preset = 0
+offset_left = 112.0
+offset_top = 104.0
+offset_right = 152.0
+offset_bottom = 144.0
+
+[node name="软件" type="Panel" parent="软件/财经报" unique_id=573017336]
+clip_children = 2
+layout_mode = 0
+offset_left = 696.0
+offset_top = 392.0
+offset_right = 760.0
+offset_bottom = 456.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mot1c")
+
+[node name="插图" type="Sprite2D" parent="软件/财经报/软件" unique_id=1836834672]
+position = Vector2(31.999968, 32.00003)
+scale = Vector2(0.03624007, 0.036240093)
+texture = ExtResource("12_nbh5l")
+
+[node name="软件名" type="Label" parent="软件/财经报" unique_id=759290076]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 464.0
+offset_right = 766.0
+offset_bottom = 487.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "新闻报"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="软件/财经报" unique_id=1636211153]
+layout_mode = 0
+offset_left = 696.0
+offset_top = 392.0
+offset_right = 760.0
+offset_bottom = 456.0
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0.96862745)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_5u7ib")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sl2tu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_r11x8")
+
 [node name="日历" type="Panel" parent="软件" unique_id=308747056]
 layout_mode = 0
 offset_left = 920.0
@@ -902,3 +879,118 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_8q1me")
 text = "天气"
 horizontal_alignment = 1
+
+[node name="手机顶部信息" type="Control" parent="." unique_id=42356544]
+anchors_preset = 0
+offset_left = 893.0
+offset_top = 563.0
+offset_right = 893.0
+offset_bottom = 563.0
+scale = Vector2(0.9140626, 0.7877604)
+script = ExtResource("17_nbh5l")
+
+[node name="灵动岛" type="Sprite2D" parent="手机顶部信息" unique_id=354727964]
+texture = ExtResource("4_xkv63")
+
+[node name="时间" type="RichTextLabel" parent="手机顶部信息" unique_id=2000911086]
+layout_mode = 0
+offset_left = -213.33331
+offset_top = -629.63306
+offset_right = -84.23932
+offset_bottom = -567.4314
+theme_override_fonts/normal_font = ExtResource("5_8q1me")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "18:38
+"
+tab_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("18_he1wq")
+
+[node name="电量" type="CanvasLayer" parent="手机顶部信息" unique_id=1447399420]
+script = ExtResource("19_6udla")
+
+[node name="电池" type="ProgressBar" parent="手机顶部信息/电量" unique_id=441250099]
+offset_left = 1052.0
+offset_top = 81.0
+offset_right = 1084.0
+offset_bottom = 98.0
+theme_override_styles/background = SubResource("StyleBoxFlat_uvr58")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y6tn1")
+value = 100.0
+show_percentage = false
+
+[node name="数字" type="Label" parent="手机顶部信息/电量/电池" unique_id=653311746]
+layout_mode = 0
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 26.0
+offset_bottom = 19.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="端点" type="Panel" parent="手机顶部信息/电量/电池" unique_id=1753877153]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 6.0
+offset_right = 36.0
+offset_bottom = 11.0
+theme = SubResource("Theme_vb7j5")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxqnc")
+
+[node name="流量" type="Node2D" parent="手机顶部信息" unique_id=574614472]
+position = Vector2(-332.58112, -894.94214)
+scale = Vector2(2.5915837, 2.7775764)
+script = ExtResource("20_uk5g7")
+
+[node name="1格信号" type="Panel" parent="手机顶部信息/流量" unique_id=1582766575]
+offset_left = 180.0
+offset_top = 107.0
+offset_right = 182.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ra0cf")
+
+[node name="2格信号" type="Panel" parent="手机顶部信息/流量/1格信号" unique_id=2105476682]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 3.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mnxdd")
+
+[node name="3格信号" type="Panel" parent="手机顶部信息/流量/1格信号/2格信号" unique_id=2028960352]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 5.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ndj6y")
+
+[node name="4格信号" type="Panel" parent="手机顶部信息/流量/1格信号/2格信号/3格信号" unique_id=1013177889]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 7.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_w8nak")
+
+[node name="wifi" type="Node2D" parent="手机顶部信息" unique_id=1357103141]
+position = Vector2(-4495.3154, -2237.9902)
+scale = Vector2(2.5915837, 2.7775764)
+script = ExtResource("20_uk5g7")
+
+[node name="1格信号" type="Sprite2D" parent="手机顶部信息/wifi" unique_id=1820576851]
+position = Vector2(1778.485, 589.1052)
+scale = Vector2(0.033983182, 0.036071923)
+texture = ExtResource("8_xkv63")
+
+[node name="2格信号" type="Sprite2D" parent="手机顶部信息/wifi/1格信号" unique_id=758486475]
+texture = ExtResource("9_8q1me")
+
+[node name="3格信号" type="Sprite2D" parent="手机顶部信息/wifi/1格信号/2格信号" unique_id=162718354]
+texture = ExtResource("10_5u7ib")

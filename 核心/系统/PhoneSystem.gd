@@ -35,12 +35,20 @@ enum UsageMode {
 @export_range(1, 20, 1) var 最低电量: int = 1
 ## 低电量阈值，低于或等于该值时显示红色
 @export_range(1, 50, 1) var 低电量阈值: int = 20
-## 未使用手机时每回合消耗电量
-@export_range(0, 24, 1) var 待机每回合耗电: int = 10
-## 普通使用手机时每回合消耗电量
-@export_range(0, 24, 1) var 普通使用每回合耗电: int = 14
-## 汇率软件盯盘时每回合消耗电量
-@export_range(0, 24, 1) var 盯盘每回合耗电: int = 24
+## 未使用手机且完整流逝 4 小时时的目标耗电。
+@export_range(0.0, 30.0, 0.1) var 待机每四小时耗电: float = 4.0
+## 普通打开手机且完整流逝 4 小时时的目标耗电。
+@export_range(0.0, 30.0, 0.1) var 普通使用每四小时耗电: float = 11.5
+## 外汇盯盘且完整流逝 4 小时时的目标耗电。
+@export_range(0.0, 30.0, 0.1) var 盯盘每四小时耗电: float = 19.0
+## 玩家直接推进回合、未完整经历时间流逝时的待机补偿耗电。
+@export_range(0.0, 12.0, 0.1) var 待机回合补偿耗电: float = 1.5
+## 玩家直接推进回合、未完整经历时间流逝时的普通使用补偿耗电。
+@export_range(0.0, 12.0, 0.1) var 普通使用回合补偿耗电: float = 3.0
+## 玩家直接推进回合、未完整经历时间流逝时的盯盘补偿耗电。
+@export_range(0.0, 12.0, 0.1) var 盯盘回合补偿耗电: float = 4.5
+## 兜底用的回合补偿基准分钟。若外部没有传入当前时段总分钟，则使用这个值。
+@export_range(30.0, 480.0, 1.0) var 回合补偿兜底分钟: float = 240.0
 ## 是否启用手机系统日志
 @export var 启用手机日志: bool = true
 
@@ -60,6 +68,8 @@ var _wifi_strength: int = 3
 var _mobile_signal_strength: int = 4
 var _use_wifi: bool = true
 var _usage_mode: int = UsageMode.IDLE
+var _clock_drain_accumulator: float = 0.0
+var _minutes_since_turn_settlement: float = 0.0
 
 ## ===== 生命周期 =====
 
@@ -71,17 +81,34 @@ func _ready() -> void:
 	_emit_all_changed()
 	_log_phone_state("初始化")
 
-## ===== 公共接口：回合耗电 =====
+## ===== 公共接口：耗电结算 =====
 
-## 由 TimeSystem 回合推进后调用。根据当前手机使用状态扣除电量。
-func 处理回合耗电() -> void:
+## 由 TimeSystem 的钟表分钟变化调用。根据当前手机使用状态累积耗电。
+func 处理钟表耗电(delta_minutes: float) -> void:
+	if delta_minutes <= 0.0:
+		return
 	if _is_charging:
+		return
+
+	_minutes_since_turn_settlement += delta_minutes
+	_clock_drain_accumulator += _get_minute_battery_drain_rate() * delta_minutes
+	_flush_accumulated_battery_drain("钟表耗电")
+
+## 由 TimeSystem 回合推进后调用。对直接跳时段的行为做补偿耗电结算。
+func 处理回合耗电(时段总分钟: float = -1.0) -> void:
+	if _is_charging:
+		_minutes_since_turn_settlement = 0.0
 		_log_phone_state("正在充电，跳过回合耗电")
 		return
 
-	var drain: int = _get_turn_battery_drain()
-	消耗电量(drain)
-	_log_phone_state("回合耗电")
+	var supplemental_drain: int = _get_turn_supplemental_drain(时段总分钟)
+	_minutes_since_turn_settlement = 0.0
+	if supplemental_drain <= 0:
+		_log_phone_state("回合补偿耗电为0")
+		return
+
+	消耗电量(supplemental_drain)
+	_log_phone_state("回合补偿耗电")
 
 func 消耗电量(amount: int) -> void:
 	if amount <= 0:
@@ -191,19 +218,61 @@ func 恢复存档数据(data: Dictionary) -> void:
 	_mobile_signal_strength = clampi(int(data.get("mobile_signal_strength", 默认流量强度)), 0, 4)
 	_use_wifi = bool(data.get("use_wifi", 默认使用wifi))
 	_usage_mode = clampi(int(data.get("usage_mode", UsageMode.IDLE)), UsageMode.IDLE, UsageMode.MARKET_FOCUS)
+	_clock_drain_accumulator = 0.0
+	_minutes_since_turn_settlement = 0.0
 	_emit_all_changed()
 	_log_phone_state("恢复存档")
 
 ## ===== 私有方法 =====
 
-func _get_turn_battery_drain() -> int:
+func _get_minute_battery_drain_rate() -> float:
+	return _get_four_hour_battery_drain() / 240.0
+
+func _get_four_hour_battery_drain() -> float:
 	match _usage_mode:
 		UsageMode.MARKET_FOCUS:
-			return 盯盘每回合耗电
+			return 盯盘每四小时耗电
 		UsageMode.NORMAL_PHONE:
-			return 普通使用每回合耗电
+			return 普通使用每四小时耗电
 		_:
-			return 待机每回合耗电
+			return 待机每四小时耗电
+
+func _get_turn_base_supplement() -> float:
+	match _usage_mode:
+		UsageMode.MARKET_FOCUS:
+			return 盯盘回合补偿耗电
+		UsageMode.NORMAL_PHONE:
+			return 普通使用回合补偿耗电
+		_:
+			return 待机回合补偿耗电
+
+func _get_turn_supplemental_drain(时段总分钟: float) -> int:
+	var base_supplement: float = _get_turn_base_supplement()
+	if base_supplement <= 0.0:
+		return 0
+
+	var normalized_minutes: float = 时段总分钟
+	if normalized_minutes <= 0.0:
+		normalized_minutes = 回合补偿兜底分钟
+	normalized_minutes = max(normalized_minutes, 1.0)
+	var elapsed_ratio: float = clampf(_minutes_since_turn_settlement / normalized_minutes, 0.0, 1.0)
+	var missing_ratio: float = 1.0 - elapsed_ratio
+	if missing_ratio <= 0.0:
+		return 0
+
+	var drain_value: float = base_supplement * missing_ratio
+	if drain_value <= 0.0:
+		return 0
+	return maxi(int(ceil(drain_value)), 1)
+
+func _flush_accumulated_battery_drain(reason: String) -> void:
+	if _clock_drain_accumulator < 1.0:
+		return
+
+	var drain_amount: int = int(floor(_clock_drain_accumulator))
+	_clock_drain_accumulator -= float(drain_amount)
+	消耗电量(drain_amount)
+	_log_phone_state(reason)
 
 func _set_battery(value: int) -> void:
 	var old: int = _battery

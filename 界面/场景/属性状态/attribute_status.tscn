@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bgmcwcavm7b7t" path="res://界面/场景/属性状态/attribute_status.gd" id="1_366kb"]
 [ext_resource type="Texture2D" uid="uid://3t2j0cv8sqha" path="res://界面/场景/属性状态/美术资源/可用图.png" id="2_lv8hy"]
 [ext_resource type="Script" uid="uid://64k2vlggftx" path="res://界面/组件/StaminaBar.gd" id="3_gnfe6"]
-[ext_resource type="PackedScene" uid="uid://b2o3u2oq3e1eq" path="res://沙盒/测试/testing.tscn" id="5_366kb"]
 [ext_resource type="Script" uid="uid://cw6awx22m6fks" path="res://界面/组件/StressGauge.gd" id="5_bq15l"]
 [ext_resource type="Script" uid="uid://cw7qbavfpa67h" path="res://界面/组件/HealthIcon.gd" id="7_3lyei"]
 [ext_resource type="Script" uid="uid://dj8i5l2miytnw" path="res://界面/组件/CashDisplay.gd" id="7_bq15l"]
@@ -148,9 +147,6 @@ text = "5000"
 label_settings = SubResource("LabelSettings_j0jdm")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Testing" parent="." unique_id=32552487 instance=ExtResource("5_366kb")]
-layout_mode = 0
 
 [node name="头像差分" type="Node2D" parent="." unique_id=553427723]
 script = ExtResource("8_68jod")

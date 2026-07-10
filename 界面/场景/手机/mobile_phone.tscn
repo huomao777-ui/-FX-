@@ -13,26 +13,59 @@
 [ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="11_6k8ky"]
 [ext_resource type="Script" uid="uid://blck7uirhrwxl" path="res://界面/场景/手机/mobile_phone.gd" id="12_mobile"]
 [ext_resource type="Script" uid="uid://ggp3hvi0eao1" path="res://界面/组件/PhoneStatusBinder.gd" id="13_status"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tfb4"]
-bg_color = Color(1, 1, 0.9882353, 1)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc1h1"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_pyv0k"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kv0i2"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
+[ext_resource type="FontFile" uid="uid://b8n5nq8o6m5dd" path="res://资源/字体/思源黑体 Bold Display.otf" id="14_6gk4s"]
+[ext_resource type="Texture2D" uid="uid://dwohm0dyg8t7" path="res://icon.svg" id="15_baxte"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5bsqm"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3506"]
+bg_color = Color(0.9372549, 0.94509804, 0.9647059, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8509804, 0.8901961, 0.9490196, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6gk4s"]
+bg_color = Color(0.9882353, 1, 0.9882353, 0.2784314)
+border_color = Color(0.9536491, 0.72342134, 0.83091956, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_baxte"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2g1ec"]
+bg_color = Color(0.94509804, 0.95686275, 0.9843137, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.84705883, 0.89411765, 0.9647059, 0.92)
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_baxte"]
+bg_color = Color(1, 1, 0.9411765, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9607843, 0.9607843, 0.9411765, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="MobilePhone" type="Control" unique_id=246240317]
 layout_mode = 3
@@ -109,37 +142,6 @@ position = Vector2(185.045, 424.969)
 scale = Vector2(0.07881192, 0.0875253)
 texture = ExtResource("8_sdtip")
 
-[node name="电量" type="CanvasLayer" parent="手机唤醒状态" unique_id=441437898]
-
-[node name="电池" type="ProgressBar" parent="手机唤醒状态/电量" unique_id=1305957977]
-offset_left = 1790.0
-offset_top = 584.0
-offset_right = 1811.0
-offset_bottom = 594.0
-theme_override_styles/background = SubResource("StyleBoxFlat_7tfb4")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lc1h1")
-show_percentage = false
-
-[node name="数字" type="Label" parent="手机唤醒状态/电量/电池" unique_id=1889632608]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 19.0
-offset_bottom = 12.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "99"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="端点" type="Panel" parent="手机唤醒状态/电量/电池" unique_id=488093300]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 3.0
-offset_right = 22.0
-offset_bottom = 6.0
-theme = SubResource("Theme_pyv0k")
-theme_override_styles/panel = SubResource("StyleBoxFlat_kv0i2")
-
 [node name="wifi" type="Node2D" parent="手机唤醒状态" unique_id=681337812]
 position = Vector2(-4467.89, -2233.1716)
 scale = Vector2(2.5915837, 2.7775764)
@@ -189,3 +191,104 @@ offset_top = -2.0
 offset_right = 5.0
 offset_bottom = 7.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_5bsqm")
+
+[node name="电量" type="CanvasLayer" parent="手机唤醒状态" unique_id=2026042389]
+
+[node name="电池" type="ProgressBar" parent="手机唤醒状态/电量" unique_id=2068060204]
+offset_left = 1791.0
+offset_top = 586.0
+offset_right = 1808.0
+offset_bottom = 594.0
+theme_override_styles/background = SubResource("StyleBoxFlat_t3506")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6gk4s")
+value = 100.0
+show_percentage = false
+
+[node name="数字" type="Label" parent="手机唤醒状态/电量/电池" unique_id=1798166881]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -5.0
+offset_right = 19.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="端点" type="Panel" parent="手机唤醒状态/电量/电池" unique_id=431813570]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 2.0
+offset_right = 20.0
+offset_bottom = 6.0
+theme = SubResource("Theme_baxte")
+theme_override_styles/panel = SubResource("StyleBoxFlat_2g1ec")
+
+[node name="弹窗" type="Control" parent="." unique_id=445431690]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="有配图弹窗" type="Panel" parent="弹窗" unique_id=981410070]
+layout_mode = 0
+offset_left = 1624.0
+offset_top = 713.0
+offset_right = 1824.0
+offset_bottom = 768.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_baxte")
+
+[node name="文本框" type="Label" parent="弹窗/有配图弹窗" unique_id=1768692806]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 143.0
+offset_bottom = 48.46875
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = -2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("14_6gk4s")
+theme_override_font_sizes/font_size = 11
+text = "有图片弹窗的
+文字窗口
+1"
+autowrap_mode = 1
+max_lines_visible = 3
+
+[node name="配图" type="TextureRect" parent="弹窗/有配图弹窗" unique_id=1118967328]
+layout_mode = 0
+offset_left = 145.0
+offset_top = 4.0
+offset_right = 187.0
+offset_bottom = 48.0
+texture = ExtResource("15_baxte")
+expand_mode = 1
+
+[node name="无配图弹窗" type="Panel" parent="弹窗" unique_id=1045642900]
+layout_mode = 0
+offset_left = 1623.0
+offset_top = 721.0
+offset_right = 1823.0
+offset_bottom = 776.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_baxte")
+
+[node name="文本框" type="Label" parent="弹窗/无配图弹窗" unique_id=1949682068]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = 192.0
+offset_bottom = 48.46875
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = -2
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("14_6gk4s")
+theme_override_font_sizes/font_size = 11
+text = "无图片弹窗的
+文字窗口
+1"
+autowrap_mode = 1
+max_lines_visible = 3

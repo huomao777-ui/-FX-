@@ -21,6 +21,26 @@ extends Node
 ## 充电颜色
 @export var 充电颜色: Color = Color(0.1, 0.9, 0.25, 1.0)
 
+@export_group("电量显示")
+## 自定义电池块容器路径；留空时会自动在“电池”节点下查找。
+@export var 自定义电池块容器路径: NodePath
+## 命中这些关键词的节点会被视为电池块，按照编辑器中的节点顺序点亮。
+@export var 电池块名称关键词: PackedStringArray = [
+	"电池块",
+	"电量块",
+	"电池格",
+	"电量格",
+	"BatteryBlock",
+	"BatterySegment",
+	"Segment"
+]
+## 这些节点会被保留，不参与电池块统计。
+@export var 电池块忽略节点名: PackedStringArray = ["数字", "端点"]
+## 自定义电池模式下，未点亮电池块的透明度。
+@export_range(0.0, 1.0, 0.01) var 未点亮电池块透明度: float = 0.18
+## 自定义电池模式下，是否隐藏 ProgressBar 的 fill，避免挤压编辑器做好的布局。
+@export var 自定义电池隐藏进度填充: bool = true
+
 @export_group("时间显示")
 ## 默认不强制写入粗体 BBCode，优先尊重编辑器里给时间节点配置的字体样式。
 @export var 时间使用粗体标签: bool = false
@@ -30,11 +50,15 @@ extends Node
 var _root_node: Node = null
 var _time_label: RichTextLabel = null
 var _date_label: Label = null
+var _battery_root: Node = null
 var _battery_bar: ProgressBar = null
 var _battery_number: Label = null
 var _wifi_root: Node = null
 var _mobile_signal_root: Node = null
 var _battery_fill_style: StyleBoxFlat = null
+var _battery_custom_fill_style: StyleBoxFlat = null
+var _battery_segments: Array[CanvasItem] = []
+var _is_custom_battery_mode: bool = false
 
 ## ===== 生命周期 =====
 
@@ -60,12 +84,15 @@ func _cache_nodes() -> void:
 
 	_time_label = _root_node.get_node_or_null("时间") as RichTextLabel
 	_date_label = _root_node.get_node_or_null("日期") as Label
-	_battery_bar = _root_node.get_node_or_null("电量/电池") as ProgressBar
+	_battery_root = _root_node.get_node_or_null("电量/电池")
+	_battery_bar = _battery_root as ProgressBar
 	_wifi_root = _root_node.get_node_or_null("wifi")
 	_mobile_signal_root = _root_node.get_node_or_null("流量")
 
-	if _battery_bar != null:
-		_battery_number = _battery_bar.get_node_or_null("数字") as Label
+	if _battery_root != null:
+		_battery_number = _battery_root.get_node_or_null("数字") as Label
+		_battery_segments = _find_battery_segments(_battery_root)
+		_is_custom_battery_mode = _battery_segments.size() > 0
 
 func _get_status_root() -> Node:
 	if String(手机状态根节点) != "":
@@ -90,8 +117,16 @@ func _get_status_root() -> Node:
 	return parent_node.get_node_or_null("手机进入状态")
 
 func _prepare_battery_style() -> void:
+	if _battery_root == null:
+		return
+
+	if _is_custom_battery_mode:
+		_prepare_custom_battery_style()
+		return
+
 	if _battery_bar == null:
 		return
+
 	var style: StyleBox = _battery_bar.get_theme_stylebox("fill")
 	if not (style is StyleBoxFlat):
 		_battery_fill_style = null
@@ -103,6 +138,23 @@ func _prepare_battery_style() -> void:
 
 	_battery_fill_style = (style as StyleBoxFlat).duplicate() as StyleBoxFlat
 	_battery_bar.add_theme_stylebox_override("fill", _battery_fill_style)
+
+func _prepare_custom_battery_style() -> void:
+	if not 自定义电池隐藏进度填充:
+		return
+	if _battery_bar == null:
+		return
+
+	var style: StyleBox = _battery_bar.get_theme_stylebox("fill")
+	if style is StyleBoxFlat:
+		_battery_custom_fill_style = (style as StyleBoxFlat).duplicate() as StyleBoxFlat
+	else:
+		_battery_custom_fill_style = StyleBoxFlat.new()
+
+	_battery_custom_fill_style.bg_color = Color(1.0, 1.0, 1.0, 0.0)
+	_battery_custom_fill_style.border_color = Color(1.0, 1.0, 1.0, 0.0)
+	_battery_custom_fill_style.shadow_color = Color(1.0, 1.0, 1.0, 0.0)
+	_battery_bar.add_theme_stylebox_override("fill", _battery_custom_fill_style)
 
 func _bind_global_systems() -> void:
 	if not _has_game_data_manager():
@@ -161,13 +213,16 @@ func _update_date() -> void:
 	_date_label.text = GameDataManager.时间.获取手机日期文本()
 
 func _update_battery(value: int, is_low: bool) -> void:
-	if _battery_bar != null:
+	if _is_custom_battery_mode:
+		_update_custom_battery_segments(value, is_low)
+	elif _battery_bar != null:
 		_battery_bar.value = value
 		_battery_bar.max_value = 100
+
 	if _battery_number != null:
 		_battery_number.text = str(value)
 
-	if _battery_fill_style == null or GameDataManager.手机 == null:
+	if _is_custom_battery_mode or _battery_fill_style == null or GameDataManager.手机 == null:
 		return
 
 	if GameDataManager.手机.是否正在充电():
@@ -176,6 +231,94 @@ func _update_battery(value: int, is_low: bool) -> void:
 		_battery_fill_style.bg_color = 低电量颜色
 	else:
 		_battery_fill_style.bg_color = 正常电量颜色
+
+func _update_custom_battery_segments(value: int, is_low: bool) -> void:
+	if _battery_segments.is_empty():
+		return
+
+	var block_count: int = _battery_segments.size()
+	var clamped_value: int = clampi(value, 0, 100)
+	var active_blocks: int = int(ceil((float(clamped_value) / 100.0) * float(block_count)))
+	if clamped_value <= 0:
+		active_blocks = 0
+
+	var state_color: Color = _get_battery_state_color(is_low)
+	var inactive_color: Color = Color(state_color.r, state_color.g, state_color.b, 未点亮电池块透明度)
+
+	for i in range(block_count):
+		var segment: CanvasItem = _battery_segments[i]
+		if segment == null:
+			continue
+		segment.self_modulate = state_color if i < active_blocks else inactive_color
+
+func _get_battery_state_color(is_low: bool) -> Color:
+	if GameDataManager.手机 != null and GameDataManager.手机.是否正在充电():
+		return 充电颜色
+	if is_low:
+		return 低电量颜色
+	return 正常电量颜色
+
+func _find_battery_segments(battery_root: Node) -> Array[CanvasItem]:
+	var container: Node = battery_root
+	var has_custom_container: bool = false
+	if String(自定义电池块容器路径) != "":
+		var custom_container: Node = battery_root.get_node_or_null(自定义电池块容器路径)
+		if custom_container != null:
+			container = custom_container
+			has_custom_container = true
+
+	var segments: Array[CanvasItem] = []
+	_collect_battery_segments(container, segments)
+	if segments.is_empty() and has_custom_container:
+		_collect_leaf_canvas_items(container, segments)
+	return segments
+
+func _collect_battery_segments(root: Node, segments: Array[CanvasItem]) -> void:
+	for child in root.get_children():
+		var child_node: Node = child as Node
+		if child_node == null:
+			continue
+
+		if _should_include_battery_segment(child_node):
+			var canvas_item: CanvasItem = child_node as CanvasItem
+			if canvas_item != null:
+				segments.append(canvas_item)
+				continue
+
+		_collect_battery_segments(child_node, segments)
+
+func _collect_leaf_canvas_items(root: Node, segments: Array[CanvasItem]) -> void:
+	for child in root.get_children():
+		var child_node: Node = child as Node
+		if child_node == null:
+			continue
+		if child_node.name in 电池块忽略节点名:
+			continue
+		if child_node.get_child_count() == 0 and child_node is CanvasItem:
+			segments.append(child_node as CanvasItem)
+			continue
+		_collect_leaf_canvas_items(child_node, segments)
+
+func _should_include_battery_segment(node: Node) -> bool:
+	if node == null:
+		return false
+	if not (node is CanvasItem):
+		return false
+	if node.get_child_count() > 0 and not _name_matches_battery_keywords(node.name):
+		if node.name in 电池块忽略节点名:
+			return false
+
+	if node.name in 电池块忽略节点名:
+		return false
+
+	return _name_matches_battery_keywords(node.name)
+
+func _name_matches_battery_keywords(node_name: StringName) -> bool:
+	var text: String = String(node_name)
+	for keyword in 电池块名称关键词:
+		if keyword != "" and text.contains(keyword):
+			return true
+	return false
 
 func _update_signal_visibility() -> void:
 	if GameDataManager.手机 == null:
