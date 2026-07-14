@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn7b2mvyaeww5"
-path="res://.godot/imported/重大级别001.png-739c02c75da345531a9bc6476d186b6a.ctex"
+uid="uid://cqpn8jp4gll55"
+path="res://.godot/imported/全球徽章.png-ca3133bf56d879264bc687fbc23e6c09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://界面/场景/新闻/资讯图/重大级别001.png"
-dest_files=["res://.godot/imported/重大级别001.png-739c02c75da345531a9bc6476d186b6a.ctex"]
+source_file="res://界面/场景/新闻/美术资源/全球徽章.png"
+dest_files=["res://.godot/imported/全球徽章.png-ca3133bf56d879264bc687fbc23e6c09.ctex"]
 
 [params]
 

@@ -20,6 +20,7 @@ tmp_*
 *.bak_codex
 *.bak_step*
 *.bak
+*_recover*
 
 # 网页快捷方式（非项目文件）
 *.url
