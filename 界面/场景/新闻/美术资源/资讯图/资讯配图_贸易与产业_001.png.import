@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn7b2mvyaeww5"
-path="res://.godot/imported/重大级别001.png-a25b665800a90e9c520c8eaef5193133.ctex"
+uid="uid://d28pqw1pvl508"
+path="res://.godot/imported/资讯配图_贸易与产业_001.png-122a099917b88283e1b25148eaec5493.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://界面/场景/新闻/美术资源/资讯图/重大级别001.png"
-dest_files=["res://.godot/imported/重大级别001.png-a25b665800a90e9c520c8eaef5193133.ctex"]
+source_file="res://界面/场景/新闻/美术资源/资讯图/资讯配图_贸易与产业_001.png"
+dest_files=["res://.godot/imported/资讯配图_贸易与产业_001.png-122a099917b88283e1b25148eaec5493.ctex"]
 
 [params]
 

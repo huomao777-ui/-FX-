@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "political_risk",
+      "name": "时政风险",
+      "description": "政局、外交和突发事件，常会迅速影响市场情绪。"
+    },
+    {
+      "id": "economic_data",
+      "name": "经济数据",
+      "description": "反映经济强弱，影响市场对货币走势的判断。"
+    },
+    {
+      "id": "monetary_policy",
+      "name": "货币政策",
+      "description": "反映央行态度与利率方向，直接关系货币强弱。"
+    },
+    {
+      "id": "trade_industry",
+      "name": "贸易与产业",
+      "description": "反映贸易、关税和产业变化，影响中期汇率趋势。"
+    },
+    {
+      "id": "market_expectation",
+      "name": "市场预期",
+      "description": "反映市场风向变化，影响资金提前押注的方向。"
+    },
+    {
+      "id": "market_move",
+      "name": "盘面异动",
+      "description": "反映短线波动和资金动向，体现市场当下气氛。"
+    }
+  ],
+  "regions": [
+    "樱花国",
+    "袋鼠国",
+    "熊猫国",
+    "漂亮国",
+    "鸥联盟",
+    "枫叶国",
+    "珍珠国",
+    "全球"
+  ]
+}

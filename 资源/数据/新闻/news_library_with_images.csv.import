@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://c0vp7bhx0m5xw"
+
+[deps]
+
+files=["res://资源/数据/新闻/news_library_with_images.分类.translation", "res://资源/数据/新闻/news_library_with_images.有图.translation", "res://资源/数据/新闻/news_library_with_images.图片编号.translation", "res://资源/数据/新闻/news_library_with_images.适用地区.translation", "res://资源/数据/新闻/news_library_with_images.标题模板.translation", "res://资源/数据/新闻/news_library_with_images.正文.translation", "res://资源/数据/新闻/news_library_with_images.现象总结.translation", "res://资源/数据/新闻/news_library_with_images.趋势预测.translation", "res://资源/数据/新闻/news_library_with_images.正文末尾提示.translation", "res://资源/数据/新闻/news_library_with_images.默认方向.translation", "res://资源/数据/新闻/news_library_with_images.可选方向.translation", "res://资源/数据/新闻/news_library_with_images.默认强度.translation", "res://资源/数据/新闻/news_library_with_images.可选强度.translation", "res://资源/数据/新闻/news_library_with_images.反向逻辑说明.translation", "res://资源/数据/新闻/news_library_with_images.底层接口参数.translation", "res://资源/数据/新闻/news_library_with_images.备注.translation"]
+
+source_file="res://资源/数据/新闻/news_library_with_images.csv"
+dest_files=["res://资源/数据/新闻/news_library_with_images.分类.translation", "res://资源/数据/新闻/news_library_with_images.有图.translation", "res://资源/数据/新闻/news_library_with_images.图片编号.translation", "res://资源/数据/新闻/news_library_with_images.适用地区.translation", "res://资源/数据/新闻/news_library_with_images.标题模板.translation", "res://资源/数据/新闻/news_library_with_images.正文.translation", "res://资源/数据/新闻/news_library_with_images.现象总结.translation", "res://资源/数据/新闻/news_library_with_images.趋势预测.translation", "res://资源/数据/新闻/news_library_with_images.正文末尾提示.translation", "res://资源/数据/新闻/news_library_with_images.默认方向.translation", "res://资源/数据/新闻/news_library_with_images.可选方向.translation", "res://资源/数据/新闻/news_library_with_images.默认强度.translation", "res://资源/数据/新闻/news_library_with_images.可选强度.translation", "res://资源/数据/新闻/news_library_with_images.反向逻辑说明.translation", "res://资源/数据/新闻/news_library_with_images.底层接口参数.translation", "res://资源/数据/新闻/news_library_with_images.备注.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "images": [
+    {
+      "id": "IMG_EXCLUSIVE_TRADE_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/关税战_001.png",
+      "type": "exclusive",
+      "category": "贸易与产业",
+      "topics": ["关税", "贸易摩擦", "出口限制"],
+      "note": "重大关税战或贸易升级专属图"
+    },
+    {
+      "id": "IMG_EXCLUSIVE_POLICY_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/加息降息_001.png",
+      "type": "exclusive",
+      "category": "货币政策",
+      "topics": ["加息", "降息", "紧急会议"],
+      "note": "央行利率决策专属图"
+    },
+    {
+      "id": "IMG_EXCLUSIVE_POLITICAL_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/首相辞职_001.png",
+      "type": "exclusive",
+      "category": "时政风险",
+      "topics": ["首相辞职", "政坛震荡", "提前选举"],
+      "note": "重大时政冲击专属图"
+    },
+    {
+      "id": "IMG_GENERIC_EXPECT_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_001.png",
+      "type": "generic",
+      "category": "市场预期",
+      "topics": ["机构预测", "情绪回暖", "押注方向"],
+      "note": "市场风向类泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_EXPECT_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_002.png",
+      "type": "generic",
+      "category": "市场预期",
+      "topics": ["预期修正", "风向变化"],
+      "note": "市场预期类泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_EXPECT_003",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_003.png",
+      "type": "generic",
+      "category": "市场预期",
+      "topics": ["前景判断", "情绪分歧"],
+      "note": "市场评论类泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLITICAL_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_时政风险_001.png",
+      "type": "generic",
+      "category": "时政风险",
+      "topics": ["外交摩擦", "政治会议"],
+      "note": "时政新闻泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLITICAL_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_时政风险_002.png",
+      "type": "generic",
+      "category": "时政风险",
+      "topics": ["高层表态", "局势升级"],
+      "note": "时政冲击泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_MOVE_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_盘面异动_001.png",
+      "type": "generic",
+      "category": "盘面异动",
+      "topics": ["跳水", "急拉", "波动放大"],
+      "note": "盘面异动泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_MOVE_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_盘面异动_002.png",
+      "type": "generic",
+      "category": "盘面异动",
+      "topics": ["流动性收紧", "盘口异动"],
+      "note": "短线交易氛围图"
+    },
+    {
+      "id": "IMG_GENERIC_MOVE_003",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_盘面异动_003.png",
+      "type": "generic",
+      "category": "盘面异动",
+      "topics": ["止损触发", "波动放量"],
+      "note": "盘面波动泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_DATA_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_经济数据_001.png",
+      "type": "generic",
+      "category": "经济数据",
+      "topics": ["通胀", "增长", "统计发布"],
+      "note": "经济数据泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_DATA_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_经济数据_002.png",
+      "type": "generic",
+      "category": "经济数据",
+      "topics": ["就业", "制造业", "零售"],
+      "note": "数据发布泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLICY_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_货币政策_001.png",
+      "type": "generic",
+      "category": "货币政策",
+      "topics": ["央行纪要", "政策口风"],
+      "note": "货币政策泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLICY_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_货币政策_002.png",
+      "type": "generic",
+      "category": "货币政策",
+      "topics": ["利率路径", "政策信号"],
+      "note": "利率路径泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLICY_003",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_货币政策_003.png",
+      "type": "generic",
+      "category": "货币政策",
+      "topics": ["议息会议", "官员发言"],
+      "note": "政策会议泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLICY_004",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_货币政策_004.png",
+      "type": "generic",
+      "category": "货币政策",
+      "topics": ["政策分歧", "会议前瞻"],
+      "note": "央行前瞻泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_POLICY_005",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_货币政策_005.png",
+      "type": "generic",
+      "category": "货币政策",
+      "topics": ["汇率干预", "稳定汇市"],
+      "note": "护盘与干预类泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_TRADE_001",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_贸易与产业_001.png",
+      "type": "generic",
+      "category": "贸易与产业",
+      "topics": ["港口", "航运", "出口"],
+      "note": "贸易与产业泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_TRADE_002",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_贸易与产业_002.png",
+      "type": "generic",
+      "category": "贸易与产业",
+      "topics": ["关税", "制造业", "工厂"],
+      "note": "产业链泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_TRADE_003",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_贸易与产业_003.png",
+      "type": "generic",
+      "category": "贸易与产业",
+      "topics": ["大宗商品", "原材料"],
+      "note": "商品与产业泛用图"
+    },
+    {
+      "id": "IMG_GENERIC_TRADE_004",
+      "file": "res://界面/场景/新闻/美术资源/资讯图/资讯配图_贸易与产业_004.png",
+      "type": "generic",
+      "category": "贸易与产业",
+      "topics": ["供应链", "订单收缩"],
+      "note": "供应链泛用图"
+    }
+  ]
+}

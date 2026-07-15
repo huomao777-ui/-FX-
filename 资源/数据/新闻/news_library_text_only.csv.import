@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cs5n2smgkulpm"
+
+[deps]
+
+files=["res://资源/数据/新闻/news_library_text_only.分类.translation", "res://资源/数据/新闻/news_library_text_only.有图.translation", "res://资源/数据/新闻/news_library_text_only.en.translation", "res://资源/数据/新闻/news_library_text_only.适用地区.translation", "res://资源/数据/新闻/news_library_text_only.标题模板.translation", "res://资源/数据/新闻/news_library_text_only.正文.translation", "res://资源/数据/新闻/news_library_text_only.现象总结.translation", "res://资源/数据/新闻/news_library_text_only.趋势预测.translation", "res://资源/数据/新闻/news_library_text_only.正文末尾提示.translation", "res://资源/数据/新闻/news_library_text_only.默认方向.translation", "res://资源/数据/新闻/news_library_text_only.可选方向.translation", "res://资源/数据/新闻/news_library_text_only.默认强度.translation", "res://资源/数据/新闻/news_library_text_only.可选强度.translation", "res://资源/数据/新闻/news_library_text_only.反向逻辑说明.translation", "res://资源/数据/新闻/news_library_text_only.底层接口参数.translation", "res://资源/数据/新闻/news_library_text_only.备注.translation"]
+
+source_file="res://资源/数据/新闻/news_library_text_only.csv"
+dest_files=["res://资源/数据/新闻/news_library_text_only.分类.translation", "res://资源/数据/新闻/news_library_text_only.有图.translation", "res://资源/数据/新闻/news_library_text_only.en.translation", "res://资源/数据/新闻/news_library_text_only.适用地区.translation", "res://资源/数据/新闻/news_library_text_only.标题模板.translation", "res://资源/数据/新闻/news_library_text_only.正文.translation", "res://资源/数据/新闻/news_library_text_only.现象总结.translation", "res://资源/数据/新闻/news_library_text_only.趋势预测.translation", "res://资源/数据/新闻/news_library_text_only.正文末尾提示.translation", "res://资源/数据/新闻/news_library_text_only.默认方向.translation", "res://资源/数据/新闻/news_library_text_only.可选方向.translation", "res://资源/数据/新闻/news_library_text_only.默认强度.translation", "res://资源/数据/新闻/news_library_text_only.可选强度.translation", "res://资源/数据/新闻/news_library_text_only.反向逻辑说明.translation", "res://资源/数据/新闻/news_library_text_only.底层接口参数.translation", "res://资源/数据/新闻/news_library_text_only.备注.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

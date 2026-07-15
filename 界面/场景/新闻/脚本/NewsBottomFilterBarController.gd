@@ -1,7 +1,7 @@
 extends Panel
 class_name NewsBottomFilterBarController
 
-const UNDERLINE_NAME: String = "文字2下划线"
+const UNDERLINE_NAME: String = "TextUnderline"
 const UNDERLINE_HEIGHT: float = 2.0
 const UNDERLINE_GAP: float = 3.0
 
@@ -13,11 +13,11 @@ const HOVER_LINE_COLOR: Color = Color(1.0, 0.96, 0.90, 0.96)
 const PRESSED_LINE_COLOR: Color = Color(1.0, 0.93, 0.84, 1.0)
 
 @export var hide_popups_on_ready: bool = true
-@export var button_row_path: NodePath = ^"按钮行"
-@export var popup_controller_path: NodePath = ^"../弹窗控制器"
+@export var button_row_path: NodePath
+@export var popup_controller_path: NodePath
 
 var _button_infos: Array[Dictionary] = []
-var _popups: Dictionary = {}
+var _popup_by_button_name: Dictionary = {}
 
 
 func _ready() -> void:
@@ -33,32 +33,46 @@ func _process(_delta: float) -> void:
 
 
 func _collect_popups() -> void:
-	_popups.clear()
+	_popup_by_button_name.clear()
 
-	var popup_controller: Node = get_node_or_null(popup_controller_path)
+	var popup_controller: Node = _resolve_popup_controller()
 	if popup_controller == null:
 		push_warning("NewsBottomFilterBarController: missing popup controller")
 		return
 
-	_popups["日期按钮"] = popup_controller.get_node_or_null("时间切换弹窗") as Control
-	_popups["地区按钮"] = popup_controller.get_node_or_null("地区切换弹窗") as Control
-	_popups["分类按钮"] = popup_controller.get_node_or_null("咨询切换弹窗") as Control
+	var popup_controls: Array[Control] = []
+	for child: Node in popup_controller.get_children():
+		if child is Control:
+			popup_controls.append(child as Control)
+
+	if popup_controls.size() < 3:
+		push_warning("NewsBottomFilterBarController: not enough popup controls")
+		return
+
+	var button_row: HBoxContainer = _resolve_button_row()
+	if button_row == null:
+		return
+
+	var buttons: Array[Button] = _get_buttons_from_row(button_row)
+	if buttons.size() < 3:
+		push_warning("NewsBottomFilterBarController: not enough buttons")
+		return
+
+	_popup_by_button_name[buttons[0].name] = popup_controls[0]
+	_popup_by_button_name[buttons[1].name] = popup_controls[2]
+	_popup_by_button_name[buttons[2].name] = popup_controls[1]
 
 
 func _collect_buttons() -> void:
 	_button_infos.clear()
 
-	var button_row: HBoxContainer = get_node_or_null(button_row_path) as HBoxContainer
+	var button_row: HBoxContainer = _resolve_button_row()
 	if button_row == null:
-		push_warning("NewsBottomFilterBarController: missing 按钮行")
+		push_warning("NewsBottomFilterBarController: missing button row")
 		return
 
-	for child: Node in button_row.get_children():
-		if not (child is Button):
-			continue
-
-		var button: Button = child as Button
-		var text_label: Label = button.get_node_or_null("文字2") as Label
+	for button: Button in _get_buttons_from_row(button_row):
+		var text_label: Label = _find_button_text_label(button)
 		if text_label == null:
 			continue
 
@@ -70,6 +84,61 @@ func _collect_buttons() -> void:
 		}
 		_button_infos.append(info)
 		_connect_button_signals(button)
+
+
+func _resolve_button_row() -> HBoxContainer:
+	if not button_row_path.is_empty():
+		return get_node_or_null(button_row_path) as HBoxContainer
+	for child: Node in get_children():
+		if child is HBoxContainer:
+			return child as HBoxContainer
+	return null
+
+
+func _resolve_popup_controller() -> Node:
+	if not popup_controller_path.is_empty():
+		return get_node_or_null(popup_controller_path)
+	if get_parent() != null:
+		for sibling: Node in get_parent().get_children():
+			if sibling == self or not sibling is Control:
+				continue
+			var popup_like_children: int = 0
+			for child: Node in sibling.get_children():
+				if child is Control:
+					popup_like_children += 1
+			if popup_like_children >= 3:
+				return sibling
+	return null
+
+
+func _get_buttons_from_row(button_row: HBoxContainer) -> Array[Button]:
+	var buttons: Array[Button] = []
+	for child: Node in button_row.get_children():
+		if child is Button:
+			buttons.append(child as Button)
+	return buttons
+
+
+func _find_button_text_label(button: Button) -> Label:
+	var labels: Array[Label] = _find_labels(button)
+	if labels.is_empty():
+		return null
+	var best_label: Label = null
+	var best_y: float = -INF
+	for label: Label in labels:
+		if best_label == null or label.position.y > best_y:
+			best_label = label
+			best_y = label.position.y
+	return best_label
+
+
+func _find_labels(root: Node) -> Array[Label]:
+	var labels: Array[Label] = []
+	for child: Node in root.get_children():
+		if child is Label:
+			labels.append(child as Label)
+		labels.append_array(_find_labels(child))
+	return labels
 
 
 func _ensure_underline(button: Button, text_label: Label) -> ColorRect:
@@ -128,30 +197,27 @@ func _on_button_resized(button: Button) -> void:
 	var info: Dictionary = _find_button_info(button)
 	if info.is_empty():
 		return
-
 	var text_label: Label = info.get("text_label", null) as Label
 	var underline: ColorRect = info.get("underline", null) as ColorRect
 	if text_label == null or underline == null:
 		return
-
 	_update_underline_geometry(underline, text_label)
 
 
 func _toggle_popup_for_button(button_name: String) -> void:
-	var target_popup: Control = _popups.get(button_name, null) as Control
+	var target_popup: Control = _popup_by_button_name.get(button_name, null) as Control
 	if target_popup == null:
 		return
-
 	var should_show: bool = not target_popup.visible
 	_hide_all_popups()
 	target_popup.visible = should_show
 
 
 func _hide_all_popups() -> void:
-	for popup: Variant in _popups.values():
-		var popup_control: Control = popup as Control
-		if popup_control != null:
-			popup_control.visible = false
+	for popup_value: Variant in _popup_by_button_name.values():
+		var popup: Control = popup_value as Control
+		if popup != null:
+			popup.visible = false
 
 
 func _sync_all_button_states() -> void:
@@ -163,11 +229,12 @@ func _sync_button_state(info: Dictionary) -> void:
 	var button: Button = info.get("button", null) as Button
 	if button == null or not is_instance_valid(button):
 		return
-
+	if button.button_pressed:
+		_apply_pressed_state(info)
+		return
 	if _is_button_hovered(button):
 		_apply_hover_state(info)
 		return
-
 	_apply_normal_state(info)
 
 
@@ -199,16 +266,12 @@ func _update_underline_geometry(underline: ColorRect, text_label: Label) -> void
 	var label_height: float = maxf(text_label.size.y, text_label.get_minimum_size().y)
 	underline.custom_minimum_size = Vector2(label_width, UNDERLINE_HEIGHT)
 	underline.size = underline.custom_minimum_size
-	underline.position = Vector2(
-		text_label.position.x,
-		text_label.position.y + label_height + UNDERLINE_GAP
-	)
+	underline.position = Vector2(text_label.position.x, text_label.position.y + label_height + UNDERLINE_GAP)
 
 
 func _is_button_hovered(button: Button) -> bool:
 	if not button.is_visible_in_tree():
 		return false
-
 	var hovered_control: Control = get_viewport().gui_get_hovered_control()
 	var current: Control = hovered_control
 	while current != null:
@@ -225,18 +288,17 @@ func _find_button_info(button: Button) -> Dictionary:
 	return {}
 
 
-func 执行APP内部回退() -> bool:
-	return 关闭全部筛选弹窗()
-
-
-func 关闭全部筛选弹窗() -> bool:
+func close_all_popups() -> bool:
 	var had_visible_popup: bool = false
-	for popup: Variant in _popups.values():
-		var popup_control: Control = popup as Control
-		if popup_control != null and popup_control.visible:
-			popup_control.visible = false
+	for popup_value: Variant in _popup_by_button_name.values():
+		var popup: Control = popup_value as Control
+		if popup != null and popup.visible:
+			popup.visible = false
 			had_visible_popup = true
-
 	if had_visible_popup:
 		_sync_all_button_states()
 	return had_visible_popup
+
+
+func execute_app_back() -> bool:
+	return close_all_popups()
