@@ -16,6 +16,9 @@ export/
 *.log
 tmp_*
 
+# Excel 临时文件
+~$*
+
 # AI 工具备份文件
 *.bak_codex
 *.bak_step*
