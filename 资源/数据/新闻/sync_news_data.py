@@ -20,7 +20,7 @@ COMMON_FIELDS = [
     "id", "分类", "有图",
     "图片编号",    # 有图时填写，无图时留空
     "适用地区",
-    "标题模板", "正文",
+    "标题模板", "摘要", "正文",
     "现象总结", "趋势预测", "正文末尾提示",
     "默认方向", "可选方向", "默认强度", "可选强度",
     "反向逻辑说明",
@@ -55,6 +55,7 @@ def template_to_row(t, has_image):
         "图片编号": image_ids if has_image else "",
         "适用地区": regions,
         "标题模板": t.get("headline_template", ""),
+        "摘要": t.get("abstract_template", ""),
         "正文": body,
         "现象总结": summary,
         "趋势预测": outlook,

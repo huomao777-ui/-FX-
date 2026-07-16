@@ -3,13 +3,13 @@ class_name NewsRuntimeFeedProvider
 
 const TEMPLATES_PATH: String = "res://\u8d44\u6e90/\u6570\u636e/\u65b0\u95fb/news_templates.json"
 const IMAGE_ASSETS_PATH: String = "res://\u8d44\u6e90/\u6570\u636e/\u65b0\u95fb/news_image_assets.json"
-const DAY_COOLDOWN_NORMAL: int = 6
-const DAY_COOLDOWN_HEADLINE: int = 12
 const HEADLINE_STEP_DAYS: int = 3
 const HEADLINE_COUNT: int = 5
 const LIST_COUNT: int = 5
 const DAILY_NEWS_MIN: int = 3
 const DAILY_NEWS_MAX: int = 4
+const DAY_COOLDOWN_NORMAL: int = 6
+const DAY_COOLDOWN_HEADLINE: int = 12
 
 const CAT_POLITICAL: String = "\u65f6\u653f\u98ce\u9669"
 const CAT_DATA: String = "\u7ecf\u6d4e\u6570\u636e"
@@ -33,7 +33,7 @@ const CATEGORY_SHORT_LABELS: Dictionary = {
 	CAT_POLITICAL: "\u65f6\u653f\u98ce\u9669",
 	CAT_DATA: "\u7ecf\u6d4e\u6570\u636e",
 	CAT_POLICY: "\u8d27\u5e01\u653f\u7b56",
-	CAT_TRADE: "\u8d38\u6613\u4ea7\u4e1a",
+	CAT_TRADE: "\u8d38\u6613\u4e0e\u4ea7\u4e1a",
 	CAT_EXPECT: "\u5e02\u573a\u9884\u671f",
 	CAT_MOVE: "\u76d8\u9762\u5f02\u52a8",
 }
@@ -193,17 +193,11 @@ func _pick_template_for_category(category_name: String, date_data: Dictionary, s
 
 func _is_template_available_for_date(template_id: String, date_data: Dictionary, prefer_image: bool) -> bool:
 	var cooldown_days: int = DAY_COOLDOWN_HEADLINE if prefer_image else DAY_COOLDOWN_NORMAL
-	for lookback: int in range(1, cooldown_days + 1):
-		var history_date: Dictionary = _shift_date(date_data, -lookback)
-		var simulated: Array[Dictionary] = _generate_daily_items(history_date)
-		for simulated_item: Dictionary in simulated:
-			if String(simulated_item.get("template_id", "")) == template_id:
-				return false
-		if lookback <= HEADLINE_STEP_DAYS * 2:
-			var featured: Dictionary = _generate_featured_item_for_date(history_date, {})
-			if String(featured.get("template_id", "")) == template_id:
-				return false
-	return true
+	if cooldown_days <= 1:
+		return true
+	var current_serial: int = _day_serial(date_data)
+	var template_hash: int = _stable_string_hash(template_id)
+	return posmod(current_serial + template_hash, cooldown_days) == 0
 
 
 func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_value: int, prefer_image: bool) -> Dictionary:
@@ -217,7 +211,10 @@ func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_val
 		"region": region_name,
 		"time_text": time_text,
 	}
+	var abstract_text: String = _render_template(String(template_data.get("abstract_template", "")), replacements)
 	var summary_text: String = _render_template(String(template_data.get("summary_template", "")), replacements)
+	if abstract_text.is_empty():
+		abstract_text = summary_text
 	var trend_text: String = _render_template(String(template_data.get("trend_outlook", "")), replacements)
 	var tail_text: String = _render_template(String(template_data.get("analysis_tail", "")), replacements)
 	var headline_text: String = _render_template(String(template_data.get("headline_template", "")), replacements)
@@ -232,7 +229,8 @@ func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_val
 		"category": category_text,
 		"category_short": String(CATEGORY_SHORT_LABELS.get(category_text, category_text)),
 		"headline": headline_text,
-		"summary": summary_text,
+		"summary": abstract_text,
+		"abstract": abstract_text,
 		"trend_outlook": trend_text,
 		"analysis_tail": tail_text,
 		"body": body_text.strip_edges(),
@@ -455,3 +453,10 @@ func _days_from_civil(year: int, month: int, day: int) -> int:
 	var day_of_year: int = int((153 * adjusted_month + 2) / 5) + day - 1
 	var day_of_era: int = year_of_era * 365 + int(year_of_era / 4) - int(year_of_era / 100) + day_of_year
 	return era * 146097 + day_of_era - 719468
+
+
+func _stable_string_hash(source_text: String) -> int:
+	var hash_value: int = 17
+	for code_point: int in source_text.to_utf32_buffer():
+		hash_value = int(posmod(hash_value * 31 + code_point, 2147483647))
+	return abs(hash_value)

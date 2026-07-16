@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b8wbxnxukga4k" path="res://界面/场景/通用/AppShellController.gd" id="1_l4wcs"]
 [ext_resource type="Script" uid="uid://yc1vxe6wvr2o" path="res://界面/场景/通用/AppInteractionAreaController.gd" id="2_0j5j3"]
 [ext_resource type="Script" uid="uid://dqxaqkpwohejy" path="res://界面/场景/新闻/脚本/NewsHeadlineCarouselController.gd" id="3_24254"]
-[ext_resource type="Texture2D" path="res://界面/场景/新闻/美术资源/资讯图/重大级别001.png" id="3_xmqax"]
 [ext_resource type="FontFile" uid="uid://c04l4h0i4f3gu" path="res://资源/字体/思源黑体 Display.otf" id="4_24254"]
+[ext_resource type="Texture2D" uid="uid://ba4duf8owgm8p" path="res://界面/场景/新闻/美术资源/资讯图/关税战_001.png" id="5_8i1sq"]
 [ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="5_y3lkj"]
 [ext_resource type="StyleBox" uid="uid://co3cjfc0ug1tv" path="res://沙盒/测试/财经报底部按钮.tres" id="6_fg6qi"]
 [ext_resource type="Script" uid="uid://bb12b7ei4by8h" path="res://界面/场景/新闻/脚本/NewsPageIndicatorController.gd" id="6_y3lkj"]
@@ -12,8 +12,10 @@
 [ext_resource type="StyleBox" uid="uid://cf3kcx8nc08ni" path="res://沙盒/测试/财经报底部按钮1.tres" id="8_8i1sq"]
 [ext_resource type="Script" uid="uid://ij55pejjdk1c" path="res://界面/场景/新闻/脚本/NewsBottomFilterBarController.gd" id="8_24254"]
 [ext_resource type="Script" uid="uid://2twao303ncu8" path="res://界面/场景/新闻/脚本/NewsAppController.gd" id="8_u2p3n"]
+[ext_resource type="Texture2D" uid="uid://oynb8v0cmd2p" path="res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_002.png" id="9_5gv3j"]
 [ext_resource type="Texture2D" uid="uid://cecxcj80yr7d5" path="res://界面/场景/外汇应用/美术资源/货币1.png" id="9_ynl5y"]
 [ext_resource type="Texture2D" uid="uid://bv82fx1hv0n0y" path="res://界面/场景/外汇应用/美术资源/货币.png" id="10_5gv3j"]
+[ext_resource type="Texture2D" uid="uid://o0aa8igu7jm6" path="res://界面/场景/新闻/美术资源/资讯图/资讯配图_盘面异动_001.png" id="10_eoilj"]
 [ext_resource type="Script" uid="uid://dar5ngcavsr6d" path="res://沙盒/测试/手机顶部信息总控.gd" id="11_eoilj"]
 [ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="12_4vp4s"]
 [ext_resource type="Script" uid="uid://d3533dpbdrp8" path="res://界面/场景/新闻/脚本/NewsTimePopupCarouselController.gd" id="13_fg6qi"]
@@ -472,11 +474,20 @@ scale = Vector2(0.9140626, 0.7877604)
 script = ExtResource("8_u2p3n")
 
 [node name="大背景" type="Panel" parent="APP" unique_id=405305228]
+clip_children = 1
 layout_mode = 0
 offset_left = -265.84613
 offset_top = -646.13556
 offset_right = 260.37604
 offset_bottom = 599.16705
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nsxp")
+
+[node name="填充卡" type="Panel" parent="APP/大背景" unique_id=529873324]
+layout_mode = 0
+offset_left = -6.5641317
+offset_top = -11.424795
+offset_right = 529.5042
+offset_bottom = 1233.8778
 theme_override_styles/panel = SubResource("StyleBoxFlat_3nsxp")
 
 [node name="主滚动区" type="ScrollContainer" parent="APP/大背景" unique_id=923224862]
@@ -523,20 +534,21 @@ offset_left = -9.0
 offset_top = -14.0
 offset_right = 490.966
 offset_bottom = 258.926
-texture = ExtResource("3_xmqax")
+texture = ExtResource("5_8i1sq")
 expand_mode = 1
 
 [node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡" unique_id=1295400757]
 z_index = 1
 layout_mode = 0
-offset_left = 4.3760676
-offset_top = 195.4909
-offset_right = 447.37607
-offset_bottom = 240.4909
+offset_left = 10.940155
+offset_top = 175.18019
+offset_right = 453.94016
+offset_bottom = 236.51352
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_24254")
-theme_override_font_sizes/font_size = 22
-text = "联储紧急发声后，避险买盘推升汇市波动"
+theme_override_font_sizes/font_size = 20
+text = "联储紧急发声后，避险买盘推升汇市
+波动"
 autowrap_mode = 3
 
 [node name="圆角卡2" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=1594259684]
@@ -551,16 +563,15 @@ offset_left = -9.0
 offset_top = -14.0
 offset_right = 490.966
 offset_bottom = 258.926
-texture = ExtResource("3_xmqax")
 expand_mode = 1
 
 [node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡2" unique_id=1258000082]
 z_index = 1
 layout_mode = 0
-offset_left = 4.3760676
-offset_top = 195.4909
-offset_right = 447.37607
-offset_bottom = 240.4909
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 22
@@ -579,16 +590,15 @@ offset_left = -9.0
 offset_top = -14.0
 offset_right = 490.966
 offset_bottom = 258.926
-texture = ExtResource("3_xmqax")
 expand_mode = 1
 
 [node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡3" unique_id=1685992606]
 z_index = 1
 layout_mode = 0
-offset_left = 4.3760676
-offset_top = 195.4909
-offset_right = 447.37607
-offset_bottom = 240.4909
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 22
@@ -607,16 +617,15 @@ offset_left = -9.0
 offset_top = -14.0
 offset_right = 490.966
 offset_bottom = 258.926
-texture = ExtResource("3_xmqax")
 expand_mode = 1
 
 [node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡4" unique_id=1765067556]
 z_index = 1
 layout_mode = 0
-offset_left = 4.3760676
-offset_top = 195.4909
-offset_right = 447.37607
-offset_bottom = 240.4909
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 22
@@ -635,16 +644,15 @@ offset_left = -9.0
 offset_top = -14.0
 offset_right = 490.966
 offset_bottom = 258.926
-texture = ExtResource("3_xmqax")
 expand_mode = 1
 
 [node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡5" unique_id=463007151]
 z_index = 1
 layout_mode = 0
-offset_left = 4.3760676
-offset_top = 195.4909
-offset_right = 447.37607
-offset_bottom = 240.4909
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 22
@@ -752,9 +760,9 @@ vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡1" unique_id=99058722]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128235
 offset_top = 16.0
-offset_right = 114.29059
+offset_right = 127.41882
 offset_bottom = 39.0
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
 theme_override_fonts/font = ExtResource("5_y3lkj")
@@ -771,15 +779,16 @@ offset_bottom = 71.0
 theme_override_colors/font_color = Color(0.15686275, 0.14901961, 0.14509805, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 18
-text = "总统称将扩大高关税清单，亚盘避险情绪抬头"
+text = "总统称将扩大高关税清单，
+亚盘避险情绪抬头"
 autowrap_mode = 3
 
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡1" unique_id=627062660]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 74.0
-offset_right = 425.0
-offset_bottom = 111.0
+offset_left = 18.102564
+offset_top = 102.87768
+offset_right = 423.10257
+offset_bottom = 139.87769
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
 theme_override_fonts/font = ExtResource("5_y3lkj")
 theme_override_font_sizes/font_size = 14
@@ -797,12 +806,12 @@ offset_left = 18.0
 offset_top = 18.0
 offset_right = 283.0
 offset_bottom = 158.0
-theme_override_constants/separation = 6
+theme_override_constants/separation = 8
 
 [node name="标签行" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容" unique_id=125335223]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 18
 
 [node name="标签" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容/标签行" unique_id=1716868363]
 layout_mode = 2
@@ -849,7 +858,7 @@ offset_left = -6.0
 offset_top = -3.0
 offset_right = 138.0
 offset_bottom = 142.0
-texture = ExtResource("3_xmqax")
+texture = ExtResource("9_5gv3j")
 expand_mode = 1
 stretch_mode = 6
 
@@ -862,7 +871,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
 layout_mode = 0
 offset_left = 19.0
 offset_top = 17.0
-offset_right = 86.0
+offset_right = 85.99999
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.22352941, 0.39607844, 0.20392157, 1)
 theme_override_fonts/font = ExtResource("5_y3lkj")
@@ -872,9 +881,9 @@ vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡3" unique_id=1289500503]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128
 offset_top = 18.643
-offset_right = 115.41028
+offset_right = 128.53827
 offset_bottom = 36.924248
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
 theme_override_fonts/font = ExtResource("5_y3lkj")
@@ -891,15 +900,16 @@ offset_bottom = 73.0
 theme_override_colors/font_color = Color(0.15686275, 0.14901961, 0.14509805, 1)
 theme_override_fonts/font = ExtResource("4_24254")
 theme_override_font_sizes/font_size = 18
-text = "制造业指数意外走弱，市场押注明日政策口径偏鸽"
+text = "制造业指数意外走弱，
+市场押注明日政策口径偏鸽"
 autowrap_mode = 3
 
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡3" unique_id=417140664]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 76.0
+offset_top = 102.878
 offset_right = 426.0
-offset_bottom = 117.0
+offset_bottom = 143.87799
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
 theme_override_fonts/font = ExtResource("5_y3lkj")
 theme_override_font_sizes/font_size = 14
@@ -917,12 +927,12 @@ offset_left = 18.0
 offset_top = 18.0
 offset_right = 283.0
 offset_bottom = 158.0
-theme_override_constants/separation = 6
+theme_override_constants/separation = 8
 
 [node name="标签行" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容" unique_id=32398417]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 18
 
 [node name="标签" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容/标签行" unique_id=607223344]
 layout_mode = 2
@@ -969,7 +979,7 @@ offset_left = -6.0
 offset_top = -3.0
 offset_right = 138.0
 offset_bottom = 142.0
-texture = ExtResource("3_xmqax")
+texture = ExtResource("10_eoilj")
 expand_mode = 1
 stretch_mode = 6
 
@@ -992,9 +1002,9 @@ vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡5" unique_id=1193510956]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128
 offset_top = 16.0
-offset_right = 116.47858
+offset_right = 129.60657
 offset_bottom = 39.0
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
 theme_override_fonts/font = ExtResource("5_y3lkj")
@@ -1017,9 +1027,9 @@ autowrap_mode = 3
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡5" unique_id=949504861]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 74.0
+offset_top = 102.878
 offset_right = 425.0
-offset_bottom = 111.0
+offset_bottom = 139.87799
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
 theme_override_fonts/font = ExtResource("5_y3lkj")
 theme_override_font_sizes/font_size = 14
