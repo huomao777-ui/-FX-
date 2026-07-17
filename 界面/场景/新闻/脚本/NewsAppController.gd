@@ -74,7 +74,7 @@ func _initialize_page_state() -> void:
 func _bind_feature_controllers() -> void:
 	var main_scroll: ScrollContainer = get_node_or_null(main_scroll_path) as ScrollContainer
 	var content_root: Control = get_node_or_null(content_root_path) as Control
-	var page_background: Control = get_node_or_null(page_background_path) as Control
+	var page_background: Control = _resolve_feed_page_background(content_root)
 	var quick_section: Control = get_node_or_null(quick_section_path) as Control
 	var quick_list: VBoxContainer = get_node_or_null(quick_list_path) as VBoxContainer
 	_list_controller.bind_runtime_nodes(_feed_provider, main_scroll, content_root, page_background, quick_section, quick_list)
@@ -294,6 +294,14 @@ func _resolve_time_system() -> Node:
 		if resolved != null:
 			return resolved
 	return get_node_or_null(TIME_SYSTEM_FALLBACK_PATH)
+
+
+func _resolve_feed_page_background(content_root: Control) -> Control:
+	if content_root != null:
+		var inner_background: Control = content_root.get_node_or_null("页面底色") as Control
+		if inner_background != null:
+			return inner_background
+	return get_node_or_null(page_background_path) as Control
 
 
 func _collect_headline_cards() -> void:

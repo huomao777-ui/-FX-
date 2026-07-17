@@ -1,21 +1,33 @@
 [gd_scene format=3 uid="uid://ci1myhjtxpqbb"]
 
-[ext_resource type="Script" uid="uid://b8wbxnxukga4k" path="res://界面/场景/通用/AppShellController.gd" id="1_obb3m"]
-[ext_resource type="Script" uid="uid://yc1vxe6wvr2o" path="res://界面/场景/通用/AppInteractionAreaController.gd" id="2_4epge"]
-[ext_resource type="Texture2D" uid="uid://bn7b2mvyaeww5" path="res://界面/场景/新闻/美术资源/资讯图/重大级别001.png" id="3_6a18n"]
-[ext_resource type="Script" uid="uid://dar5ngcavsr6d" path="res://沙盒/测试/手机顶部信息总控.gd" id="3_nkc0l"]
-[ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="4_6a18n"]
-[ext_resource type="FontFile" uid="uid://c04l4h0i4f3gu" path="res://资源/字体/思源黑体 Display.otf" id="4_p4lms"]
-[ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="5_p4lms"]
-[ext_resource type="Script" uid="uid://b5elnquqg1xe8" path="res://沙盒/测试/手机时间显示.gd" id="6_de8ix"]
-[ext_resource type="Texture2D" uid="uid://cecxcj80yr7d5" path="res://界面/场景/外汇应用/美术资源/货币1.png" id="6_p4lms"]
-[ext_resource type="Script" uid="uid://dcg7jhad38kgq" path="res://沙盒/测试/手机电量显示.gd" id="7_3nsxp"]
-[ext_resource type="Texture2D" uid="uid://bv82fx1hv0n0y" path="res://界面/场景/外汇应用/美术资源/货币.png" id="7_de8ix"]
-[ext_resource type="Script" uid="uid://d30pmorryflmn" path="res://沙盒/测试/手机信号显示.gd" id="8_nrpvc"]
-[ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="9_icvcd"]
-[ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="10_1b2ry"]
-[ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="11_1uy8o"]
-[ext_resource type="Texture2D" uid="uid://bhbxipfbnysm7" path="res://界面/场景/手机/美术资源/仅剩边框.png" id="12_tgfyt"]
+[ext_resource type="Script" uid="uid://b8wbxnxukga4k" path="res://界面/场景/通用/AppShellController.gd" id="1_ko6no"]
+[ext_resource type="Script" uid="uid://yc1vxe6wvr2o" path="res://界面/场景/通用/AppInteractionAreaController.gd" id="2_rnyol"]
+[ext_resource type="Script" uid="uid://2twao303ncu8" path="res://界面/场景/新闻/脚本/NewsAppController.gd" id="3_5gb7p"]
+[ext_resource type="Script" uid="uid://dqxaqkpwohejy" path="res://界面/场景/新闻/脚本/NewsHeadlineCarouselController.gd" id="4_uo06s"]
+[ext_resource type="Texture2D" uid="uid://ba4duf8owgm8p" path="res://界面/场景/新闻/美术资源/资讯图/关税战_001.png" id="5_kxr1o"]
+[ext_resource type="FontFile" uid="uid://c04l4h0i4f3gu" path="res://资源/字体/思源黑体 Display.otf" id="6_63kt1"]
+[ext_resource type="Script" uid="uid://bb12b7ei4by8h" path="res://界面/场景/新闻/脚本/NewsPageIndicatorController.gd" id="7_kj66x"]
+[ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="8_ds0vc"]
+[ext_resource type="Texture2D" uid="uid://oynb8v0cmd2p" path="res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_002.png" id="9_q0nxr"]
+[ext_resource type="Texture2D" uid="uid://o0aa8igu7jm6" path="res://界面/场景/新闻/美术资源/资讯图/资讯配图_盘面异动_001.png" id="10_2wmbx"]
+[ext_resource type="Script" uid="uid://ij55pejjdk1c" path="res://界面/场景/新闻/脚本/NewsBottomFilterBarController.gd" id="11_w2ccl"]
+[ext_resource type="StyleBox" uid="uid://co3cjfc0ug1tv" path="res://沙盒/测试/财经报底部按钮.tres" id="12_5oopt"]
+[ext_resource type="StyleBox" uid="uid://6vtfwev18whw" path="res://沙盒/测试/财经报底部按钮2.tres" id="13_tg3gs"]
+[ext_resource type="StyleBox" uid="uid://cf3kcx8nc08ni" path="res://沙盒/测试/财经报底部按钮1.tres" id="14_ptxyx"]
+[ext_resource type="Script" uid="uid://d3533dpbdrp8" path="res://界面/场景/新闻/脚本/NewsTimePopupCarouselController.gd" id="15_snsdi"]
+[ext_resource type="Script" uid="uid://bwg31uee6kx5w" path="res://界面/场景/新闻/脚本/NewsPopupCarouselController.gd" id="16_lj04w"]
+[ext_resource type="Texture2D" uid="uid://cecxcj80yr7d5" path="res://界面/场景/外汇应用/美术资源/货币1.png" id="17_01o73"]
+[ext_resource type="Texture2D" uid="uid://bv82fx1hv0n0y" path="res://界面/场景/外汇应用/美术资源/货币.png" id="18_yp8ck"]
+[ext_resource type="Texture2D" uid="uid://cqpn8jp4gll55" path="res://界面/场景/新闻/美术资源/全球徽章.png" id="19_rsmh1"]
+[ext_resource type="Script" uid="uid://dar5ngcavsr6d" path="res://沙盒/测试/手机顶部信息总控.gd" id="20_mfr1h"]
+[ext_resource type="Texture2D" uid="uid://kpcy54v3qc6s" path="res://界面/场景/手机/美术资源/灵动岛.png" id="21_4xcma"]
+[ext_resource type="Script" uid="uid://b5elnquqg1xe8" path="res://沙盒/测试/手机时间显示.gd" id="22_3wt2l"]
+[ext_resource type="Script" uid="uid://dcg7jhad38kgq" path="res://沙盒/测试/手机电量显示.gd" id="23_fg44i"]
+[ext_resource type="Script" uid="uid://d30pmorryflmn" path="res://沙盒/测试/手机信号显示.gd" id="24_kxe5p"]
+[ext_resource type="Texture2D" uid="uid://cglt7j8v1u64o" path="res://界面/场景/手机/美术资源/WiFi1.png" id="25_d6qsa"]
+[ext_resource type="Texture2D" uid="uid://c10yoiiu26n2s" path="res://界面/场景/手机/美术资源/WiFi2.png" id="26_flsdl"]
+[ext_resource type="Texture2D" uid="uid://b4n1fancd5b5s" path="res://界面/场景/手机/美术资源/WiFi3.png" id="27_f83vw"]
+[ext_resource type="Texture2D" uid="uid://bhbxipfbnysm7" path="res://界面/场景/手机/美术资源/仅剩边框.png" id="28_wxha1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jukd7"]
 bg_color = Color(0.78548336, 0.4247311, 0.89601016, 1)
@@ -36,7 +48,7 @@ bg_color = Color(0.5882353, 0.078431375, 0.1764706, 1)
 corner_radius_top_left = 45
 corner_radius_top_right = 45
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icvcd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmqax"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 25
 corner_radius_top_right = 25
@@ -45,10 +57,10 @@ corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1b2ry"]
 bg_color = Color(0.92156863, 0.6745098, 0.15294118, 1)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1uy8o"]
 bg_color = Color(0.56531036, 0.14615038, 0.07481233, 1)
@@ -81,10 +93,6 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iusg0"]
 bg_color = Color(0.9411765, 0.9490196, 0.9647059, 1)
@@ -111,29 +119,17 @@ border_color = Color(0.82452536, 0.7684534, 0.6727299, 0.6)
 corner_radius_bottom_right = 70
 corner_radius_bottom_left = 70
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnyol"]
-bg_color = Color(0.91764706, 0.15686275, 0.14901961, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gb7p"]
-bg_color = Color(0.91764706, 0.15686275, 0.14901961, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
-corner_radius_top_left = 7
-corner_radius_top_right = 7
-corner_radius_bottom_right = 7
-corner_radius_bottom_left = 7
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjg2r"]
+bg_color = Color(0.5882353, 0.078431375, 0.1764706, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9908504, 0.5972598, 0.60927653, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uo06s"]
 bg_color = Color(0.09411765, 0.07058824, 0.07058824, 0.3019608)
@@ -141,6 +137,42 @@ corner_radius_top_left = 70
 corner_radius_top_right = 70
 corner_radius_bottom_right = 70
 corner_radius_bottom_left = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynl5y"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gv3j"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eoilj"]
+bg_color = Color(1, 0.5411765, 0.3372549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8901961, 0.3882353, 0.07058824, 0.93333334)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxr1o"]
 bg_color = Color(0.851, 0.878, 0.843, 0.96)
@@ -154,72 +186,20 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63kt1"]
-bg_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jp5lc"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.82452536, 0.7684534, 0.6727299, 0.6)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kj66x"]
-bg_color = Color(0.981, 0.898, 0.921, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.779, 0.482, 0.56, 0.58)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ds0vc"]
-atlas = ExtResource("6_p4lms")
-region = Rect2(22, 16, 103, 104)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0nxr"]
-bg_color = Color(0.866, 0.952, 0.898, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.443, 0.683, 0.557, 0.62)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2wmbx"]
-atlas = ExtResource("6_p4lms")
-region = Rect2(128, 16, 101, 105)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w2ccl"]
-bg_color = Color(0.92156863, 0.6745098, 0.15294118, 1)
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
 corner_radius_top_left = 7
 corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5oopt"]
-atlas = ExtResource("6_p4lms")
-region = Rect2(129, 133, 99, 100)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg3gs"]
-bg_color = Color(1, 0.882, 0.84, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.842, 0.411, 0.341, 0.6)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptxyx"]
-atlas = ExtResource("7_de8ix")
-region = Rect2(658, 375, 286, 284)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_no1y8"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_snsdi"]
 bg_color = Color(0.854, 0.948, 0.985, 1)
@@ -228,13 +208,124 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.333, 0.639, 0.786, 0.62)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q0nxr"]
+bg_color = Color(0.866, 0.952, 0.898, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.443, 0.683, 0.557, 0.62)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs2yb"]
+bg_color = Color(0.98039216, 0.85882354, 0.5019608, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6899477, 0.5577532, 0.08473269, 0.72156864)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg3gs"]
+bg_color = Color(1, 0.882, 0.84, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.842, 0.411, 0.341, 0.6)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kj66x"]
+bg_color = Color(0.981, 0.898, 0.921, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.779, 0.482, 0.56, 0.58)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vp4s"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bonoc"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_63kt1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.82452536, 0.7684534, 0.6727299, 0.6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds0vc"]
+atlas = ExtResource("17_01o73")
+region = Rect2(22, 16, 103, 104)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g5pxg"]
+load_path = "res://.godot/imported/货币1.png-efcdf8e48036369c649450dcb2f10a95.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wmbx"]
+atlas = SubResource("CompressedTexture2D_g5pxg")
+region = Rect2(128, 16, 101, 105)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8i1sq"]
+bg_color = Color(0.9607843, 0.84313726, 0.5568628, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5337818, 0.4094462, 0.17012355, 0.61960787)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynl5y"]
+atlas = ExtResource("17_01o73")
+region = Rect2(129, 133, 99, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptxyx"]
+atlas = ExtResource("18_yp8ck")
+region = Rect2(658, 375, 286, 284)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lj04w"]
-atlas = ExtResource("7_de8ix")
+atlas = ExtResource("18_yp8ck")
 region = Rect2(367, 691, 280, 281)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01o73"]
@@ -244,13 +335,13 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.618, 0.641, 0.676, 0.62)
-corner_radius_top_left = 18
-corner_radius_top_right = 18
-corner_radius_bottom_right = 18
-corner_radius_bottom_left = 18
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yp8ck"]
-atlas = ExtResource("7_de8ix")
+atlas = ExtResource("18_yp8ck")
 region = Rect2(69, 377, 286, 283)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsmh1"]
@@ -260,16 +351,73 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.83, 0.624, 0.224, 0.62)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfr1h"]
+atlas = ExtResource("18_yp8ck")
+region = Rect2(660, 46, 292, 294)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qgaeu"]
+bg_color = Color(0.101960786, 0.37254903, 0.6, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.44705883, 0.67058825, 0.94509804, 0.7019608)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4clvh"]
+atlas = ExtResource("19_rsmh1")
+region = Rect2(119, 115, 1016, 1027)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n88n"]
+bg_color = Color(0.9624725, 0.9379888, 0.8815363, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.8042359, 0.68692714, 0.53914523, 0.55)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4clvh"]
+bg_color = Color(1, 1, 0.9411765, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lidad"]
+color = Color(0.505882, 0.137255, 0.156863, 0.85)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkplm"]
+bg_color = Color(0.93015194, 0.9418548, 0.9637695, 1)
 corner_radius_top_left = 18
 corner_radius_top_right = 18
 corner_radius_bottom_right = 18
 corner_radius_bottom_left = 18
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfr1h"]
-atlas = ExtResource("7_de8ix")
-region = Rect2(660, 46, 292, 294)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2dy7"]
+bg_color = Color(1, 0.9571987, 0.86537325, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.812, 0.85066664, 0.902, 0.8)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p4lms"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugj4f"]
+bg_color = Color(0.23137255, 0.23137255, 0.23137255, 0.63529414)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5s64e"]
 bg_color = Color(0.9372549, 0.94509804, 0.9647059, 0)
@@ -322,12 +470,12 @@ bg_color = Color(0.9529412, 0.9647059, 0.9882353, 1)
 [node name="财经报" type="Control" unique_id=1248338117]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_obb3m")
+script = ExtResource("1_ko6no")
 "进入时启用汇率专注时间" = false
 "进入时启用盯盘耗电" = false
 "离开时恢复普通状态" = false
 "同时打开AttributeStatus" = true
-"FullMobile软件节点名" = "联系人"
+"FullMobile软件节点名" = "财经报"
 
 [node name="交互范围" type="Control" parent="." unique_id=212345678]
 anchors_preset = 0
@@ -336,7 +484,7 @@ offset_top = 48.0
 offset_right = 1138.0
 offset_bottom = 1032.0
 mouse_filter = 2
-script = ExtResource("2_4epge")
+script = ExtResource("2_rnyol")
 
 [node name="交互判定参考节点" type="Panel" parent="交互范围" unique_id=178283693]
 visible = false
@@ -354,20 +502,48 @@ offset_top = 563.0
 offset_right = 893.0
 offset_bottom = 563.0
 scale = Vector2(0.9140626, 0.7877604)
+script = ExtResource("3_5gb7p")
+filter_bar_path = NodePath("大背景/底部按钮层")
+headline_track_path = NodePath("大背景/主滚动区/滚动内容根/顶部头条/头条轨道")
+headline_carousel_path = NodePath("大背景/主滚动区/滚动内容根/顶部头条")
+main_scroll_path = NodePath("大背景/主滚动区")
+content_root_path = NodePath("大背景/主滚动区/滚动内容根")
+page_background_path = NodePath("大背景")
+quick_section_path = NodePath("大背景/主滚动区/滚动内容根/快讯分区")
+quick_list_path = NodePath("大背景/主滚动区/滚动内容根/快讯分区/资讯列表")
+detail_root_path = NodePath("大背景/资讯详情节点")
 
 [node name="大背景" type="Panel" parent="APP" unique_id=405305228]
+clip_children = 1
+z_index = 4
 layout_mode = 0
 offset_left = -265.84613
 offset_top = -646.13556
-offset_right = 260.37604
+offset_right = 274.5982
 offset_bottom = 599.16705
 theme_override_styles/panel = SubResource("StyleBoxFlat_3nsxp")
 
-[node name="主滚动区" type="ScrollContainer" parent="APP/大背景" unique_id=923224862]
+[node name="填充卡" type="Panel" parent="APP/大背景" unique_id=529873324]
 layout_mode = 0
-offset_right = 529.0
-offset_bottom = 1120.0
+offset_left = -6.5641317
+offset_top = -11.424795
+offset_right = 531.6922
+offset_bottom = 1233.8778
+theme_override_styles/panel = SubResource("StyleBoxFlat_3nsxp")
+
+[node name="主滚动区" type="ScrollContainer" parent="APP/大背景" unique_id=923224862]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.326
+anchor_top = -0.096
+anchor_right = 0.326
+anchor_bottom = -0.096
+offset_left = -176.18486
+offset_top = 119.54905
+offset_right = 353.81512
+offset_bottom = 1239.5491
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="滚动内容根" type="Control" parent="APP/大背景/主滚动区" unique_id=1636744041]
 custom_minimum_size = Vector2(530, 1500)
@@ -379,36 +555,160 @@ layout_mode = 0
 offset_right = 529.5043
 offset_bottom = 340.205
 theme_override_styles/panel = SubResource("StyleBoxFlat_nrpvc")
+script = ExtResource("4_uo06s")
 
-[node name="圆角卡" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条" unique_id=180103613]
-clip_children = 1
-layout_mode = 0
-offset_left = 16.41027
-offset_top = 86.32067
-offset_right = 508.7179
-offset_bottom = 328.78018
-theme_override_styles/panel = SubResource("StyleBoxFlat_icvcd")
+[node name="头条轨道" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/顶部头条" unique_id=1159975802]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.59829
+offset_top = 88.85951
+offset_right = 2029.0941
+offset_bottom = -9.345428
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
 
-[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/圆角卡" unique_id=50965083]
+[node name="圆角卡" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=673883346]
+clip_children = 2
+custom_minimum_size = Vector2(492.308, 242.46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmqax")
+
+[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡" unique_id=2058976844]
 layout_mode = 0
-offset_left = -4.3760643
-offset_top = -17.771912
-offset_right = 495.58963
-offset_bottom = 255.15375
-texture = ExtResource("3_6a18n")
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 494.4956
+offset_bottom = 258.926
+texture = ExtResource("5_kxr1o")
 expand_mode = 1
 
-[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/圆角卡" unique_id=1072909187]
+[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡" unique_id=1295400757]
 z_index = 1
 layout_mode = 0
-offset_left = 5.470087
-offset_top = 192.95207
-offset_right = 448.4701
-offset_bottom = 237.95207
+offset_left = 10.940155
+offset_top = 175.18019
+offset_right = 453.94016
+offset_bottom = 236.51352
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 20
+text = "联储紧急发声后，避险买盘推升汇市
+波动"
+autowrap_mode = 3
+
+[node name="圆角卡2" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=1594259684]
+clip_children = 2
+custom_minimum_size = Vector2(492.308, 242.46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmqax")
+
+[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡2" unique_id=1240131568]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 501.05963
+offset_bottom = 258.926
+texture = ExtResource("5_kxr1o")
+expand_mode = 1
+
+[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡2" unique_id=1258000082]
+z_index = 1
+layout_mode = 0
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 22
-text = "联储紧急发声后，避险买盘推升汇市波动"
+text = "第二张占位图"
+autowrap_mode = 3
+
+[node name="圆角卡3" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=185973364]
+clip_children = 1
+custom_minimum_size = Vector2(492.308, 242.46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmqax")
+
+[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡3" unique_id=1753573423]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 502.15363
+offset_bottom = 258.926
+texture = ExtResource("5_kxr1o")
+expand_mode = 1
+
+[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡3" unique_id=1685992606]
+z_index = 1
+layout_mode = 0
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "第三张占位图"
+autowrap_mode = 3
+
+[node name="圆角卡4" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=218621017]
+clip_children = 1
+custom_minimum_size = Vector2(492.308, 242.46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmqax")
+
+[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡4" unique_id=908921296]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 505.43555
+offset_bottom = 258.926
+texture = ExtResource("5_kxr1o")
+expand_mode = 1
+
+[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡4" unique_id=1765067556]
+z_index = 1
+layout_mode = 0
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "第四张占位图"
+autowrap_mode = 3
+
+[node name="圆角卡5" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道" unique_id=682768742]
+clip_children = 1
+custom_minimum_size = Vector2(492.308, 242.46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmqax")
+
+[node name="资讯图" type="TextureRect" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡5" unique_id=2131465017]
+layout_mode = 0
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 497.77747
+offset_bottom = 258.926
+texture = ExtResource("5_kxr1o")
+expand_mode = 1
+
+[node name="新闻标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条轨道/圆角卡5" unique_id=463007151]
+z_index = 1
+layout_mode = 0
+offset_left = 10.94
+offset_top = 175.18
+offset_right = 453.94
+offset_bottom = 220.18
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "第五张占位图"
 autowrap_mode = 3
 
 [node name="头条翻页球" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/顶部头条" unique_id=88801142]
@@ -419,6 +719,7 @@ offset_right = 497.28198
 offset_bottom = 324.8529
 theme_override_constants/separation = 8
 alignment = 2
+script = ExtResource("7_kj66x")
 
 [node name="球1" type="Panel" parent="APP/大背景/主滚动区/滚动内容根/顶部头条/头条翻页球" unique_id=1418656083]
 custom_minimum_size = Vector2(20, 10)
@@ -457,20 +758,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tgfyt")
 [node name="快讯分区" type="Panel" parent="APP/大背景/主滚动区/滚动内容根" unique_id=1550317038]
 z_index = 1
 layout_mode = 0
-offset_left = 18.0
-offset_top = 363.0
-offset_right = 510.0
-offset_bottom = 1468.0
+offset_left = 15.316238
+offset_top = 349.09088
+offset_right = 507.31622
+offset_bottom = 1454.0908
 theme_override_styles/panel = SubResource("StyleBoxFlat_uasis")
 
 [node name="快讯标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区" unique_id=746854010]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 14.0
-offset_right = 153.0
-offset_bottom = 42.0
+offset_left = 18.102564
+offset_top = 14.018168
+offset_right = 153.10257
+offset_bottom = 43.184837
 theme_override_colors/font_color = Color(0.22745098, 0.21176471, 0.19607843, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 20
 text = "滚动资讯"
 vertical_alignment = 1
@@ -482,7 +783,7 @@ offset_top = 44.0
 offset_right = 333.0
 offset_bottom = 67.0
 theme_override_colors/font_color = Color(0.44705883, 0.42352942, 0.39215687, 0.82)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "向上滑动浏览全天资讯与图片快照"
 vertical_alignment = 1
@@ -504,19 +805,19 @@ offset_top = 16.0
 offset_right = 92.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.6313726, 0.12156863, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "贸易政策"
 vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡1" unique_id=99058722]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128235
 offset_top = 16.0
-offset_right = 114.29059
+offset_right = 127.41882
 offset_bottom = 39.0
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "09:20"
 vertical_alignment = 1
@@ -528,19 +829,20 @@ offset_top = 42.0
 offset_right = 428.0
 offset_bottom = 71.0
 theme_override_colors/font_color = Color(0.15686275, 0.14901961, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
-text = "总统称将扩大高关税清单，亚盘避险情绪抬头"
+text = "总统称将扩大高关税清单，
+亚盘避险情绪抬头"
 autowrap_mode = 3
 
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡1" unique_id=627062660]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 74.0
-offset_right = 425.0
-offset_bottom = 111.0
+offset_left = 18.102564
+offset_top = 102.87768
+offset_right = 423.10257
+offset_bottom = 139.87769
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 14
 text = "多家出口企业板块回落，市场预计相关货币短线承压。"
 autowrap_mode = 3
@@ -556,31 +858,31 @@ offset_left = 18.0
 offset_top = 18.0
 offset_right = 283.0
 offset_bottom = 158.0
-theme_override_constants/separation = 6
+theme_override_constants/separation = 8
 
 [node name="标签行" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容" unique_id=125335223]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 18
 
 [node name="标签" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容/标签行" unique_id=1716868363]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "政局异动"
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容/标签行" unique_id=83856555]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "11:45"
 
 [node name="标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容" unique_id=8612801]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "首相突然宣布辞职，主要货币对振幅扩大"
 autowrap_mode = 3
@@ -588,7 +890,7 @@ autowrap_mode = 3
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡2/左侧内容" unique_id=747790215]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 14
 text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
 autowrap_mode = 3
@@ -608,7 +910,7 @@ offset_left = -6.0
 offset_top = -3.0
 offset_right = 138.0
 offset_bottom = 142.0
-texture = ExtResource("3_6a18n")
+texture = ExtResource("9_q0nxr")
 expand_mode = 1
 stretch_mode = 6
 
@@ -621,22 +923,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
 layout_mode = 0
 offset_left = 19.0
 offset_top = 17.0
-offset_right = 86.0
+offset_right = 85.99999
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.22352941, 0.39607844, 0.20392157, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "经济数据"
 vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡3" unique_id=1289500503]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128
 offset_top = 18.643
-offset_right = 115.41028
+offset_right = 128.53827
 offset_bottom = 36.924248
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "13:10"
 vertical_alignment = 1
@@ -648,19 +950,20 @@ offset_top = 43.0
 offset_right = 428.0
 offset_bottom = 73.0
 theme_override_colors/font_color = Color(0.15686275, 0.14901961, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
-text = "制造业指数意外走弱，市场押注明日政策口径偏鸽"
+text = "制造业指数意外走弱，
+市场押注明日政策口径偏鸽"
 autowrap_mode = 3
 
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡3" unique_id=417140664]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 76.0
+offset_top = 102.878
 offset_right = 426.0
-offset_bottom = 117.0
+offset_bottom = 143.87799
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 14
 text = "利率预期曲线随之回落，短线资金转向防守型资产。"
 autowrap_mode = 3
@@ -676,31 +979,31 @@ offset_left = 18.0
 offset_top = 18.0
 offset_right = 283.0
 offset_bottom = 158.0
-theme_override_constants/separation = 6
+theme_override_constants/separation = 8
 
 [node name="标签行" type="HBoxContainer" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容" unique_id=32398417]
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 18
 
 [node name="标签" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容/标签行" unique_id=607223344]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.6039216, 0.32156864, 0.11372549, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "现场画面"
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容/标签行" unique_id=429441849]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "16:30"
 
 [node name="标题" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容" unique_id=442603903]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "港口库存数据公布后，资源货币日内强弱分化"
 autowrap_mode = 3
@@ -708,7 +1011,7 @@ autowrap_mode = 3
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡4/左侧内容" unique_id=1400087134]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 14
 text = "交易席位分歧加剧，右侧图片位可用于后续重大新闻配图。"
 autowrap_mode = 3
@@ -728,7 +1031,7 @@ offset_left = -6.0
 offset_top = -3.0
 offset_right = 138.0
 offset_bottom = 142.0
-texture = ExtResource("3_6a18n")
+texture = ExtResource("10_2wmbx")
 expand_mode = 1
 stretch_mode = 6
 
@@ -744,19 +1047,19 @@ offset_top = 16.0
 offset_right = 92.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.28235295, 0.23921569, 0.58431375, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "市场传闻"
 vertical_alignment = 1
 
 [node name="时间" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡5" unique_id=1193510956]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 89.128
 offset_top = 16.0
-offset_right = 116.47858
+offset_right = 129.60657
 offset_bottom = 39.0
 theme_override_colors/font_color = Color(0.47843137, 0.47843137, 0.47843137, 0.88)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "18:05"
 vertical_alignment = 1
@@ -768,7 +1071,7 @@ offset_top = 42.0
 offset_right = 428.0
 offset_bottom = 71.0
 theme_override_colors/font_color = Color(0.15686275, 0.14901961, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "交易大厅传出协调会消息，夜盘前观望盘明显增加"
 autowrap_mode = 3
@@ -776,23 +1079,24 @@ autowrap_mode = 3
 [node name="摘要" type="Label" parent="APP/大背景/主滚动区/滚动内容根/快讯分区/资讯列表/资讯卡5" unique_id=949504861]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 74.0
+offset_top = 102.878
 offset_right = 425.0
-offset_bottom = 111.0
+offset_bottom = 139.87799
 theme_override_colors/font_color = Color(0.3764706, 0.3764706, 0.3764706, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 14
 text = "这类快讯适合后续接入概率触发与消息已读状态。"
 autowrap_mode = 3
 
 [node name="底部按钮层" type="Panel" parent="APP/大背景" unique_id=118760572]
-z_index = 4
+z_index = 3
 layout_mode = 0
 offset_left = -3.2820435
 offset_top = 1105.6661
 offset_right = 536.06836
 offset_bottom = 1242.7637
 theme_override_styles/panel = SubResource("StyleBoxFlat_ko6no")
+script = ExtResource("11_w2ccl")
 
 [node name="按钮层标题" type="Label" parent="APP/大背景/底部按钮层" unique_id=899862808]
 layout_mode = 0
@@ -801,7 +1105,7 @@ offset_top = 12.0
 offset_right = 122.0
 offset_bottom = 36.0
 theme_override_colors/font_color = Color(0.36078432, 0.15294118, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 16
 text = "资讯筛选"
 vertical_alignment = 1
@@ -815,10 +1119,12 @@ offset_bottom = 112.97845
 theme_override_constants/separation = 47
 alignment = 1
 
-[node name="日期按钮" type="Panel" parent="APP/大背景/底部按钮层/按钮行" unique_id=1348950543]
+[node name="日期按钮" type="Button" parent="APP/大背景/底部按钮层/按钮行" unique_id=1510275706]
 custom_minimum_size = Vector2(104, 36)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1b2ry")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vjg2r")
+theme_override_styles/pressed = ExtResource("12_5oopt")
+theme_override_styles/hover = ExtResource("13_tg3gs")
 
 [node name="文字" type="Label" parent="APP/大背景/底部按钮层/按钮行/日期按钮" unique_id=1907395975]
 layout_mode = 0
@@ -827,7 +1133,7 @@ offset_top = 6.0
 offset_right = 92.0
 offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "日期切换"
 horizontal_alignment = 1
@@ -840,16 +1146,18 @@ offset_top = 31.735538
 offset_right = 91.13675
 offset_bottom = 55.73554
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "2026/07/03"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区按钮" type="Panel" parent="APP/大背景/底部按钮层/按钮行" unique_id=1453061225]
+[node name="地区按钮" type="Button" parent="APP/大背景/底部按钮层/按钮行" unique_id=1996221330]
 custom_minimum_size = Vector2(104, 36)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rnyol")
+theme_override_styles/normal = ExtResource("14_ptxyx")
+theme_override_styles/pressed = ExtResource("12_5oopt")
+theme_override_styles/hover = ExtResource("13_tg3gs")
 
 [node name="文字" type="Label" parent="APP/大背景/底部按钮层/按钮行/地区按钮" unique_id=962349140]
 layout_mode = 0
@@ -858,7 +1166,7 @@ offset_top = 6.0
 offset_right = 92.0
 offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "相关地区"
 horizontal_alignment = 1
@@ -871,16 +1179,18 @@ offset_top = 33.00496
 offset_right = 92.20513
 offset_bottom = 57.00496
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "袋鼠国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="分类按钮" type="Panel" parent="APP/大背景/底部按钮层/按钮行" unique_id=1160336451]
+[node name="分类按钮" type="Button" parent="APP/大背景/底部按钮层/按钮行" unique_id=1097181252]
 custom_minimum_size = Vector2(104, 36)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5gb7p")
+theme_override_styles/normal = ExtResource("14_ptxyx")
+theme_override_styles/pressed = ExtResource("12_5oopt")
+theme_override_styles/hover = ExtResource("13_tg3gs")
 
 [node name="文字" type="Label" parent="APP/大背景/底部按钮层/按钮行/分类按钮" unique_id=1211881253]
 layout_mode = 0
@@ -889,7 +1199,7 @@ offset_top = 6.0
 offset_right = 92.0
 offset_bottom = 30.0
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "资讯分类"
 horizontal_alignment = 1
@@ -902,13 +1212,18 @@ offset_top = 31.388794
 offset_right = 92.0
 offset_bottom = 55.388794
 theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "市场传闻"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="时间切换弹窗" type="Control" parent="APP/大背景" unique_id=659286927]
+[node name="弹窗控制器" type="Control" parent="APP/大背景" unique_id=994578076]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="时间切换弹窗" type="Control" parent="APP/大背景/弹窗控制器" unique_id=659286927]
 visible = false
 z_index = 8
 anchors_preset = 0
@@ -916,52 +1231,30 @@ offset_right = 529.5043
 offset_bottom = 1245.0
 mouse_filter = 1
 
-[node name="遮罩" type="Panel" parent="APP/大背景/时间切换弹窗" unique_id=2126850185]
+[node name="遮罩" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗" unique_id=2126850185]
 layout_mode = 0
 offset_left = -6.564087
 offset_right = 532.78625
 offset_bottom = 1245.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uo06s")
 
-[node name="弹窗主体" type="Panel" parent="APP/大背景/时间切换弹窗" unique_id=1947273099]
+[node name="弹窗主体" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗" unique_id=1947273099]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 274.0
 offset_right = 503.0
 offset_bottom = 798.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tgfyt")
+script = ExtResource("15_snsdi")
 
-[node name="顶部栏" type="Control" parent="APP/大背景/时间切换弹窗/弹窗主体" unique_id=1423855360]
+[node name="顶部栏" type="Control" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体" unique_id=1423855360]
 anchors_preset = 0
 offset_left = 24.0
 offset_top = 22.0
 offset_right = 453.0
 offset_bottom = 120.0
 
-[node name="年份后退按钮" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=2007837472]
-visible = false
-custom_minimum_size = Vector2(58, 44)
-layout_mode = 0
-offset_top = 20.0
-offset_right = 58.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="文字" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏/年份后退按钮" unique_id=1525997147]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 50.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = "<<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="年份后退按钮_Button" type="Button" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=2009541654]
+[node name="年份后退按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/顶部栏" unique_id=2009541654]
 custom_minimum_size = Vector2(58, 44)
 layout_mode = 0
 offset_top = 20.0
@@ -970,36 +1263,12 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "<<"
 flat = true
 
-[node name="月份后退按钮" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=894449086]
-visible = false
-custom_minimum_size = Vector2(46, 44)
-layout_mode = 0
-offset_left = 68.0
-offset_top = 20.0
-offset_right = 114.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1b2ry")
-
-[node name="文字" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏/月份后退按钮" unique_id=1394699519]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 38.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = "<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="月份后退按钮_Button" type="Button" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=1936853927]
+[node name="月份后退按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/顶部栏" unique_id=1936853927]
 custom_minimum_size = Vector2(46, 44)
 layout_mode = 0
 offset_left = 68.0
@@ -1009,49 +1278,25 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "<"
 flat = true
 
-[node name="当前时间标题" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=25795798]
+[node name="当前时间标题" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/顶部栏" unique_id=25795798]
 layout_mode = 0
 offset_left = 122.0
 offset_top = 18.0
 offset_right = 307.0
 offset_bottom = 66.0
 theme_override_colors/font_color = Color(0.36078432, 0.15294118, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 24
 text = "<2026-07-12>"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份前进按钮" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=631320266]
-visible = false
-custom_minimum_size = Vector2(46, 44)
-layout_mode = 0
-offset_left = 315.0
-offset_top = 20.0
-offset_right = 361.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_1b2ry")
-
-[node name="文字" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏/月份前进按钮" unique_id=1589856557]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 38.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = ">"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="月份前进按钮_Button" type="Button" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=1527306841]
+[node name="月份前进按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/顶部栏" unique_id=1527306841]
 custom_minimum_size = Vector2(46, 44)
 layout_mode = 0
 offset_left = 315.0
@@ -1061,36 +1306,12 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = ">"
 flat = true
 
-[node name="年份前进按钮" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=1009207387]
-visible = false
-custom_minimum_size = Vector2(58, 44)
-layout_mode = 0
-offset_left = 371.0
-offset_top = 20.0
-offset_right = 429.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="文字" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏/年份前进按钮" unique_id=1750351191]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 50.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = ">>"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="年份前进按钮_Button" type="Button" parent="APP/大背景/时间切换弹窗/弹窗主体/顶部栏" unique_id=1802795972]
+[node name="年份前进按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/顶部栏" unique_id=1802795972]
 custom_minimum_size = Vector2(58, 44)
 layout_mode = 0
 offset_left = 371.0
@@ -1100,25 +1321,25 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = ">>"
 flat = true
 
-[node name="顶部说明" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体" unique_id=1282860241]
+[node name="顶部说明" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体" unique_id=1282860241]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 110.0
 offset_right = 442.0
 offset_bottom = 140.0
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "双箭头切换年份，单箭头切换月份，滑动切换日期"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期传送带区" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体" unique_id=104904856]
+[node name="日期传送带区" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体" unique_id=104904856]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 166.0
@@ -1126,337 +1347,734 @@ offset_right = 453.0
 offset_bottom = 422.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uasis")
 
-[node name="日期轨道" type="HBoxContainer" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区" unique_id=481427319]
+[node name="日期轨道" type="HBoxContainer" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区" unique_id=481427319]
 layout_mode = 0
 offset_left = 12.359013
 offset_top = 32.224777
 offset_right = 416.359
-offset_bottom = 211.6132
-theme_override_constants/separation = 10
+offset_bottom = 207.40501
+theme_override_constants/separation = 12
 alignment = 1
 
-[node name="日期项1" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=496661663]
+[node name="日期项1" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=496661663]
 custom_minimum_size = Vector2(68, 132)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ynl5y")
 
-[node name="星期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1409994125]
+[node name="星期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1409994125]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 18.0
-offset_right = 58.0
-offset_bottom = 40.0
+offset_left = 9.504207
+offset_top = 17.77194
+offset_right = 57.504208
+offset_bottom = 39.771942
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "周五"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1573765670]
+[node name="日期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1573765670]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 60.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 26
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1796251366]
+[node name="月份" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项1" unique_id=1796251366]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 60.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "07月"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期项2" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=1059881254]
+[node name="日期项2" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=1059881254]
 custom_minimum_size = Vector2(68, 132)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gv3j")
 
-[node name="星期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=1972801895]
+[node name="星期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=1972801895]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 18.0
 offset_right = 58.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "周六"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=1394960109]
+[node name="日期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=1394960109]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 60.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 26
 text = "11"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=238084099]
+[node name="月份" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项2" unique_id=238084099]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 60.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "07月"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="当前日期项" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=1349042529]
-custom_minimum_size = Vector2(92, 154)
+[node name="日期项3" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=542167802]
+custom_minimum_size = Vector2(68, 132)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_1b2ry")
+theme_override_styles/panel = SubResource("StyleBoxFlat_eoilj")
 
-[node name="星期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/当前日期项" unique_id=310502409]
+[node name="星期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项3" unique_id=642229234]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 20.0
-offset_right = 74.0
-offset_bottom = 44.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
-theme_override_font_sizes/font_size = 14
+offset_left = 10.0
+offset_top = 18.0
+offset_right = 58.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0.8980392, 0.7176471, 0.9882353)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
 text = "周日"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/当前日期项" unique_id=880767225]
+[node name="日期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项3" unique_id=106586338]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 52.0
-offset_right = 76.0
-offset_bottom = 108.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 34
+offset_left = 8.136685
+offset_top = 48.238056
+offset_right = 60.136684
+offset_bottom = 96.23805
+theme_override_colors/font_color = Color(1, 0.8980392, 0.7176471, 0.9882353)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 26
 text = "12"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/当前日期项" unique_id=307222357]
+[node name="月份" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项3" unique_id=1634980789]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 116.0
-offset_right = 78.0
-offset_bottom = 140.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
-theme_override_font_sizes/font_size = 14
+offset_left = 8.0
+offset_top = 96.0
+offset_right = 60.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(1, 0.8980392, 0.7176471, 0.9882353)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
 text = "07月"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期项4" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=139001343]
+[node name="日期项4" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=139001343]
 custom_minimum_size = Vector2(68, 132)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxr1o")
 
-[node name="星期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=245275994]
+[node name="星期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=245275994]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 18.0
 offset_right = 58.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.78)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "周一"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=1732756838]
+[node name="日期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=1732756838]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 60.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0.235, 0.298, 0.255, 0.86)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 26
 text = "13"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=1386359450]
+[node name="月份" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项4" unique_id=1386359450]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 60.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.78)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "07月"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期项5" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=1632681511]
+[node name="日期项5" type="Panel" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道" unique_id=1632681511]
 custom_minimum_size = Vector2(68, 132)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kxr1o")
 
-[node name="星期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=841985920]
+[node name="星期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=841985920]
 layout_mode = 0
 offset_left = 10.0
 offset_top = 18.0
 offset_right = 58.0
 offset_bottom = 40.0
 theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.78)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "周二"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="日期" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=815623361]
+[node name="日期" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=815623361]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 48.0
 offset_right = 60.0
 offset_bottom = 96.0
 theme_override_colors/font_color = Color(0.235, 0.298, 0.255, 0.86)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 26
 text = "14"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="月份" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=1767288498]
+[node name="月份" type="Label" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体/日期传送带区/日期轨道/日期项5" unique_id=1767288498]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 96.0
 offset_right = 60.0
 offset_bottom = 118.0
 theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.78)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "07月"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="传送带提示" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/日期传送带区" unique_id=863212519]
+[node name="TimeBottomVisualButton" type="Button" parent="APP/大背景/弹窗控制器/时间切换弹窗/弹窗主体" unique_id=381220117]
+z_index = 30
 layout_mode = 0
-offset_left = 44.0
-offset_top = 226.0
-offset_right = 385.0
-offset_bottom = 248.0
-theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.85)
-theme_override_fonts/font = ExtResource("5_p4lms")
-theme_override_font_sizes/font_size = 12
-text = "中间为当前日期，两侧作为前后预览"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="底部占位区" type="Panel" parent="APP/大背景/时间切换弹窗/弹窗主体" unique_id=1310094077]
-visible = false
-layout_mode = 0
-offset_left = 24.0
-offset_top = 442.0
-offset_right = 453.0
-offset_bottom = 482.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="底部说明" type="Label" parent="APP/大背景/时间切换弹窗/弹窗主体/底部占位区" unique_id=1614041175]
-visible = false
-layout_mode = 0
-offset_left = 18.0
-offset_top = 8.0
-offset_right = 411.0
-offset_bottom = 32.0
+offset_left = 24.324787
+offset_top = 441.95374
+offset_right = 453.3248
+offset_bottom = 481.95374
+focus_mode = 0
 theme_override_colors/font_color = Color(0.38039216, 0.32156864, 0.25882354, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_colors/font_pressed_color = Color(1, 0.98039216, 0.9529412, 1)
+theme_override_colors/font_hover_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
-text = "此区先留作后续确认按钮、快速跳转或节日标记入口"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_jp5lc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1uy8o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1b2ry")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tc8x4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tc8x4")
+text = "TIME BUTTON"
 
-[node name="TimeBottomActionButton" type="Button" parent="APP/大背景/时间切换弹窗/弹窗主体" unique_id=132940117]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 442.0
-offset_right = 453.0
-offset_bottom = 482.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
-theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-flat = true
-
-[node name="地区切换弹窗" type="Control" parent="APP/大背景" unique_id=343603566]
+[node name="资讯切换弹窗" type="Control" parent="APP/大背景/弹窗控制器" unique_id=34269592]
+visible = false
 z_index = 8
 anchors_preset = 0
 offset_right = 529.5043
 offset_bottom = 1245.0
 mouse_filter = 1
 
-[node name="遮罩" type="Panel" parent="APP/大背景/地区切换弹窗" unique_id=835892256]
+[node name="遮罩" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗" unique_id=989809273]
 layout_mode = 0
 offset_left = -6.564087
 offset_right = 532.78625
 offset_bottom = 1245.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uo06s")
 
-[node name="弹窗主体" type="Panel" parent="APP/大背景/地区切换弹窗" unique_id=1709103035]
+[node name="弹窗主体" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗" unique_id=672425058]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 274.0
+offset_right = 503.0
+offset_bottom = 798.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgfyt")
+script = ExtResource("16_lj04w")
+
+[node name="顶部栏" type="Control" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体" unique_id=109821646]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 22.0
+offset_right = 453.0
+offset_bottom = 120.0
+
+[node name="类型后退按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/顶部栏" unique_id=469247297]
+custom_minimum_size = Vector2(58, 44)
+layout_mode = 0
+offset_top = 20.0
+offset_right = 58.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
+theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 18
+text = "<"
+flat = true
+
+[node name="当前资讯标题" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/顶部栏" unique_id=5843208]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 18.0
+offset_right = 307.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.36078432, 0.15294118, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 24
+text = "货币政策"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="类型前进按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/顶部栏" unique_id=709688918]
+custom_minimum_size = Vector2(58, 44)
+layout_mode = 0
+offset_left = 371.0
+offset_top = 20.0
+offset_right = 429.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
+theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 18
+text = ">"
+flat = true
+
+[node name="顶部说明" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体" unique_id=2091806224]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 110.0
+offset_right = 442.0
+offset_bottom = 140.0
+theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.92)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "点击或者滑动切换咨询类型"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="资讯传送带区" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体" unique_id=943728059]
+clip_children = 1
+layout_mode = 0
+offset_left = 22.136753
+offset_top = 156.33391
+offset_right = 451.13675
+offset_bottom = 412.33392
+theme_override_styles/panel = SubResource("StyleBoxFlat_uasis")
+
+[node name="小背景" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区" unique_id=482960330]
+layout_mode = 0
+offset_left = -25.93158
+offset_top = -22.36029
+offset_right = 429.17944
+offset_bottom = 261.99017
+theme_override_styles/panel = SubResource("StyleBoxFlat_no1y8")
+
+[node name="新资讯轨道" type="HBoxContainer" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区" unique_id=1912200942]
+layout_mode = 0
+offset_left = 5.4700775
+offset_top = 39.352085
+offset_right = 593.4701
+offset_bottom = 219.60995
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="分类卡1" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=466414348]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_snsdi")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡1" unique_id=1582347967]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.19607843, 0.3529412, 0.45490196, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "时政风险"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡1" unique_id=418806783]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.19607843, 0.3529412, 0.45490196, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "政局"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡1" unique_id=552350629]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.19607843, 0.3529412, 0.45490196, 0.82)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "突发政局最快影响风险偏好"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡2" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=532982741]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_q0nxr")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡2" unique_id=802070219]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.2901961, 0.4627451, 0.3372549, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "经济数据"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡2" unique_id=276200274]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.2901961, 0.4627451, 0.3372549, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "数据"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡2" unique_id=966780029]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.2901961, 0.4627451, 0.3372549, 0.82)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "就业通胀与增长决定强弱"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡3" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=554177184]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hs2yb")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡3" unique_id=569095361]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.49019608, 0.32941177, 0.03137255, 0.8352941)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "货币政策"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡3" unique_id=1499987059]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.49019608, 0.32941177, 0.03137255, 0.8352941)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "央行"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡3" unique_id=453824903]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.49019608, 0.32941177, 0.03137255, 0.8352941)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "利率与表态最直接定价"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡4" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=1735218927]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tg3gs")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡4" unique_id=276671997]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.5803922, 0.24705882, 0.22352941, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "贸易产业"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡4" unique_id=481187409]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.5803922, 0.24705882, 0.22352941, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "贸易"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡4" unique_id=345889290]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.5803922, 0.24705882, 0.22352941, 0.82)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "关税出口与产业链影响中期"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡5" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=464870761]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kj66x")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡5" unique_id=425727319]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.489, 0.24, 0.302, 0.96)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "市场预期"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡5" unique_id=1769558852]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.489, 0.24, 0.302, 0.96)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "预期"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡5" unique_id=2004985059]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.489, 0.24, 0.302, 0.82)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "仓位与共识常先于新闻反应"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡6" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=437722495]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxr1o")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡6" unique_id=2075870065]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.9)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "盘面异动"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡6" unique_id=797574313]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.235, 0.298, 0.255, 0.92)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "盘面"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡6" unique_id=1259716436]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.323, 0.388, 0.341, 0.78)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "放量扫损与急拉急跌体现气氛"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="分类卡7" type="Panel" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道" unique_id=1485034355]
+custom_minimum_size = Vector2(72, 134)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4vp4s")
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡7" unique_id=1256916447]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 18.0
+offset_right = 64.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 13
+text = "全部资讯"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="主词" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡7" unique_id=458796792]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 22
+text = "总览"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="简介" type="Label" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体/资讯传送带区/新资讯轨道/分类卡7" unique_id=1058489878]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 98.0
+offset_right = 65.0
+offset_bottom = 124.0
+theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.82)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 11
+text = "汇总所有类别方便快速通读"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="确认按钮" type="Button" parent="APP/大背景/弹窗控制器/资讯切换弹窗/弹窗主体" unique_id=1197532757]
+z_index = 30
+layout_mode = 0
+offset_left = 24.0
+offset_top = 442.0
+offset_right = 453.0
+offset_bottom = 482.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.38039216, 0.32156864, 0.25882354, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.98039216, 0.9529412, 1)
+theme_override_colors/font_hover_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_bonoc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1uy8o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1b2ry")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tc8x4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tc8x4")
+text = "确认切换"
+
+[node name="地区切换弹窗" type="Control" parent="APP/大背景/弹窗控制器" unique_id=343603566]
+visible = false
+z_index = 8
+anchors_preset = 0
+offset_right = 529.5043
+offset_bottom = 1245.0
+mouse_filter = 1
+
+[node name="遮罩" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗" unique_id=835892256]
+layout_mode = 0
+offset_left = -6.564087
+offset_right = 532.78625
+offset_bottom = 1245.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uo06s")
+
+[node name="弹窗主体" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗" unique_id=1709103035]
 layout_mode = 0
 offset_left = 26.0
 offset_top = 248.0
 offset_right = 503.0
 offset_bottom = 830.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tgfyt")
+script = ExtResource("16_lj04w")
 
-[node name="顶部栏" type="Control" parent="APP/大背景/地区切换弹窗/弹窗主体" unique_id=2006821103]
+[node name="顶部栏" type="Control" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体" unique_id=2006821103]
 anchors_preset = 0
 offset_left = 24.324787
 offset_top = 18.578512
 offset_right = 453.3248
 offset_bottom = 116.578514
 
-[node name="左切换按钮" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏" unique_id=1392011207]
-visible = false
-custom_minimum_size = Vector2(58, 44)
-layout_mode = 0
-offset_top = 20.0
-offset_right = 58.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="文字" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏/左切换按钮" unique_id=1350434197]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 50.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = "<"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="左切换按钮_Button" type="Button" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏" unique_id=293677441]
+[node name="左切换按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/顶部栏" unique_id=293677441]
 custom_minimum_size = Vector2(58, 44)
 layout_mode = 0
 offset_top = 20.0
@@ -1465,49 +2083,25 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = "<"
 flat = true
 
-[node name="当前地区标题" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏" unique_id=543265389]
+[node name="当前地区标题" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/顶部栏" unique_id=543265389]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 18.0
 offset_right = 345.0
 offset_bottom = 66.0
 theme_override_colors/font_color = Color(0.36078432, 0.15294118, 0.14509805, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 24
 text = "<袋鼠国 / 大洋洲>"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="右切换按钮" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏" unique_id=1614557084]
-visible = false
-custom_minimum_size = Vector2(58, 44)
-layout_mode = 0
-offset_left = 371.0
-offset_top = 20.0
-offset_right = 429.0
-offset_bottom = 64.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="文字" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏/右切换按钮" unique_id=804563654]
-visible = false
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 50.0
-offset_bottom = 36.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-text = ">"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="右切换按钮_Button" type="Button" parent="APP/大背景/地区切换弹窗/弹窗主体/顶部栏" unique_id=1147587160]
+[node name="右切换按钮_Button" type="Button" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/顶部栏" unique_id=1147587160]
 custom_minimum_size = Vector2(58, 44)
 layout_mode = 0
 offset_left = 371.0
@@ -1517,25 +2111,25 @@ offset_bottom = 64.0
 theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
 theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
 theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 18
 text = ">"
 flat = true
 
-[node name="顶部说明" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体" unique_id=742150202]
+[node name="顶部说明" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体" unique_id=742150202]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 108.0
 offset_right = 442.0
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.92)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 13
 text = "顶部按钮可切换地区，传送带可用于后续滑动切换徽章"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区传送带区" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体" unique_id=1688843903]
+[node name="地区传送带区" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体" unique_id=1688843903]
 clip_children = 1
 layout_mode = 0
 offset_left = 22.136753
@@ -1544,7 +2138,7 @@ offset_right = 454.59818
 offset_bottom = 456.02316
 theme_override_styles/panel = SubResource("StyleBoxFlat_63kt1")
 
-[node name="小背景" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区" unique_id=725432631]
+[node name="小背景" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区" unique_id=725432631]
 layout_mode = 0
 offset_left = -10.615394
 offset_top = -1.2462635
@@ -1552,21 +2146,21 @@ offset_right = 436.8375
 offset_bottom = 292.75372
 theme_override_styles/panel = SubResource("StyleBoxFlat_63kt1")
 
-[node name="徽章轨道" type="HBoxContainer" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区" unique_id=439367128]
+[node name="徽章轨道" type="HBoxContainer" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区" unique_id=439367128]
 layout_mode = 0
-offset_left = 4.7008557
-offset_top = 19.06449
-offset_right = 592.70087
-offset_bottom = 229.06448
-theme_override_constants/separation = 8
+offset_left = 13.128204
+offset_top = 36.813225
+offset_right = 675.1282
+offset_bottom = 246.81323
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="地区项1" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1217983942]
+[node name="地区项1" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1217983942]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_kj66x")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=1289258806]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=1289258806]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1576,38 +2170,38 @@ texture = SubResource("AtlasTexture_ds0vc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=2014740175]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=2014740175]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.489, 0.24, 0.302, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "樱花国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=420749776]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项1" unique_id=420749776]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.489, 0.24, 0.302, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "JPY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区项2" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1969917298]
+[node name="地区项2" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1969917298]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_q0nxr")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=989437104]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=989437104]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1617,79 +2211,79 @@ texture = SubResource("AtlasTexture_2wmbx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=708530312]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=708530312]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.216, 0.423, 0.318, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "漂亮国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=117969898]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项2" unique_id=117969898]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.216, 0.423, 0.318, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "USD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="当前地区项" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1850985320]
-custom_minimum_size = Vector2(96, 188)
+[node name="地区项3" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=664742258]
+custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_w2ccl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8i1sq")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/当前地区项" unique_id=125050231]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项3" unique_id=1596694852]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 12.0
-offset_right = 86.0
-offset_bottom = 88.0
-texture = SubResource("AtlasTexture_5oopt")
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 70.0
+texture = SubResource("AtlasTexture_ynl5y")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/当前地区项" unique_id=342111551]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项3" unique_id=805309516]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 102.0
-offset_right = 86.0
-offset_bottom = 128.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
-theme_override_font_sizes/font_size = 13
+offset_left = 6.0
+offset_top = 86.0
+offset_right = 68.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.53333336, 0.40784314, 0.16862746, 0.88235295)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
 text = "袋鼠国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/当前地区项" unique_id=1282174071]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项3" unique_id=1221236149]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 136.0
-offset_right = 86.0
-offset_bottom = 162.0
-theme_override_colors/font_color = Color(1, 0.98039216, 0.9529412, 0.94)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 12
-text = "AUD"
+offset_left = 6.0
+offset_top = 118.0
+offset_right = 68.0
+offset_bottom = 142.0
+theme_override_colors/font_color = Color(0.53333336, 0.40784314, 0.16862746, 0.88235295)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 11
+text = "DSG"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区项4" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1359995073]
+[node name="地区项4" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1359995073]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_tg3gs")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=826810705]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=826810705]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1699,38 +2293,38 @@ texture = SubResource("AtlasTexture_ptxyx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=1326038272]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=1326038272]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.548, 0.231, 0.184, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "枫叶国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=2037134590]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项4" unique_id=2037134590]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.548, 0.231, 0.184, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "CAD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区项5" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1843850081]
+[node name="地区项5" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1843850081]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_snsdi")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=1765901330]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=1765901330]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1740,38 +2334,38 @@ texture = SubResource("AtlasTexture_lj04w")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=861281042]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=861281042]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.184, 0.384, 0.525, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "熊猫国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=1476948598]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项5" unique_id=1476948598]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.184, 0.384, 0.525, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "CNY"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区项6" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1626502078]
+[node name="地区项6" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1626502078]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_01o73")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=1912769131]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=1912769131]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1781,38 +2375,38 @@ texture = SubResource("AtlasTexture_yp8ck")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=30458374]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=30458374]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.376, 0.396, 0.431, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "珍珠国"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=715476642]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项6" unique_id=715476642]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.376, 0.396, 0.431, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "GBP"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="地区项7" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1414860616]
+[node name="地区项7" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1414860616]
 custom_minimum_size = Vector2(74, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rsmh1")
 
-[node name="徽章" type="TextureRect" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1655273237]
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1655273237]
 layout_mode = 0
 offset_left = 7.0
 offset_top = 10.0
@@ -1822,84 +2416,440 @@ texture = SubResource("AtlasTexture_mfr1h")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="名称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1074956411]
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1074956411]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 86.0
 offset_right = 68.0
 offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.548, 0.388, 0.086, 0.96)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
 text = "鸥联盟"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="简称" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1457526317]
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项7" unique_id=1457526317]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 118.0
 offset_right = 68.0
 offset_bottom = 142.0
 theme_override_colors/font_color = Color(0.548, 0.388, 0.086, 0.78)
-theme_override_fonts/font = ExtResource("4_p4lms")
+theme_override_fonts/font = ExtResource("6_63kt1")
 theme_override_font_sizes/font_size = 11
 text = "NZD"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="传送带提示" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/地区传送带区" unique_id=639448875]
+[node name="地区项8" type="Panel" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道" unique_id=1345753838]
+custom_minimum_size = Vector2(74, 170)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qgaeu")
+
+[node name="徽章" type="TextureRect" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项8" unique_id=1417251493]
 layout_mode = 0
-offset_left = 34.0
-offset_top = 238.0
-offset_right = 396.0
-offset_bottom = 262.0
-theme_override_colors/font_color = Color(0.47058824, 0.3882353, 0.3137255, 0.85)
-theme_override_fonts/font = ExtResource("5_p4lms")
+offset_left = 6.0512166
+offset_top = 12.694229
+offset_right = 66.051216
+offset_bottom = 72.69423
+texture = SubResource("AtlasTexture_4clvh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="名称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项8" unique_id=359098501]
+layout_mode = 0
+offset_left = 6.051215
+offset_top = 86.32069
+offset_right = 68.051216
+offset_bottom = 110.32069
+theme_override_colors/font_color = Color(0.72479564, 0.88202953, 0.9827058, 0.8)
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
-text = "七枚可见徽章对应当前可浏览地区，后续可接滑动与切换逻辑"
+text = "全球"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="底部说明区" type="Panel" parent="APP/大背景/地区切换弹窗/弹窗主体" unique_id=76144987]
-visible = false
+[node name="简称" type="Label" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体/地区传送带区/徽章轨道/地区项8" unique_id=1258435656]
+layout_mode = 0
+offset_left = 6.051215
+offset_top = 118.05621
+offset_right = 68.051216
+offset_bottom = 142.05621
+theme_override_colors/font_color = Color(0.7254902, 0.88235295, 0.9843137, 0.8)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 11
+text = "GLB"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RegionBottomVisualButton" type="Button" parent="APP/大背景/弹窗控制器/地区切换弹窗/弹窗主体" unique_id=381220118]
+z_index = 30
 layout_mode = 0
 offset_left = 24.0
 offset_top = 482.0
 offset_right = 453.0
 offset_bottom = 540.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_tc8x4")
-
-[node name="说明" type="Label" parent="APP/大背景/地区切换弹窗/弹窗主体/底部说明区" unique_id=1290129215]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 10.0
-offset_right = 413.0
-offset_bottom = 46.0
+focus_mode = 0
 theme_override_colors/font_color = Color(0.38039216, 0.32156864, 0.25882354, 1)
-theme_override_fonts/font = ExtResource("5_p4lms")
+theme_override_colors/font_pressed_color = Color(1, 0.98039216, 0.9529412, 1)
+theme_override_colors/font_hover_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
 theme_override_font_sizes/font_size = 12
-text = "当前示例接入 7 枚现成徽章。若你要补到 8 个国家，可以继续用底图空位或新增单独图标。"
-horizontal_alignment = 1
-vertical_alignment = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_3n88n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1uy8o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1b2ry")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_tc8x4")
+theme_override_styles/focus = SubResource("StyleBoxFlat_tc8x4")
+text = "REGION BUTTON"
 autowrap_mode = 3
 
-[node name="RegionBottomActionButton" type="Button" parent="APP/大背景/地区切换弹窗/弹窗主体" unique_id=818271406]
+[node name="资讯详情节点" type="Control" parent="APP/大背景" unique_id=1981572707]
+visible = false
+z_index = 3
+anchors_preset = 0
+offset_left = 269.12817
+offset_top = 652.4827
+offset_right = 309.12817
+offset_bottom = 692.4827
+
+[node name="背景弹窗" type="Panel" parent="APP/大背景/资讯详情节点" unique_id=1499744202]
+z_index = 1
 layout_mode = 0
-offset_left = 24.0
-offset_top = 482.0
-offset_right = 453.0
-offset_bottom = 540.0
-theme_override_colors/font_color = Color(0.3529412, 0.14509805, 0.13725491, 1)
-theme_override_colors/font_pressed_color = Color(0.75686276, 0.5803922, 0.23137255, 1)
-theme_override_colors/font_hover_color = Color(0.62352943, 0.4509804, 0.18431373, 1)
-theme_override_fonts/font = ExtResource("4_p4lms")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_p4lms")
+offset_left = -268.03412
+offset_top = -653.7521
+offset_right = 265.84613
+offset_bottom = 576.31775
+theme_override_styles/panel = SubResource("StyleBoxFlat_4clvh")
+
+[node name="详情滚动区_商务版" type="ScrollContainer" parent="APP/大背景/资讯详情节点/背景弹窗" unique_id=559100647]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.692375
+offset_top = 69.818184
+offset_right = -24.307617
+offset_bottom = 8.88562
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="内容根" type="MarginContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版" unique_id=1287369468]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 20
+
+[node name="纵向内容" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根" unique_id=107606358]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 28
+
+[node name="回退行" type="HBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1902719681]
+layout_mode = 2
+
+[node name="回退按钮" type="Button" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/回退行" unique_id=340561776]
+custom_minimum_size = Vector2(36, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.341176, 0.152941, 0.164706, 1)
+theme_override_colors/font_focus_color = Color(0.64165205, 0.32649276, 0.34423468, 1)
+theme_override_colors/font_pressed_color = Color(0.89867324, 0.657416, 0.6614779, 1)
+theme_override_colors/font_hover_color = Color(0.6431373, 0.3254902, 0.34509805, 1)
+theme_override_font_sizes/font_size = 28
+text = "<"
 flat = true
 
+[node name="标题区" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1308566007]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="栏目标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/标题区" unique_id=343518887]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32549, 0.109804, 0.133333, 1)
+theme_override_font_sizes/font_size = 16
+text = "MARKET BRIEF"
+
+[node name="新闻标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/标题区" unique_id=1831384542]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.141176, 0.141176, 0.141176, 1)
+theme_override_font_sizes/font_size = 34
+text = "新闻详情标题横向展开，更接近金融资讯终端的排版方式"
+autowrap_mode = 3
+
+[node name="标题下分隔线" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1118702221]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxLine_lidad")
+
+[node name="资讯信息行" type="HBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=722525994]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="时间" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/资讯信息行" unique_id=370338539]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.411765, 0.380392, 0.356863, 1)
+theme_override_font_sizes/font_size = 14
+text = "2026-07-16 09:00"
+
+[node name="分类" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/资讯信息行" unique_id=1526583687]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.631373, 0.121569, 0.145098, 1)
+theme_override_font_sizes/font_size = 14
+text = "贸易政策"
+
+[node name="摘要" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1658223835]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.286275, 0.27451, 0.262745, 1)
+theme_override_font_sizes/font_size = 20
+text = "这里放一句更短的导语，使用深色文字与浅底对比，配合少量枣红色点缀。"
+autowrap_mode = 3
+
+[node name="插图区" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=536323720]
+clip_children = 1
+custom_minimum_size = Vector2(0, 236)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkplm")
+
+[node name="插图" type="TextureRect" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/插图区" unique_id=1613876791]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+texture = ExtResource("9_q0nxr")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="正文分段区" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=2066498541]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="现象总结" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=97920465]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充现象总结。用于承接 summary_template，先把发生了什么、市场第一反应是什么讲清楚。"
+autowrap_mode = 3
+
+[node name="趋势预测" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=375311323]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充趋势预测。用于承接 trend_outlook，描述如果后续条件延续，汇率大概率怎么走。"
+autowrap_mode = 3
+
+[node name="末尾提示" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=1746794645]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充末尾提示。用于承接 analysis_tail，给玩家一个操盘视角的观察重点或风险提醒。"
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=137223459]
+layout_mode = 2
+
+[node name="推荐区分隔线" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1453000059]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxLine_lidad")
+
+[node name="推荐标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1410447074]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32549, 0.109804, 0.133333, 1)
+theme_override_font_sizes/font_size = 22
+text = "其他新闻推荐"
+
+[node name="推荐资讯行" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1953151562]
+custom_minimum_size = Vector2(0, 176)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="资讯卡1" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=1214679743]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2dy7")
+
+[node name="左侧内容" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1" unique_id=2104140997]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 310.69226
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=1226557689]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容/标签行" unique_id=1184447903]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容/标签行" unique_id=229021132]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=939917047]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=860188115]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3
+
+[node name="右侧图片卡" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1" unique_id=217838093]
+clip_children = 1
+layout_mode = 0
+offset_left = 339.84613
+offset_top = 12.135559
+offset_right = 451.84613
+offset_bottom = 124.13556
+theme_override_styles/panel = SubResource("StyleBoxFlat_bkplm")
+
+[node name="图片" type="TextureRect" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/右侧图片卡" unique_id=1224594396]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 117.14487
+offset_bottom = 115.76644
+texture = ExtResource("9_q0nxr")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="资讯卡2" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=588430165]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2dy7")
+
+[node name="左侧内容" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2" unique_id=1415387653]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 457.84613
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=1453711090]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容/标签行" unique_id=1311724951]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容/标签行" unique_id=6552609]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=1386021246]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=582020349]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3
+
+[node name="资讯卡3" type="Panel" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=1173281812]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2dy7")
+
+[node name="左侧内容" type="VBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3" unique_id=438857215]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 457.84613
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=437795178]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容/标签行" unique_id=844646511]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容/标签行" unique_id=2143536455]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=243354234]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("6_63kt1")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="APP/大背景/资讯详情节点/背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=1432308349]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("8_ds0vc")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3
+
 [node name="手机相关节点" type="Control" parent="." unique_id=461750911]
-z_index = 2
+z_index = 10
 anchors_preset = 0
 
 [node name="手机顶部信息" type="Control" parent="手机相关节点" unique_id=632774164]
@@ -1909,10 +2859,18 @@ offset_top = 563.0
 offset_right = 893.0
 offset_bottom = 563.0
 scale = Vector2(0.9140626, 0.7877604)
-script = ExtResource("3_nkc0l")
+script = ExtResource("20_mfr1h")
+
+[node name="灰背景" type="Panel" parent="手机相关节点/手机顶部信息" unique_id=1053062470]
+layout_mode = 0
+offset_left = -268.03418
+offset_top = -655.0215
+offset_right = 262.56396
+offset_bottom = -572.5091
+theme_override_styles/panel = SubResource("StyleBoxFlat_ugj4f")
 
 [node name="灵动岛" type="Sprite2D" parent="手机相关节点/手机顶部信息" unique_id=1671963615]
-texture = ExtResource("4_6a18n")
+texture = ExtResource("21_4xcma")
 
 [node name="时间" type="RichTextLabel" parent="手机相关节点/手机顶部信息" unique_id=1844160120]
 layout_mode = 0
@@ -1920,7 +2878,7 @@ offset_left = -213.33331
 offset_top = -629.63306
 offset_right = -84.23932
 offset_bottom = -567.4314
-theme_override_fonts/normal_font = ExtResource("5_p4lms")
+theme_override_fonts/normal_font = ExtResource("8_ds0vc")
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 30
 bbcode_enabled = true
@@ -1929,10 +2887,10 @@ text = "18:38
 tab_size = 3
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("6_de8ix")
+script = ExtResource("22_3wt2l")
 
 [node name="电量" type="CanvasLayer" parent="手机相关节点/手机顶部信息" unique_id=1526080483]
-script = ExtResource("7_3nsxp")
+script = ExtResource("23_fg44i")
 
 [node name="电池" type="ProgressBar" parent="手机相关节点/手机顶部信息/电量" unique_id=1105294453]
 offset_left = 1052.0
@@ -1968,7 +2926,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_kie5w")
 [node name="流量" type="Node2D" parent="手机相关节点/手机顶部信息" unique_id=306009775]
 position = Vector2(-332.58112, -894.94214)
 scale = Vector2(2.5915837, 2.7775764)
-script = ExtResource("8_nrpvc")
+script = ExtResource("24_kxe5p")
 
 [node name="1格信号" type="Panel" parent="手机相关节点/手机顶部信息/流量" unique_id=1311603804]
 offset_left = 180.0
@@ -2004,22 +2962,22 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_htaoo")
 [node name="wifi" type="Node2D" parent="手机相关节点/手机顶部信息" unique_id=1140483648]
 position = Vector2(-4495.3154, -2237.9902)
 scale = Vector2(2.5915837, 2.7775764)
-script = ExtResource("8_nrpvc")
+script = ExtResource("24_kxe5p")
 
 [node name="1格信号" type="Sprite2D" parent="手机相关节点/手机顶部信息/wifi" unique_id=571756979]
 position = Vector2(1778.485, 589.1052)
 scale = Vector2(0.033983182, 0.036071923)
-texture = ExtResource("9_icvcd")
+texture = ExtResource("25_d6qsa")
 
 [node name="2格信号" type="Sprite2D" parent="手机相关节点/手机顶部信息/wifi/1格信号" unique_id=2073708365]
-texture = ExtResource("10_1b2ry")
+texture = ExtResource("26_flsdl")
 
 [node name="3格信号" type="Sprite2D" parent="手机相关节点/手机顶部信息/wifi/1格信号/2格信号" unique_id=454302290]
-texture = ExtResource("11_1uy8o")
+texture = ExtResource("27_f83vw")
 
 [node name="PhoneStatusBinder" type="Node" parent="手机相关节点" unique_id=837500458]
 
 [node name="手机进入状态" type="Sprite2D" parent="手机相关节点" unique_id=142081779]
 position = Vector2(893, 563)
 scale = Vector2(0.9140626, 0.7877604)
-texture = ExtResource("12_tgfyt")
+texture = ExtResource("28_wxha1")
