@@ -13,7 +13,11 @@ const HOVER_LINE_COLOR: Color = Color(1.0, 0.96, 0.90, 0.96)
 const PRESSED_LINE_COLOR: Color = Color(1.0, 0.93, 0.84, 1.0)
 
 @export var hide_popups_on_ready: bool = true
+# HBox that contains the three bottom filter buttons.
+# Bind this to the row that holds 日期 / 地区 / 分类 buttons.
 @export var button_row_path: NodePath
+# Popup controller root that contains the three popup panels.
+# The script maps the three buttons to popup children here and toggles them open / closed.
 @export var popup_controller_path: NodePath
 
 var _button_infos: Array[Dictionary] = []

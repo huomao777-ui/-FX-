@@ -503,6 +503,15 @@ offset_right = 893.0
 offset_bottom = 563.0
 scale = Vector2(0.9140626, 0.7877604)
 script = ExtResource("8_u2p3n")
+filter_bar_path = NodePath("大背景/底部按钮层")
+headline_track_path = NodePath("大背景/主滚动区/滚动内容根/顶部头条/头条轨道")
+headline_carousel_path = NodePath("大背景/主滚动区/滚动内容根/顶部头条")
+main_scroll_path = NodePath("大背景/主滚动区")
+content_root_path = NodePath("大背景/主滚动区/滚动内容根")
+page_background_path = NodePath("大背景")
+quick_section_path = NodePath("大背景/主滚动区/滚动内容根/快讯分区")
+quick_list_path = NodePath("大背景/主滚动区/滚动内容根/快讯分区/资讯列表")
+detail_root_path = NodePath("大背景/资讯详情节点")
 
 [node name="大背景" type="Panel" parent="APP" unique_id=405305228]
 clip_children = 1
@@ -2548,6 +2557,9 @@ layout_mode = 2
 custom_minimum_size = Vector2(36, 28)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.341176, 0.152941, 0.164706, 1)
+theme_override_colors/font_focus_color = Color(0.64165205, 0.32649276, 0.34423468, 1)
+theme_override_colors/font_pressed_color = Color(0.89867324, 0.657416, 0.6614779, 1)
+theme_override_colors/font_hover_color = Color(0.6431373, 0.3254902, 0.34509805, 1)
 theme_override_font_sizes/font_size = 28
 text = "<"
 flat = true

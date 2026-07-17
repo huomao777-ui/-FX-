@@ -1,27 +1,39 @@
 extends Node
 class_name NewsArticleDetailController
 
-const TITLE_NAME: String = "新闻标题"
-const TIME_NAME: String = "时间"
-const CATEGORY_NAME: String = "分类"
-const ABSTRACT_NAME: String = "摘要"
-const IMAGE_PANEL_NAME: String = "插图区"
-const IMAGE_NAME: String = "插图"
-const SUMMARY_NAME: String = "现象总结"
-const TREND_NAME: String = "趋势预测"
-const TAIL_NAME: String = "末尾提示"
-const BACK_BUTTON_NAME: String = "回退按钮"
-const RECOMMEND_LIST_NAME: String = "推荐资讯行"
-const RECOMMEND_CARD_NAME_PREFIX: String = "资讯卡"
-const RECOMMEND_IMAGE_PANEL_NAME: String = "右侧图片卡"
-const RECOMMEND_IMAGE_NAME: String = "图片"
-const RECOMMEND_TIME_NAME: String = "时间"
-const RECOMMEND_TITLE_NAME: String = "标题"
-const RECOMMEND_SUMMARY_NAME: String = "摘要"
-const RECOMMEND_CATEGORY_A: String = "标签"
-const RECOMMEND_CATEGORY_B: String = "分类"
+# Main article title label in the detail page header.
+# Bind this to the large headline text shown after opening an article.
+@export var title_label_path: NodePath
+# Time label shown near the top of the detail page.
+# Usually displays publish time, in-game time, or date text for the current article.
+@export var time_label_path: NodePath
+# Category label for the current article.
+# Bind this to the small tag text such as 时政风险 / 经济数据 / 货币政策.
+@export var category_label_path: NodePath
+# Abstract / lead paragraph shown before the longer body sections.
+# This is the short summary near the top, not the later analysis paragraphs.
+@export var abstract_label_path: NodePath
+# Optional image container inside the detail page.
+# The whole block is hidden when the opened article does not provide an image asset.
+@export var image_panel_path: NodePath
+# TextureRect inside the optional image container.
+# Bind this to the actual image node, not the outer wrapper panel.
+@export var image_rect_path: NodePath
+# Main body paragraph: phenomenon summary or first long-form text block.
+@export var summary_label_path: NodePath
+# Secondary body paragraph: trend outlook / market expectation text block.
+@export var trend_label_path: NodePath
+# Final tail note paragraph: risk hint / conclusion / footer note.
+@export var tail_label_path: NodePath
+# Back button in the top-left corner of the detail page.
+# It steps back to the previous article in history instead of exiting straight to the main list.
+@export var back_button_path: NodePath
+# Container that directly holds the 3 recommendation cards at the bottom.
+# The controller scans child Panel nodes here and turns them into clickable recommendations.
+@export var recommend_list_path: NodePath
 
 signal closed
+signal back_requested
 signal recommendation_requested(article: Dictionary)
 
 var _detail_root: Control = null
@@ -29,7 +41,7 @@ var _title_label: Label = null
 var _time_label: Label = null
 var _category_label: Label = null
 var _abstract_label: Label = null
-var _image_panel: Panel = null
+var _image_panel: Control = null
 var _image_rect: TextureRect = null
 var _summary_label: Label = null
 var _trend_label: Label = null
@@ -39,18 +51,19 @@ var _recommend_cards: Array[Panel] = []
 var _recommend_press_state: Dictionary = {}
 
 
+# Cache local nodes once, then let the controller manage only this popup.
 func bind_detail_root(detail_root: Control) -> void:
 	_detail_root = detail_root
-	_title_label = _find_label_by_name(detail_root, TITLE_NAME)
-	_time_label = _find_label_by_name(detail_root, TIME_NAME)
-	_category_label = _find_label_by_name(detail_root, CATEGORY_NAME)
-	_abstract_label = _find_label_by_name(detail_root, ABSTRACT_NAME)
-	_image_panel = _find_panel_by_name(detail_root, IMAGE_PANEL_NAME)
-	_image_rect = _find_texture_rect_by_name(detail_root, IMAGE_NAME)
-	_summary_label = _find_label_by_name(detail_root, SUMMARY_NAME)
-	_trend_label = _find_label_by_name(detail_root, TREND_NAME)
-	_tail_label = _find_label_by_name(detail_root, TAIL_NAME)
-	_back_button = _find_button_by_name(detail_root, BACK_BUTTON_NAME)
+	_title_label = _resolve_label(title_label_path)
+	_time_label = _resolve_label(time_label_path)
+	_category_label = _resolve_label(category_label_path)
+	_abstract_label = _resolve_label(abstract_label_path)
+	_image_panel = _resolve_control(image_panel_path)
+	_image_rect = _resolve_texture_rect(image_rect_path)
+	_summary_label = _resolve_label(summary_label_path)
+	_trend_label = _resolve_label(trend_label_path)
+	_tail_label = _resolve_label(tail_label_path)
+	_back_button = _resolve_button(back_button_path)
 	_collect_recommend_cards()
 	_connect_back_button()
 	if _detail_root != null:
@@ -86,25 +99,26 @@ func _connect_back_button() -> void:
 		_back_button.pressed.connect(callback)
 
 
+# The back button steps one article back in history, not all the way out.
 func _on_back_button_pressed() -> void:
-	hide_detail()
+	back_requested.emit()
 
 
 func _fill_main_article(article: Dictionary) -> void:
 	if _title_label != null:
-		_title_label.text = String(article.get("headline", "暂无新闻标题"))
+		_title_label.text = String(article.get("headline", "No headline"))
 	if _time_label != null:
 		_time_label.text = String(article.get("time_text", article.get("time_label", "--:--")))
 	if _category_label != null:
-		_category_label.text = String(article.get("category", article.get("category_short", "全部资讯")))
+		_category_label.text = String(article.get("category", article.get("category_short", "All")))
 	if _abstract_label != null:
-		_abstract_label.text = String(article.get("abstract", article.get("summary", "暂无摘要")))
+		_abstract_label.text = String(article.get("abstract", article.get("summary", "No summary")))
 	if _summary_label != null:
-		_summary_label.text = String(article.get("summary", "暂无现象总结"))
+		_summary_label.text = String(article.get("summary", "No summary"))
 	if _trend_label != null:
-		_trend_label.text = String(article.get("trend_outlook", "暂无趋势预测"))
+		_trend_label.text = String(article.get("trend_outlook", "No outlook"))
 	if _tail_label != null:
-		_tail_label.text = String(article.get("analysis_tail", "暂无末尾提示"))
+		_tail_label.text = String(article.get("analysis_tail", "No note"))
 
 	var has_image: bool = bool(article.get("has_image", false))
 	if _image_panel != null:
@@ -134,13 +148,11 @@ func _fill_recommendations(recommendations: Array[Dictionary]) -> void:
 
 func _collect_recommend_cards() -> void:
 	_recommend_cards.clear()
-	if _detail_root == null:
-		return
-	var recommend_root: Node = _find_node_by_name(_detail_root, RECOMMEND_LIST_NAME)
+	var recommend_root: Node = get_node_or_null(recommend_list_path)
 	if recommend_root == null:
 		return
 	for child: Node in recommend_root.get_children():
-		if child is Panel and String(child.name).begins_with(RECOMMEND_CARD_NAME_PREFIX):
+		if child is Panel:
 			var card: Panel = child as Panel
 			card.mouse_filter = Control.MOUSE_FILTER_STOP
 			card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
@@ -153,25 +165,25 @@ func _collect_recommend_cards() -> void:
 
 
 func _apply_item_to_recommend_card(card: Panel, item: Dictionary) -> void:
-	var category_label: Label = _find_first_label(card, [RECOMMEND_CATEGORY_A, RECOMMEND_CATEGORY_B])
-	var time_label: Label = _find_label_by_name(card, RECOMMEND_TIME_NAME)
-	var title_label: Label = _find_label_by_name(card, RECOMMEND_TITLE_NAME)
-	var summary_label: Label = _find_label_by_name(card, RECOMMEND_SUMMARY_NAME)
+	var labels: Array[Label] = _find_labels(card)
+	var category_label: Label = labels[0] if labels.size() > 0 else null
+	var time_label: Label = labels[1] if labels.size() > 1 else null
+	var title_label: Label = labels[2] if labels.size() > 2 else null
+	var summary_label: Label = labels[3] if labels.size() > 3 else null
 	if category_label != null:
-		category_label.text = String(item.get("category_short", "全部资讯"))
+		category_label.text = String(item.get("category_short", "All"))
 	if time_label != null:
 		time_label.text = String(item.get("time_label", "--:--"))
 	if title_label != null:
-		title_label.text = String(item.get("headline", "暂无标题"))
+		title_label.text = String(item.get("headline", "No title"))
 	if summary_label != null:
-		summary_label.text = String(item.get("summary", "暂无摘要"))
+		summary_label.text = String(item.get("summary", "No summary"))
 
-	var image_panel: Panel = _find_panel_by_name(card, RECOMMEND_IMAGE_PANEL_NAME)
-	var image_rect: TextureRect = _find_texture_rect_by_name(card, RECOMMEND_IMAGE_NAME)
+	var image_panel: Panel = _find_first_panel(card)
+	var image_rect: TextureRect = _find_first_texture_rect(card)
 	var has_image: bool = bool(item.get("has_image", false))
-	if image_panel != null:
+	if image_panel != null and image_rect != null:
 		image_panel.visible = has_image
-	if image_rect != null:
 		if has_image:
 			_apply_texture_to_rect(image_rect, String(item.get("image_path", "")))
 		else:
@@ -227,6 +239,22 @@ func _clear_pressed_recommendations() -> void:
 	_recommend_press_state.clear()
 
 
+func _resolve_label(path: NodePath) -> Label:
+	return get_node_or_null(path) as Label
+
+
+func _resolve_control(path: NodePath) -> Control:
+	return get_node_or_null(path) as Control
+
+
+func _resolve_texture_rect(path: NodePath) -> TextureRect:
+	return get_node_or_null(path) as TextureRect
+
+
+func _resolve_button(path: NodePath) -> Button:
+	return get_node_or_null(path) as Button
+
+
 func _disable_child_mouse_filter(root: Control) -> void:
 	for child: Node in root.get_children():
 		if child is Control:
@@ -235,59 +263,30 @@ func _disable_child_mouse_filter(root: Control) -> void:
 			_disable_child_mouse_filter(child_control)
 
 
-func _find_node_by_name(root: Node, target_name: String) -> Node:
+func _find_labels(root: Node) -> Array[Label]:
+	var labels: Array[Label] = []
 	for child: Node in root.get_children():
-		if String(child.name) == target_name:
-			return child
-		var nested: Node = _find_node_by_name(child, target_name)
-		if nested != null:
-			return nested
-	return null
+		if child is Label:
+			labels.append(child as Label)
+		labels.append_array(_find_labels(child))
+	return labels
 
 
-func _find_label_by_name(root: Node, target_name: String) -> Label:
+func _find_first_panel(root: Node) -> Panel:
 	for child: Node in root.get_children():
-		if child is Label and String(child.name) == target_name:
-			return child as Label
-		var nested: Label = _find_label_by_name(child, target_name)
-		if nested != null:
-			return nested
-	return null
-
-
-func _find_first_label(root: Node, target_names: Array[String]) -> Label:
-	for target_name: String in target_names:
-		var found: Label = _find_label_by_name(root, target_name)
-		if found != null:
-			return found
-	return null
-
-
-func _find_panel_by_name(root: Node, target_name: String) -> Panel:
-	for child: Node in root.get_children():
-		if child is Panel and String(child.name) == target_name:
+		if child is Panel:
 			return child as Panel
-		var nested: Panel = _find_panel_by_name(child, target_name)
+		var nested: Panel = _find_first_panel(child)
 		if nested != null:
 			return nested
 	return null
 
 
-func _find_texture_rect_by_name(root: Node, target_name: String) -> TextureRect:
+func _find_first_texture_rect(root: Node) -> TextureRect:
 	for child: Node in root.get_children():
-		if child is TextureRect and String(child.name) == target_name:
+		if child is TextureRect:
 			return child as TextureRect
-		var nested: TextureRect = _find_texture_rect_by_name(child, target_name)
-		if nested != null:
-			return nested
-	return null
-
-
-func _find_button_by_name(root: Node, target_name: String) -> Button:
-	for child: Node in root.get_children():
-		if child is Button and String(child.name) == target_name:
-			return child as Button
-		var nested: Button = _find_button_by_name(child, target_name)
+		var nested: TextureRect = _find_first_texture_rect(child)
 		if nested != null:
 			return nested
 	return null
