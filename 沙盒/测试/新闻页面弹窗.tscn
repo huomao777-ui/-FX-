@@ -1,0 +1,371 @@
+[gd_scene format=3 uid="uid://teupsfug57hf"]
+
+[ext_resource type="FontFile" uid="uid://dx4bx3enoue6j" path="res://资源/字体/苹方字体.ttf" id="1_efjfy"]
+[ext_resource type="FontFile" uid="uid://c04l4h0i4f3gu" path="res://资源/字体/思源黑体 Display.otf" id="2_hocjr"]
+[ext_resource type="Texture2D" uid="uid://oynb8v0cmd2p" path="res://界面/场景/新闻/美术资源/资讯图/资讯配图_市场预期_002.png" id="3_g6jbs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efjfy"]
+bg_color = Color(1, 1, 0.9411765, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hocjr"]
+color = Color(0.505882, 0.137255, 0.156863, 0.85)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjoc1"]
+bg_color = Color(0.93015194, 0.9418548, 0.9637695, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6jbs"]
+bg_color = Color(1, 0.9571987, 0.86537325, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.812, 0.85066664, 0.902, 0.8)
+
+[node name="新闻页面弹窗" type="Control" unique_id=1973520680]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="背景弹窗" type="Panel" parent="." unique_id=16698802]
+z_index = 1
+layout_mode = 0
+offset_left = -268.03412
+offset_top = -653.7521
+offset_right = 265.84613
+offset_bottom = 576.31775
+theme_override_styles/panel = SubResource("StyleBoxFlat_efjfy")
+
+[node name="详情滚动区_商务版" type="ScrollContainer" parent="背景弹窗" unique_id=360102531]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.692375
+offset_top = 69.818184
+offset_right = -24.307617
+offset_bottom = 8.88562
+grow_horizontal = 2
+grow_vertical = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="内容根" type="MarginContainer" parent="背景弹窗/详情滚动区_商务版" unique_id=1335548688]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 20
+
+[node name="纵向内容" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根" unique_id=501341067]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 28
+
+[node name="回退行" type="HBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=186464831]
+layout_mode = 2
+
+[node name="回退按钮" type="Button" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/回退行" unique_id=580104776]
+custom_minimum_size = Vector2(36, 28)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.341176, 0.152941, 0.164706, 1)
+theme_override_font_sizes/font_size = 28
+text = "<"
+flat = true
+
+[node name="标题区" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=2146811671]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="栏目标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/标题区" unique_id=1114001475]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32549, 0.109804, 0.133333, 1)
+theme_override_font_sizes/font_size = 16
+text = "MARKET BRIEF"
+
+[node name="新闻标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/标题区" unique_id=174771706]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.141176, 0.141176, 0.141176, 1)
+theme_override_font_sizes/font_size = 34
+text = "新闻详情标题横向展开，更接近金融资讯终端的排版方式"
+autowrap_mode = 3
+
+[node name="标题下分隔线" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=373927936]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxLine_hocjr")
+
+[node name="资讯信息行" type="HBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=208409572]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="时间" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/资讯信息行" unique_id=393571310]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.411765, 0.380392, 0.356863, 1)
+theme_override_font_sizes/font_size = 14
+text = "2026-07-16 09:00"
+
+[node name="分类" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/资讯信息行" unique_id=1020672657]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.631373, 0.121569, 0.145098, 1)
+theme_override_font_sizes/font_size = 14
+text = "贸易政策"
+
+[node name="摘要" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=70745297]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.286275, 0.27451, 0.262745, 1)
+theme_override_font_sizes/font_size = 20
+text = "这里放一句更短的导语，使用深色文字与浅底对比，配合少量枣红色点缀。"
+autowrap_mode = 3
+
+[node name="插图区" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=1254079931]
+clip_children = 1
+custom_minimum_size = Vector2(0, 236)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjoc1")
+
+[node name="插图" type="TextureRect" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/插图区" unique_id=1334085229]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+texture = ExtResource("3_g6jbs")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="正文分段区" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=2144130885]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="现象总结" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=976193166]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充现象总结。用于承接 summary_template，先把发生了什么、市场第一反应是什么讲清楚。"
+autowrap_mode = 3
+
+[node name="趋势预测" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=669997249]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充趋势预测。用于承接 trend_outlook，描述如果后续条件延续，汇率大概率怎么走。"
+autowrap_mode = 3
+
+[node name="末尾提示" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=1905246395]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.168627, 0.160784, 0.152941, 1)
+theme_override_font_sizes/font_size = 24
+text = "这里填充末尾提示。用于承接 analysis_tail，给玩家一个操盘视角的观察重点或风险提醒。"
+autowrap_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/正文分段区" unique_id=1453080]
+layout_mode = 2
+
+[node name="推荐区分隔线" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=993620553]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxLine_hocjr")
+
+[node name="推荐标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=737939226]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32549, 0.109804, 0.133333, 1)
+theme_override_font_sizes/font_size = 22
+text = "其他新闻推荐"
+
+[node name="推荐资讯行" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容" unique_id=2053504301]
+custom_minimum_size = Vector2(0, 176)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 2
+
+[node name="资讯卡1" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=196440738]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g6jbs")
+
+[node name="左侧内容" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1" unique_id=1156218838]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 310.69226
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=1511987291]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容/标签行" unique_id=771979933]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容/标签行" unique_id=1134388588]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=367976684]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("2_hocjr")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/左侧内容" unique_id=101563400]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3
+
+[node name="右侧图片卡" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1" unique_id=1703104479]
+clip_children = 1
+layout_mode = 0
+offset_left = 339.84613
+offset_top = 12.135559
+offset_right = 451.84613
+offset_bottom = 124.13556
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjoc1")
+
+[node name="图片" type="TextureRect" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡1/右侧图片卡" unique_id=700384971]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 117.14487
+offset_bottom = 115.76644
+texture = ExtResource("3_g6jbs")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="资讯卡2" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=787795505]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g6jbs")
+
+[node name="左侧内容" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2" unique_id=329197210]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 457.84613
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=719627829]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容/标签行" unique_id=828285389]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容/标签行" unique_id=442175067]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=2108054218]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("2_hocjr")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡2/左侧内容" unique_id=102653544]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3
+
+[node name="资讯卡3" type="Panel" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行" unique_id=1401783538]
+custom_minimum_size = Vector2(452, 135)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_g6jbs")
+
+[node name="左侧内容" type="VBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3" unique_id=481500538]
+layout_mode = 0
+offset_left = 14.84613
+offset_top = 10.135559
+offset_right = 457.84613
+offset_bottom = 125.27112
+theme_override_constants/separation = 2
+
+[node name="标签行" type="HBoxContainer" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=1167795511]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="标签" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容/标签行" unique_id=402644200]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14901961, 0.3372549, 0.5372549, 1)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "政局异动"
+
+[node name="时间" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容/标签行" unique_id=354988203]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47058824, 0.47058824, 0.47058824, 0.88)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "11:45"
+
+[node name="标题" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=721905689]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14509805, 0.14509805, 0.14509805, 1)
+theme_override_fonts/font = ExtResource("2_hocjr")
+theme_override_font_sizes/font_size = 16
+text = "首相突然宣布辞职，主要货币对振幅
+扩大"
+autowrap_mode = 3
+
+[node name="摘要" type="Label" parent="背景弹窗/详情滚动区_商务版/内容根/纵向内容/推荐资讯行/资讯卡3/左侧内容" unique_id=370290287]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38431373, 0.38431373, 0.38431373, 0.92)
+theme_override_fonts/font = ExtResource("1_efjfy")
+theme_override_font_sizes/font_size = 12
+text = "交易员正在重新评估新内阁组建速度，避险货币买盘走强。"
+autowrap_mode = 3

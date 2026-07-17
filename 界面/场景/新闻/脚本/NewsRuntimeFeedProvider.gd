@@ -1,8 +1,8 @@
 extends RefCounted
 class_name NewsRuntimeFeedProvider
 
-const TEMPLATES_PATH: String = "res://\u8d44\u6e90/\u6570\u636e/\u65b0\u95fb/news_templates.json"
-const IMAGE_ASSETS_PATH: String = "res://\u8d44\u6e90/\u6570\u636e/\u65b0\u95fb/news_image_assets.json"
+const TEMPLATES_PATH: String = "res://资源/数据/新闻/news_templates.json"
+const IMAGE_ASSETS_PATH: String = "res://资源/数据/新闻/news_image_assets.json"
 const HEADLINE_STEP_DAYS: int = 3
 const HEADLINE_COUNT: int = 5
 const LIST_COUNT: int = 5
@@ -11,14 +11,14 @@ const DAILY_NEWS_MAX: int = 4
 const DAY_COOLDOWN_NORMAL: int = 6
 const DAY_COOLDOWN_HEADLINE: int = 12
 
-const CAT_POLITICAL: String = "\u65f6\u653f\u98ce\u9669"
-const CAT_DATA: String = "\u7ecf\u6d4e\u6570\u636e"
-const CAT_POLICY: String = "\u8d27\u5e01\u653f\u7b56"
-const CAT_TRADE: String = "\u8d38\u6613\u4e0e\u4ea7\u4e1a"
-const CAT_EXPECT: String = "\u5e02\u573a\u9884\u671f"
-const CAT_MOVE: String = "\u76d8\u9762\u5f02\u52a8"
-const CAT_ALL: String = "\u5168\u90e8\u8d44\u8baf"
-const REGION_GLOBAL: String = "\u5168\u7403"
+const CAT_POLITICAL: String = "时政风险"
+const CAT_DATA: String = "经济数据"
+const CAT_POLICY: String = "货币政策"
+const CAT_TRADE: String = "贸易与产业"
+const CAT_EXPECT: String = "市场预期"
+const CAT_MOVE: String = "盘面异动"
+const CAT_ALL: String = "全部资讯"
+const REGION_GLOBAL: String = "全球"
 
 const CATEGORY_WEIGHTS: Dictionary = {
 	CAT_EXPECT: 22,
@@ -30,25 +30,20 @@ const CATEGORY_WEIGHTS: Dictionary = {
 }
 
 const CATEGORY_SHORT_LABELS: Dictionary = {
-	CAT_POLITICAL: "\u65f6\u653f\u98ce\u9669",
-	CAT_DATA: "\u7ecf\u6d4e\u6570\u636e",
-	CAT_POLICY: "\u8d27\u5e01\u653f\u7b56",
-	CAT_TRADE: "\u8d38\u6613\u4e0e\u4ea7\u4e1a",
-	CAT_EXPECT: "\u5e02\u573a\u9884\u671f",
-	CAT_MOVE: "\u76d8\u9762\u5f02\u52a8",
+	CAT_POLITICAL: "时政风险",
+	CAT_DATA: "经济数据",
+	CAT_POLICY: "货币政策",
+	CAT_TRADE: "贸易与产业",
+	CAT_EXPECT: "市场预期",
+	CAT_MOVE: "盘面异动",
 }
 
-const SLOT_NAMES: Array[String] = [
-	"\u6e05\u6668",
-	"\u4e2d\u5348",
-	"\u9ec4\u660f",
-	"\u665a\u4e0a",
-	"\u6df1\u591c",
-]
+const SLOT_NAMES: Array[String] = ["清晨", "中午", "黄昏", "晚上", "深夜"]
 
 var _templates: Array[Dictionary] = []
 var _templates_by_category: Dictionary = {}
 var _image_path_by_id: Dictionary = {}
+var _event_overrides_by_date: Dictionary = {}
 var _loaded: bool = false
 
 
@@ -67,6 +62,45 @@ func build_feed(date_data: Dictionary) -> Dictionary:
 		"headlines": _build_headline_items(normalized_date),
 		"list_items": _build_list_items(normalized_date),
 	}
+
+
+func build_day_items(date_data: Dictionary) -> Array[Dictionary]:
+	ensure_loaded()
+	var normalized_date: Dictionary = _normalize_date(date_data)
+	var date_key: String = _date_key(normalized_date)
+	if _event_overrides_by_date.has(date_key):
+		var override_items: Variant = _event_overrides_by_date.get(date_key, [])
+		if override_items is Array:
+			var copied_items: Array[Dictionary] = []
+			for item_variant: Variant in override_items:
+				if item_variant is Dictionary:
+					copied_items.append((item_variant as Dictionary).duplicate(true))
+			copied_items.sort_custom(_sort_items_descending)
+			return copied_items
+	return _generate_daily_items(normalized_date)
+
+
+func shift_date_data(date_data: Dictionary, day_delta: int) -> Dictionary:
+	ensure_loaded()
+	return _shift_date(_normalize_date(date_data), day_delta)
+
+
+func set_event_overrides_for_date(date_data: Dictionary, items: Array[Dictionary]) -> void:
+	ensure_loaded()
+	var normalized_date: Dictionary = _normalize_date(date_data)
+	var stored_items: Array[Dictionary] = []
+	for item: Dictionary in items:
+		stored_items.append(_normalize_external_item(normalized_date, item))
+	stored_items.sort_custom(_sort_items_descending)
+	_event_overrides_by_date[_date_key(normalized_date)] = stored_items
+
+
+func clear_event_overrides() -> void:
+	_event_overrides_by_date.clear()
+
+
+func clear_event_override_for_date(date_data: Dictionary) -> void:
+	_event_overrides_by_date.erase(_date_key(_normalize_date(date_data)))
 
 
 func _build_headline_items(date_data: Dictionary) -> Array[Dictionary]:
@@ -92,6 +126,7 @@ func _build_list_items(date_data: Dictionary) -> Array[Dictionary]:
 	while items.size() < LIST_COUNT and offset_day < 4:
 		var source_date: Dictionary = _shift_date(date_data, -offset_day)
 		var day_items: Array[Dictionary] = _generate_daily_items(source_date)
+		day_items.sort_custom(_sort_items_descending)
 		for item: Dictionary in day_items:
 			var template_id: String = String(item.get("template_id", ""))
 			if used_template_ids.has(template_id):
@@ -125,7 +160,12 @@ func _generate_daily_items(date_data: Dictionary) -> Array[Dictionary]:
 			continue
 		used_template_ids[String(item.get("template_id", ""))] = true
 		items.append(item)
+	items.sort_custom(_sort_items_descending)
 	return items
+
+
+func _sort_items_descending(a: Dictionary, b: Dictionary) -> bool:
+	return int(a.get("sort_value", 0)) > int(b.get("sort_value", 0))
 
 
 func _generate_featured_item_for_date(date_data: Dictionary, used_template_ids: Dictionary) -> Dictionary:
@@ -203,6 +243,7 @@ func _is_template_available_for_date(template_id: String, date_data: Dictionary,
 func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_value: int, prefer_image: bool) -> Dictionary:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.seed = seed_value
+	var clock_parts: Vector2i = _build_clock_parts(date_data, rng)
 	var region_name: String = _pick_region(template_data, rng)
 	var bias_text: String = _pick_string_option(template_data.get("bias_options", []), String(template_data.get("default_bias", "")), rng)
 	var strength_text: String = _pick_string_option(template_data.get("strength_options", []), String(template_data.get("default_strength", "")), rng)
@@ -226,6 +267,7 @@ func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_val
 	return {
 		"template_id": String(template_data.get("id", "")),
 		"date_key": _date_key(date_data),
+		"sort_value": _build_sort_value(date_data, clock_parts.x, clock_parts.y),
 		"category": category_text,
 		"category_short": String(CATEGORY_SHORT_LABELS.get(category_text, category_text)),
 		"headline": headline_text,
@@ -234,7 +276,9 @@ func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_val
 		"trend_outlook": trend_text,
 		"analysis_tail": tail_text,
 		"body": body_text.strip_edges(),
-		"time_label": _build_clock_text(date_data, rng),
+		"time_label": _format_clock_text(clock_parts.x, clock_parts.y),
+		"clock_hour": clock_parts.x,
+		"clock_minute": clock_parts.y,
 		"time_text": time_text,
 		"region": region_name,
 		"bias": bias_text,
@@ -245,6 +289,55 @@ func _build_news_item(template_data: Dictionary, date_data: Dictionary, seed_val
 		"impact_bucket": String(template_data.get("developer_bucket", "UNSET")),
 		"parameter_hints": template_data.get("parameter_hints", []),
 	}
+
+
+func _normalize_external_item(date_data: Dictionary, raw_item: Dictionary) -> Dictionary:
+	var normalized_item: Dictionary = raw_item.duplicate(true)
+	var clock_hour: int = int(normalized_item.get("clock_hour", -1))
+	var clock_minute: int = int(normalized_item.get("clock_minute", -1))
+	var time_label: String = String(normalized_item.get("time_label", ""))
+	if (clock_hour < 0 or clock_minute < 0) and not time_label.is_empty() and time_label.contains(":"):
+		var parts: PackedStringArray = time_label.split(":")
+		if parts.size() >= 2:
+			clock_hour = int(parts[0])
+			clock_minute = int(parts[1])
+	if clock_hour < 0:
+		clock_hour = 9
+	if clock_minute < 0:
+		clock_minute = 0
+	normalized_item["clock_hour"] = clock_hour
+	normalized_item["clock_minute"] = clock_minute
+	normalized_item["time_label"] = _format_clock_text(clock_hour, clock_minute)
+	normalized_item["date_key"] = _date_key(date_data)
+	normalized_item["sort_value"] = _build_sort_value(date_data, clock_hour, clock_minute)
+	if not normalized_item.has("time_text"):
+		normalized_item["time_text"] = _build_time_text(date_data)
+	if not normalized_item.has("category_short"):
+		var category_name: String = String(normalized_item.get("category", CAT_ALL))
+		normalized_item["category_short"] = String(CATEGORY_SHORT_LABELS.get(category_name, category_name))
+	if not normalized_item.has("abstract") and normalized_item.has("summary"):
+		normalized_item["abstract"] = normalized_item.get("summary", "")
+	if not normalized_item.has("summary") and normalized_item.has("abstract"):
+		normalized_item["summary"] = normalized_item.get("abstract", "")
+	if not normalized_item.has("has_image"):
+		normalized_item["has_image"] = not String(normalized_item.get("image_path", "")).is_empty()
+	if not normalized_item.has("source_type"):
+		normalized_item["source_type"] = "event_override"
+	return normalized_item
+
+
+func _build_clock_parts(date_data: Dictionary, rng: RandomNumberGenerator) -> Vector2i:
+	var base_hour: int = int(date_data.get("clock_hour", -1))
+	var base_minute: int = int(date_data.get("clock_minute", -1))
+	if base_hour >= 0 and base_minute >= 0:
+		return Vector2i(base_hour, base_minute)
+	var generated_hour: int = 8 + rng.randi_range(0, 11)
+	var generated_minute: int = rng.randi_range(0, 1) * 30
+	return Vector2i(generated_hour, generated_minute)
+
+
+func _build_sort_value(date_data: Dictionary, hour: int, minute: int) -> int:
+	return _day_serial(date_data) * 10000 + hour * 100 + minute
 
 
 func _pick_region(template_data: Dictionary, rng: RandomNumberGenerator) -> String:
@@ -289,26 +382,22 @@ func _build_time_text(date_data: Dictionary) -> String:
 
 
 func _build_clock_text(date_data: Dictionary, rng: RandomNumberGenerator) -> String:
-	var base_hour: int = int(date_data.get("clock_hour", -1))
-	var base_minute: int = int(date_data.get("clock_minute", -1))
-	if base_hour < 0 or base_minute < 0:
-		base_hour = 8 + rng.randi_range(0, 11)
-		base_minute = rng.randi_range(0, 1) * 30
-	return "%02d:%02d" % [base_hour, base_minute]
+	var clock_parts: Vector2i = _build_clock_parts(date_data, rng)
+	return _format_clock_text(clock_parts.x, clock_parts.y)
+
+
+func _format_clock_text(hour: int, minute: int) -> String:
+	return "%02d:%02d" % [hour, minute]
 
 
 func _pick_slot_name(slot_index: int) -> String:
 	if slot_index < 0 or slot_index >= SLOT_NAMES.size():
-		return "\u76d8\u4e2d"
+		return "盘中"
 	return SLOT_NAMES[slot_index]
 
 
 func _date_key(date_data: Dictionary) -> String:
-	return "%04d-%02d-%02d" % [
-		int(date_data.get("year", 2026)),
-		int(date_data.get("month", 1)),
-		int(date_data.get("day", 1)),
-	]
+	return "%04d-%02d-%02d" % [int(date_data.get("year", 2026)), int(date_data.get("month", 1)), int(date_data.get("day", 1))]
 
 
 func _get_category_names() -> Array[String]:
@@ -418,11 +507,7 @@ func _shift_date(date_data: Dictionary, day_delta: int) -> Dictionary:
 
 
 func _day_serial(date_data: Dictionary) -> int:
-	return _days_from_civil(
-		int(date_data.get("year", 2026)),
-		int(date_data.get("month", 1)),
-		int(date_data.get("day", 1))
-	)
+	return _days_from_civil(int(date_data.get("year", 2026)), int(date_data.get("month", 1)), int(date_data.get("day", 1)))
 
 
 func _get_days_in_month(year: int, month: int) -> int:
